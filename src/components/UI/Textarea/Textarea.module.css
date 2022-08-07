@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 194px;
+}
+
+.label {
+  font-family: 'Nunito';
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  color: #333333;
+}
+
+.textarea {
+  font-family: 'Open Sans';
+  font-size: 16px;
+  line-height: 20px;
+  color: #222222;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  outline: 2px solid transparent;
+  resize: none;
+}
+
+.textarea::placeholder {
+  font-size: 14px;
+  color: lightgray;
+}
+
+.textarea:focus {
+  transition: all 250ms linear;
+  background-color: #fcf7eb;
+  border: 1px solid #ffc43f;
+}
+
+.error {
+  transition: outline 0.3s ease-in;
+  outline: 2px solid #ef2525;
+}
+
+.highlighted {
+  font-size: 14px;
+  color: #ef2525;
+}

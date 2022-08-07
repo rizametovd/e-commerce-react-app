@@ -1,0 +1,29 @@
+.wrapper {
+  max-width: 960px;
+  width: 100%;
+  align-self: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.action {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .action {
+    flex-direction: row;
+    align-self: flex-end;
+  }
+}

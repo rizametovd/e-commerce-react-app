@@ -1,0 +1,28 @@
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-family: 'Nunito';
+  font-size: 20px;
+  line-height: 22px;
+  margin: 0;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .actions {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .title {
+    font-size: 32px;
+    line-height: 32px;
+    margin: 0;
+    text-align: left;
+  }
+}

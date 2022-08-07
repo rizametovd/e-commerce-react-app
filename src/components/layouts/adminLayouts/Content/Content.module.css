@@ -1,0 +1,11 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  /* align-items: center; */
+  justify-items: center;
+  gap: 60px;
+  position: relative;
+  height: 100%;
+  align-items: stretch;
+}

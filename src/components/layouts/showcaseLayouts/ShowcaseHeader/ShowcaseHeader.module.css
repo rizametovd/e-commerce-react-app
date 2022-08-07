@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.logo {
+  width: 220px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.badge-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+

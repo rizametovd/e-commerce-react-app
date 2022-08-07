@@ -1,0 +1,9 @@
+.icon {
+    transition: all 200ms ease-out;
+    
+  }
+  
+  .icon:hover {
+    transition: all 250ms ease-in;
+    opacity: 0.7;
+  }

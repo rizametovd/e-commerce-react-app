@@ -1,0 +1,135 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  font-family: 'Nunito';
+  font-size: 18px;
+  padding: 10px;
+  text-align: left;
+}
+
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+tr {
+  transition: all 200ms linear;
+  background-color: #fff;
+}
+
+tbody tr:hover {
+  transition: all 200ms linear;
+  background-color: #fcf7eb;
+}
+
+.filter-row {
+  background-color: #fcf7eb;
+}
+
+.action-cell {
+  width: 20px;
+}
+
+.image {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.foto-th {
+  width: 60px;
+}
+
+.category-th {
+  width: 230px;
+}
+
+.brand-th {
+  width: 200px;
+}
+
+.price-th {
+  width: 75px;
+}
+
+.action {
+  width: 60px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  .filter-row {
+    display: none;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td:last-of-type {
+    border-bottom: none;
+    padding-bottom: 40px;
+  }
+
+  td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    white-space: nowrap;
+  }
+
+  td:nth-of-type(1):before {
+    content: 'Фото';
+    font-weight: 600;
+    width: 100px;
+  }
+  td:nth-of-type(2):before {
+    content: 'Название';
+    font-weight: 600;
+  }
+  td:nth-of-type(3):before {
+    content: 'Категория';
+    font-weight: 600;
+  }
+  td:nth-of-type(4):before {
+    content: 'Производитель';
+    font-weight: 600;
+  }
+  td:nth-of-type(5):before {
+    content: 'Цена';
+    font-weight: 600;
+  }
+  td:nth-of-type(6):before {
+    content: 'Действия';
+    font-weight: 600;
+  }
+}
+
+.action {
+  justify-content: center;
+}

@@ -1,0 +1,15 @@
+.chip {
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  align-self: flex-start;
+}
+
+.info {
+  background-color: #fcf7eb;
+}
+
+.attention {
+  color: #fff;
+  background-color: #f44336;
+}

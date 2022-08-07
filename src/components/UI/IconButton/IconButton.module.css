@@ -1,0 +1,20 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0;
+  fill: lightgray;
+}
+
+.button:disabled {
+  cursor: default;
+  fill: lightgray;
+}
+
+.button:hover:not(:disabled) {
+  fill: #4faa37;
+}

@@ -1,0 +1,9 @@
+.list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+  }

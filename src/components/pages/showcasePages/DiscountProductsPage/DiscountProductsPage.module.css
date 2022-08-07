@@ -1,0 +1,12 @@
+.discount-products {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+    font-family: 'Nunito';
+    font-size: 28px;
+    margin: 0;
+}

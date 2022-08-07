@@ -1,0 +1,51 @@
+.toast {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  padding: 10px 10px 10px 20px;
+  border-radius: 4px;
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 20px);
+  max-width: 60%;
+  animation: fade 200ms linear;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.info {
+  background-color: #0288d1;
+  box-shadow: 0px 6px 12px rgba(130, 82, 208, 0.16);
+}
+
+.success {
+  background-color: #5ec343;
+  box-shadow: 0px 6px 12px rgba(0, 176, 49, 0.16);
+}
+
+.warning {
+  background-color: #ffa801;
+  box-shadow: 0px 6px 12px rgba(245, 152, 33, 0.16);
+}
+
+.error {
+  background-color: #ef2525;
+  box-shadow: 0px 6px 12px rgba(255, 7, 7, 0.16);
+}
+
+@media screen and (min-width: 768px) {
+  .toast {
+    width: auto;
+  }
+}

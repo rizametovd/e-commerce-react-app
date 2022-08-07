@@ -1,0 +1,68 @@
+.menu {
+  position: relative;
+}
+
+.button {
+  font-family: 'Nunito';
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  background-color: #fc0;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 200ms linear;
+}
+
+.button:hover {
+  opacity: 0.7;
+  transition: opacity 200ms linear;
+}
+
+.nav {
+  position: absolute;
+  top: 45px;
+  background-color: #fff;
+  width: 280px;
+  z-index: 1;
+  border-radius: 6px;
+  border: 1px solid lightgray;
+  box-shadow: 0px 5px 22px rgba(0, 0, 0, 0.1);
+  animation: fade 100ms linear;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  list-style: none;
+  padding: 20px 5px;
+  margin: 0;
+}
+
+.link {
+  font-weight: 700;
+  font-size: 18px;
+  color: #333333;
+  padding: 6px 14px;
+  display: flex;
+  text-decoration: none;
+  transition: background-color 100ms linear;
+}
+
+.link:hover {
+  background-color: #fc0;
+  border-radius: 3px;
+  transition: background-color 150ms linear;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,13 @@
+.settings {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 768px) {
+  .settings {
+    grid-template-columns: 1fr 1fr;
+  }
+}

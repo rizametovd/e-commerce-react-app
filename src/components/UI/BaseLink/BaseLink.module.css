@@ -1,0 +1,35 @@
+.link {
+  text-decoration: none;
+  color: #333333;
+}
+
+.button {
+  background-color: #fc0;
+  border-radius: 8px;
+}
+
+.button:hover:not(:disabled) {
+  transition: opacity 0.3s ease-out;
+  opacity: 0.5;
+}
+
+.button:focus:active {
+  outline: 2px solid transparent;
+}
+
+.button:focus:not(:disabled) {
+  transition: all 250ms linear;
+  border: 1px solid #ffc43f;
+}
+
+.s {
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.m {
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 8px;
+}

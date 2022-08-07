@@ -1,0 +1,22 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .main {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin: 0 auto;
+    padding-right: 20px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1280px;
+    display: grid;
+    grid-template-rows: 100px 1fr;
+  }
+}

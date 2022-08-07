@@ -1,0 +1,16 @@
+.category {
+  min-height: 160px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0 20px;
+  border-bottom: 1px solid lightgray;
+}
+
+.title {
+  font-family: 'Nunito';
+  font-size: 22px;
+  margin: 0;
+}

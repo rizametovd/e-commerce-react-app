@@ -1,0 +1,10 @@
+.icon {
+  fill: inherit;
+  transition: all 200ms ease-out;
+}
+
+.icon:hover {
+  fill: inherit;
+  transition: all 250ms ease-in;
+}
+

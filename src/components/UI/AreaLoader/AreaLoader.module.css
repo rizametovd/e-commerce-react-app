@@ -1,0 +1,40 @@
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  border-radius: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fade 100ms linear forwards;
+  z-index: 999;
+}
+
+.text {
+  font-family: 'Nunito';
+  font-weight: 700;
+  font-size: 28px;
+  padding-bottom: 8px;
+  background: linear-gradient(#5ec343 0 0) bottom left/0% 5px no-repeat;
+  animation: c2 2s linear infinite;
+}
+
+@keyframes c2 {
+  to {
+    background-size: 100% 3px;
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.8;
+  }
+}

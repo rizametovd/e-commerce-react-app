@@ -1,0 +1,20 @@
+.product-form-select {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-height: 94px;
+  }
+
+  .label {
+    font-family: 'Nunito';
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #333333;
+  }
+
+  .highlighted {
+    font-size: 14px;
+    color: #ef2525;
+  }

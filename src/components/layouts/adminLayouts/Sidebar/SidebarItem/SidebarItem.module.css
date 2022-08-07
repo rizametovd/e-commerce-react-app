@@ -1,0 +1,60 @@
+.activeLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  text-decoration: none;
+  gap: 10px;
+  color: #ffc43f;
+  fill: #ffc43f;
+  justify-content: center;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  fill: white;
+}
+
+.link-text {
+  font-size: 14px;
+}
+
+.link:hover {
+  color: #ffc43f;
+  fill: #ffc43f;
+  transition: all 0.3s linear;
+  opacity: 0.7;
+}
+
+@media (min-width: 768px) {
+  .activeLink {
+    font-size: 16px;
+    flex-direction: row;
+  }
+
+  .link-text {
+    font-size: 18px;
+  }
+
+  .link {
+    font-size: 16px;
+    flex-direction: row;
+  }
+
+  .open {
+    display: block;
+    width: 100%;
+  }
+
+  .close {
+    display: none;
+  }
+}

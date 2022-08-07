@@ -1,0 +1,12 @@
+.icon {
+  fill: lightgray;
+  transition: all 200ms ease-out;
+  
+}
+
+.icon:hover {
+  transition: all 250ms ease-in;
+  fill: #ef2525;
+}
+
+

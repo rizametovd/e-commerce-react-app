@@ -1,0 +1,16 @@
+.admin {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 10px;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .admin {
+    padding: 0;
+    gap: 20px;
+    grid-template-columns: fit-content(240px) 1fr;
+    grid-template-rows: 50px auto;
+  }
+}
