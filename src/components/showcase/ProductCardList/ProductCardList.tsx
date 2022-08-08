@@ -16,6 +16,8 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
           price={product.price}
           image={product.image}
           discount={product.discount}
+          brand={product.brand.name}
+          category={product.category.name}
         />
       ))}
     </ul>

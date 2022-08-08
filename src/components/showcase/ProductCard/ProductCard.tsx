@@ -8,9 +8,11 @@ interface IProductCardProps {
   price: string;
   image: string;
   discount?: string;
+  brand: string;
+  category: string;
 }
 
-const ProductCard: React.FC<IProductCardProps> = ({ name, price, image, discount = '' }) => {
+const ProductCard: React.FC<IProductCardProps> = ({ name, price, image, discount = '', brand, category }) => {
   const discountAmount = Math.round(+discount);
   const basePrice = Math.round(+price);
   const discountPrice = basePrice - Math.round((basePrice * discountAmount) / 100);
@@ -29,8 +31,6 @@ const ProductCard: React.FC<IProductCardProps> = ({ name, price, image, discount
         </div>
       </div>
 
-      <h6 className={classes.title}>{name}</h6>
-
       {discount ? (
         <span className={`${classes.price}`}>
           <span className={classes.price}>{discountPrice} ₽</span>
@@ -39,6 +39,12 @@ const ProductCard: React.FC<IProductCardProps> = ({ name, price, image, discount
       ) : (
         <span className={classes.price}>{discountPrice} ₽</span>
       )}
+
+      <h6 className={classes.title}>{name}</h6>
+      <div className={classes['chips-wrapper']}>
+        <Chip text={brand} mode={'highlighted'} />
+        <Chip text={category} mode={'highlighted'} />
+      </div>
     </li>
   );
 };

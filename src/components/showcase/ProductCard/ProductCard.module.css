@@ -3,13 +3,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px;
   gap: 12px;
   box-sizing: border-box;
-  border-radius: 8px;
   transition: all 200ms linear;
   animation: fade 200ms linear;
-  box-shadow: 0px 5px 22px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 @keyframes fade {
@@ -21,19 +19,35 @@
   }
 }
 
-.product-card:hover {
-  transition: all 200ms linear;
-  box-shadow: 0px 5px 22px rgba(0, 0, 0, 0.2);
-}
-
 .image-wrapper {
   position: relative;
+}
+
+.image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  transition: background-color 120ms linear;
+}
+
+.image-wrapper:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: background-color 120ms linear;
 }
 
 .image {
   display: block;
   width: 100%;
-  border-radius: 8px;
 }
 
 .discount-chip {
@@ -49,8 +63,9 @@
 }
 
 .title {
+  align-self: flex-start;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   color: #222222;
   margin: 0;
@@ -71,4 +86,10 @@
   color: lightgray;
   font-weight: 400;
   text-decoration: line-through;
+}
+
+.chips-wrapper {
+  align-self: flex-start;
+  display: flex;
+  gap: 10px;
 }

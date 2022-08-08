@@ -15,6 +15,8 @@
   cursor: pointer;
   transition: opacity 200ms linear;
   color: #222222;
+  width: 100%;
+  justify-content: center;
 }
 
 .button:hover {
@@ -26,7 +28,7 @@
   position: absolute;
   top: 45px;
   background-color: #fff;
-  width: 280px;
+  width: 100%;
   z-index: 1;
   border-radius: 6px;
   border: 1px solid lightgray;
@@ -45,7 +47,7 @@
 
 .link {
   font-weight: 700;
-  font-size: 18px;
+  font-size: 16px;
   color: #333333;
   padding: 6px 14px;
   display: flex;
@@ -65,5 +67,15 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    width: auto;
+  }
+
+  .nav {
+    width: 280px;
   }
 }
