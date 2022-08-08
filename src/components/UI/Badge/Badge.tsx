@@ -13,7 +13,7 @@ const Badge: React.FC<IBadgeProps> = ({ icon, onClick, count, title='' }) => {
     <IconButton onClick={onClick}>
       <div className={classes.badge}>
         <div className={classes.wrapper}>
-          <div className={classes.count}>{count}</div>
+          {count > 0 && <div className={classes.count}>{count}</div>}
           {icon}
         </div>
         {title && <span className={classes.text}>{title}</span>}

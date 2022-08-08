@@ -32,6 +32,7 @@
   bottom: 0;
   background-color: transparent;
   transition: background-color 120ms linear;
+  z-index: 1;
 }
 
 .image-wrapper:hover::after {
@@ -60,6 +61,7 @@
   position: absolute;
   top: 9px;
   right: 9px;
+  z-index: 2;
 }
 
 .title {

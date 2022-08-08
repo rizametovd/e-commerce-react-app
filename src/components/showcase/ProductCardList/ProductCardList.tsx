@@ -1,3 +1,6 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../../store/store';
+import { handleWishlist } from '../../../store/UserSlice';
 import { Product } from '../../../types/common';
 import ProductCard from '../ProductCard/ProductCard';
 import classes from './ProductCardList.module.css';
@@ -7,6 +10,13 @@ interface IProductCardListProps {
 }
 
 const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { wishlist } = useSelector((state: RootState) => state.user);
+
+  const wishlistHandler = (id: Product['id']) => {
+    dispatch(handleWishlist(id));
+  };
+
   return (
     <ul className={classes.list}>
       {products.map((product) => (
@@ -18,6 +28,8 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
           discount={product.discount}
           brand={product.brand.name}
           category={product.category.name}
+          onWishlistClick={()=> wishlistHandler(product.id)}
+          isAddedToWishlist={wishlist.includes(product.id)}
         />
       ))}
     </ul>

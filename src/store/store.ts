@@ -3,6 +3,7 @@ import brandSlice from './BrandSlice';
 import categoryReducer from './CategorySlice';
 import commonSlice  from './CommonSlice';
 import productReducer from './ProductSlice';
+import userSlice from './UserSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     category: categoryReducer,
     product: productReducer,
     brand: brandSlice,
+    user: userSlice,
   },
 });
 
