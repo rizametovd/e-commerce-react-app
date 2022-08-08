@@ -45,10 +45,13 @@ const Categories: React.FC = () => {
 
   const modifedCategories = categories.map((category) => {
     const productCount = products.filter((product) => product.category.id === category.id).length;
-
+    const discountedProductsCount = products.filter(
+      (product) => product.category.id === category.id && product.discount
+    ).length;
     return {
       ...category,
       productsCount: productCount,
+      discountedProductsCount,
     };
   });
 

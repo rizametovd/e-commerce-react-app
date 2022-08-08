@@ -1,18 +1,18 @@
 .list {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    list-style: none;
-    padding: 30px 0 10px;
-    margin: 0;
-    align-self: stretch;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  list-style: none;
+  padding: 30px 0 10px;
+  margin: 0;
+  align-self: stretch;
+}
 
-  .list-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
 .product-list-item {
   display: flex;
@@ -27,4 +27,9 @@
 .product-list-item {
   display: flex;
   justify-content: space-between;
+}
+
+.chip-wrapper {
+  display: flex;
+  gap: 10px;
 }

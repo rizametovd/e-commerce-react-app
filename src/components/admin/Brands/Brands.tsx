@@ -39,10 +39,12 @@ const Brands: React.FC = () => {
 
   const modifedBrands = brands.map((brand) => {
     const productCount = products.filter((product) => product.brand.id === brand.id).length;
+    const discountedProductsCount = products.filter((product) => product.brand.id === brand.id && product.discount).length
 
     return {
       ...brand,
       productsCount: productCount,
+      discountedProductsCount,
     };
   });
 

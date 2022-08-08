@@ -13,7 +13,7 @@ interface ISettingsListProps {
 const SettingsList: React.FC<ISettingsListProps> = ({ items, onEdit, onDelete }) => {
   return (
     <ul className={classes.list}>
-      {items.map(({ id, name, productsCount }) => (
+      {items.map(({ id, name, productsCount, discountedProductsCount }) => (
         <li className={classes['list-container']} key={id}>
           <div className={classes['product-list-item']}>
             {name}
@@ -28,7 +28,10 @@ const SettingsList: React.FC<ISettingsListProps> = ({ items, onEdit, onDelete })
             </div>
           </div>
 
-          <Chip text={`Товаров: ${productsCount}`} />
+          <div className={classes['chip-wrapper']}>
+            <Chip text={`Товаров: ${productsCount}`} />
+            {discountedProductsCount > 0 && <Chip text={`Со скидкой: ${discountedProductsCount}`} />}
+          </div>
         </li>
       ))}
     </ul>
