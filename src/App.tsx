@@ -16,6 +16,8 @@ import ShowcasePage from './components/pages/showcasePages/ShowcasePage/Showcase
 import { getFromLocalStorage } from './store/UserSlice';
 import WishlistPage from './components/pages/showcasePages/WishlistPage/WishlistPage';
 
+
+
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
   const routes = useRoutes([

@@ -27,6 +27,7 @@ export const setToLocalStorage = createAsyncThunk<void, string, { state: RootSta
 
 export const getFromLocalStorage = createAsyncThunk<void, string>('user/setWishlistToLS', async (key, { dispatch }) => {
   const wishlist = JSON.parse(localStorage.getItem(key) as any);
+  if (!wishlist) return;
   dispatch(setWishlist(wishlist));
 });
 

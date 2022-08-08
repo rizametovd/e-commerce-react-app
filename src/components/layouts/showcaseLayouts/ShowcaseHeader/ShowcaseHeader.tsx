@@ -44,7 +44,7 @@ const ShowcaseHeader: React.FC<IShowcaseHeaderProps> = () => {
             <Badge
               icon={<FavoriteIcon width={24} height={24} />}
               to={PATHS.wishlist}
-              count={wishlist.length}
+              count={wishlist?.length}
               title={'Избранное'}
             />
 
