@@ -6,6 +6,7 @@ import { AppDispatch } from '../../../store/store';
 import { Brand, Category, Option, Product } from '../../../types/common';
 import AreaLoader from '../../UI/AreaLoader/AreaLoader';
 import Card from '../../UI/Card/Card';
+import Chip from '../../UI/Chip/Chip';
 import IconButton from '../../UI/IconButton/IconButton';
 import EditIcon from '../../UI/icons/EditIcon/EditIcon';
 import TrashIcon from '../../UI/icons/TrashIcon/TrashIcon';
@@ -30,9 +31,9 @@ const ProductsList: React.FC<IProductsListProps> = ({ products, onOpen, isLoadin
   const dispatch = useDispatch<AppDispatch>();
   const hasNoFilteredProducts = productList.length === 0;
 
-  useEffect(()=> {
-    setProductList(products)
-  }, [products])
+  useEffect(() => {
+    setProductList(products);
+  }, [products]);
 
   const filterProductsByCategory = (
     products: Product[],
@@ -241,13 +242,18 @@ const ProductsList: React.FC<IProductsListProps> = ({ products, onOpen, isLoadin
                 </td>
               </tr>
             )}
-            {productList.map(({ id, image, price, brand, category, name }) => {
+            {productList.map(({ id, image, price, brand, category, name, discount }) => {
               return (
                 <tr key={id}>
                   <td>
                     <img className={classes.image} src={image} alt={name} />
                   </td>
-                  <td>{name}</td>
+                  <td className={classes['product-name-cell']}>
+                    {name}
+                    {discount && <div>
+                      <Chip text={'Скидка  -' + discount + '%'} mode={'highlighted'} />
+                    </div>}
+                  </td>
                   <td>{category.name}</td>
                   <td>{brand.name}</td>
                   <td>{price} ₽</td>

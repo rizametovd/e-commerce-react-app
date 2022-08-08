@@ -2,7 +2,7 @@ import classes from './Chip.module.css'
 
 interface IChipProps {
     text: string;
-    mode?: 'info' | 'attention'
+    mode?: 'info' | 'attention' | 'highlighted'
 }
 
 const Chip: React.FC<IChipProps> = ({text, mode='info'}) => {

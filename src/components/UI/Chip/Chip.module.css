@@ -13,3 +13,7 @@
   color: #fff;
   background-color: #f44336;
 }
+
+.highlighted {
+  background-color: #ecf7ed;
+}
