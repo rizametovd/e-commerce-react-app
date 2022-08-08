@@ -22,14 +22,13 @@ import { wait } from '../../../utils/helpers';
 import { hideAlert, showAlert } from '../../../store/CommonSlice';
 import AreaLoader from '../../UI/AreaLoader/AreaLoader';
 import { updateAllProductsCategories } from '../../../store/ProductSlice';
+import { categoryFormValidator } from '../../../utils/validators';
 
 const INIT_INPUT = {
   name: '',
   description: '',
-  url:''
+  url: '',
 };
-
-const VALIDATE_FIELDS = ['name'];
 
 const Categories: React.FC = () => {
   const { isLoading, categories } = useSelector((state: RootState) => state.category);
@@ -40,8 +39,8 @@ const Categories: React.FC = () => {
   const isPlaceholderVisible = !isLoading && !isFormOpen && categories?.length === 0;
   const { input, setInput, handleChange, errors, submit, resetForm } = useForm(
     INIT_INPUT,
-    VALIDATE_FIELDS,
-    handleSubmit
+    handleSubmit,
+    categoryFormValidator
   );
 
   const modifedCategories = categories.map((category) => {
@@ -63,11 +62,9 @@ const Categories: React.FC = () => {
   }, [categoryToBeEdited, setInput]);
 
   function handleSubmit() {
-
-    console.log('input:', input)
     const name = input.name?.trim();
     const description = input.description?.trim();
-    const url = input?.url.trim()
+    const url = input?.url.trim();
 
     if (categoryToBeEdited.id) {
       const updatedCategory = {
@@ -81,7 +78,7 @@ const Categories: React.FC = () => {
       const newCategory = {
         name,
         description,
-        url
+        url,
       };
 
       dispatch(createCategory(newCategory));
@@ -144,6 +141,8 @@ const Categories: React.FC = () => {
             title={'Категории'}
             labelName={'Название категории'}
             labelURL={'SEO URL'}
+            namePlaceholder={'Укажите название категории'}
+            descriptionPlaceholder={'Описание категории'}
           />
         )}
 

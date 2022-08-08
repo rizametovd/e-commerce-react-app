@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store/store';
 import { createProduct, updateProduct } from '../../../store/ProductSlice';
 import ProductFormSelect from './ProductFormSelect/ProductFormSelect';
+import { productFormValidator } from '../../../utils/validators';
 
 const INIT_INPUT = {
   name: '',
@@ -29,8 +30,6 @@ const INIT_INPUT = {
   },
 };
 
-const VALIDATE_FIELDS = ['name', 'price', 'image', 'weight', 'brand', 'category'];
-
 interface IProductFormProps {
   onClose: () => void;
   categories: Category[];
@@ -40,8 +39,8 @@ interface IProductFormProps {
 const ProductForm: React.FC<IProductFormProps> = ({ onClose, categories, brands }) => {
   const { input, setInput, handleChange, errors, submit, handleChangeSelect } = useForm(
     INIT_INPUT,
-    VALIDATE_FIELDS,
-    submitHandler
+    submitHandler,
+    productFormValidator
   );
   const dispatch = useDispatch<AppDispatch>();
   const productToBeEdited = useSelector((state: RootState) => state.product.selectedProduct);

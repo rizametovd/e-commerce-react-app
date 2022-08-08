@@ -12,10 +12,23 @@ interface ISettingsFormProps {
   value: { [key: string]: string };
   title: string;
   labelName: string;
-  labelURL: string
+  labelURL: string;
+  namePlaceholder: string;
+  descriptionPlaceholder: string;
 }
 
-const SettingsForm: React.FC<ISettingsFormProps> = ({ labelName, onClose, onSubmit, onChange, errors, value, title, labelURL }) => {
+const SettingsForm: React.FC<ISettingsFormProps> = ({
+  labelName,
+  onClose,
+  onSubmit,
+  onChange,
+  errors,
+  value,
+  title,
+  labelURL,
+  namePlaceholder,
+  descriptionPlaceholder,
+}) => {
   return (
     <div className={classes.form}>
       <Form onSubmit={onSubmit}>
@@ -28,7 +41,7 @@ const SettingsForm: React.FC<ISettingsFormProps> = ({ labelName, onClose, onSubm
             value={value.name || ''}
             onChange={onChange}
             required
-            placeholder={'Укажите название категории'}
+            placeholder={namePlaceholder}
           />
 
           <Input
@@ -46,7 +59,7 @@ const SettingsForm: React.FC<ISettingsFormProps> = ({ labelName, onClose, onSubm
             label={'Описание'}
             errorText={errors.description}
             name={'description'}
-            placeholder={'Заполните описание категории'}
+            placeholder={descriptionPlaceholder}
             onChange={onChange}
             value={value.description || ''}
           />

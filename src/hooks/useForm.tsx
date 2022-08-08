@@ -4,16 +4,14 @@ type Error = {
   [key: string]: string | undefined;
 };
 
-type ValidateFields = string[];
-
 type Option = {
   [key: string]: string;
 };
 
 const useForm = <T extends {}>(
   initInput: T,
-  validateFields: ValidateFields,
-  callback: () => void
+  callback: () => void,
+  validator: (field: string, inputValue: string | { [key: string]: string }) => { [key: string]: string } | null
 ): {
   input: T;
   errors: Error;
@@ -76,43 +74,6 @@ const useForm = <T extends {}>(
     return isValid;
   };
 
-  const validator = (field: string, inputValue: string | { [key: string]: string }) => {
-    let value = '';
-
-    if (!validateFields.includes(field)) {
-      return;
-    }
-
-    if (typeof inputValue === 'string') {
-      value = inputValue.trim();
-    }
-
-    if (typeof inputValue === 'object') {
-      if (inputValue.id) {
-        value = inputValue.id.trim();
-      } else {
-        value = '';
-      }
-    }
-
-    if (value.length === 0) {
-      return {
-        [field]: 'Поле не может быть пустым',
-      };
-    }
-
-    if (field === 'image') {
-      const regexp = /(https?:\/\/.*\.(?:png|jpg|jpeg))/;
-      const isImageUrl = regexp.test(value);
-
-      if (isImageUrl) return;
-
-      return {
-        [field]: 'Укажите прямую ссылку на изображение с расширением .png, .jpg, jpeg',
-      };
-    }
-  };
-
   const clearValidation = (field: keyof Error) => {
     if (field) {
       setErrors((prevState) => ({
@@ -126,6 +87,7 @@ const useForm = <T extends {}>(
 
   const resetForm = () => {
     setInput(initInput);
+    setErrors({});
   };
 
   return { input, errors, setInput, handleChange, resetForm, submit, handleChangeSelect };

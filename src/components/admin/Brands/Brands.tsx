@@ -16,13 +16,13 @@ import { hideAlert, showAlert } from '../../../store/CommonSlice';
 import { DELETE_BRAND_ALERT_MESSAGE, NO_BRANDS_MESSAGE } from '../../../constants/messages';
 import AreaLoader from '../../UI/AreaLoader/AreaLoader';
 import { updateAllProductsBrands } from '../../../store/ProductSlice';
+import { brandFormValidator } from '../../../utils/validators';
 
 const INIT_INPUT = {
   name: '',
   description: '',
+  url: ''
 };
-
-const VALIDATE_FIELDS = ['name'];
 
 const Brands: React.FC = () => {
   const { isLoading, brands } = useSelector((state: RootState) => state.brand);
@@ -32,8 +32,8 @@ const Brands: React.FC = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const { input, setInput, handleChange, errors, submit, resetForm } = useForm(
     INIT_INPUT,
-    VALIDATE_FIELDS,
-    handleSubmit
+    handleSubmit,
+    brandFormValidator
   );
   const isPlaceholderVisible = !isLoading && !isFormOpen && brands?.length === 0;
 
@@ -132,6 +132,8 @@ const Brands: React.FC = () => {
             title={'Производители'}
             labelName={'Название бренда'}
             labelURL={'SEO URL'}
+            namePlaceholder={'Укажите название бренда'}
+            descriptionPlaceholder={'Описание бренда'}
           />
         )}
 
