@@ -1,16 +1,16 @@
-import IconButton from '../IconButton/IconButton';
+import { Link } from 'react-router-dom';
 import classes from './Badge.module.css';
 
 interface IBadgeProps {
   icon: JSX.Element;
-  onClick: () => void;
   count: number;
   title?: string;
+  to: string;
 }
 
-const Badge: React.FC<IBadgeProps> = ({ icon, onClick, count, title='' }) => {
+const Badge: React.FC<IBadgeProps> = ({ icon, to, count, title='' }) => {
   return (
-    <IconButton onClick={onClick}>
+    <Link to={to} className={classes.link}>
       <div className={classes.badge}>
         <div className={classes.wrapper}>
           {count > 0 && <div className={classes.count}>{count}</div>}
@@ -18,7 +18,7 @@ const Badge: React.FC<IBadgeProps> = ({ icon, onClick, count, title='' }) => {
         </div>
         {title && <span className={classes.text}>{title}</span>}
       </div>
-    </IconButton>
+    </Link>
   );
 };
 

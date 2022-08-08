@@ -1,36 +1,35 @@
-import classes from './CategoryPage.module.css';
-import { useLocation } from 'react-router-dom';
+import classes from './WishlistPage.module.css';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 import ProductCardList from '../../../showcase/ProductCardList/ProductCardList';
-import { Category } from '../../../../types/common';
 import Loader from '../../../UI/Loader/Loader';
 import Placeholder from '../../../UI/Placeholder/Placeholder';
 import { NO_PRODUCTS_MESSAGE } from '../../../../constants/messages';
 
-const CategoryPage: React.FC = () => {
-  const location = useLocation();
-  const { id, name, description } = location.state as Category;
+const WishlistPage: React.FC = () => {
   const { products, isLoading } = useSelector((state: RootState) => state.product);
-  const categoryProducts = products.filter((product) => product.category.id === id);
-  const hasProducts = !isLoading && categoryProducts.length > 0;
-  const noProducts = !isLoading && categoryProducts.length === 0;
+  const { wishlist } = useSelector((state: RootState) => state.user);
+  const wishlistProducts = products.filter((product) => wishlist.includes(product.id));
+  const hasProducts = !isLoading && wishlistProducts.length > 0;
+  const noProducts = !isLoading && wishlistProducts.length === 0;
+
+  console.log('isLoading:', isLoading);
 
   return (
     <section className={classes['category-page']}>
       <div className={classes['header-wrapper']}>
-        <h1 className={classes.title}>{name}</h1>
-        {description && <p className={classes.description}>{description}</p>}
+        <h1 className={classes.title}>Избранные товары</h1>
       </div>
 
       <div className={classes['body-wrapper']}>
         {isLoading && <Loader />}
 
-        {hasProducts && <ProductCardList products={categoryProducts} />}
+        {hasProducts && <ProductCardList products={wishlistProducts} />}
+
         {noProducts && <Placeholder text={NO_PRODUCTS_MESSAGE} size={'38px'} />}
       </div>
     </section>
   );
 };
 
-export default CategoryPage;
+export default WishlistPage;

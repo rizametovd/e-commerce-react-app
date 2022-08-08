@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import brandSlice from './BrandSlice';
 import categoryReducer from './CategorySlice';
-import commonSlice  from './CommonSlice';
+import commonSlice from './CommonSlice';
 import productReducer from './ProductSlice';
 import userSlice from './UserSlice';
 

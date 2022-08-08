@@ -9,6 +9,8 @@ import {
   FETCH_PRODUCTS_ERROR_MESSAGE,
   UPDATE_PRODUCT_ERROR_MESSAGE,
 } from '../constants/messages';
+import { fetchBrands } from './BrandSlice';
+import { fetchCategories } from './CategorySlice';
 
 export type ProductState = {
   products: Product[];
@@ -46,7 +48,10 @@ const BASE_URL = 'https://e-commerce-65446-default-rtdb.firebaseio.com';
 
 export const fetchProducts = createAsyncThunk<Product[], void, { state: RootState }>(
   'product/fetchProducts',
-  async (_, { getState, rejectWithValue }) => {
+  async (_, { getState, rejectWithValue, dispatch }) => {
+    await dispatch(fetchBrands());
+    await dispatch(fetchCategories());
+
     const response = await fetch(`${BASE_URL}/products.json`);
 
     if (!response.ok) {

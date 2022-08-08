@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store/store';
-import { handleWishlist } from '../../../store/UserSlice';
+import { handleWishlist, setToLocalStorage } from '../../../store/UserSlice';
 import { Product } from '../../../types/common';
 import ProductCard from '../ProductCard/ProductCard';
 import classes from './ProductCardList.module.css';
@@ -15,6 +15,7 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
 
   const wishlistHandler = (id: Product['id']) => {
     dispatch(handleWishlist(id));
+    dispatch(setToLocalStorage('likes'));
   };
 
   return (
@@ -28,7 +29,7 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
           discount={product.discount}
           brand={product.brand.name}
           category={product.category.name}
-          onWishlistClick={()=> wishlistHandler(product.id)}
+          onWishlistClick={() => wishlistHandler(product.id)}
           isAddedToWishlist={wishlist.includes(product.id)}
         />
       ))}

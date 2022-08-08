@@ -1,9 +1,12 @@
+.link {
+  text-decoration: none;
+}
+
 .badge {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 .wrapper {
   position: relative;
 }

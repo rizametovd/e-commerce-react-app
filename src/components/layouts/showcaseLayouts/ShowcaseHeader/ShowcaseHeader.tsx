@@ -13,7 +13,7 @@ interface IShowcaseHeaderProps {}
 
 const ShowcaseHeader: React.FC<IShowcaseHeaderProps> = () => {
   const categories = useSelector((state: RootState) => state.category.categories);
-  const { wishlistItemsCount } = useSelector((state: RootState) => state.user);
+  const { wishlist } = useSelector((state: RootState) => state.user);
 
   return (
     <header className={classes.header}>
@@ -43,17 +43,12 @@ const ShowcaseHeader: React.FC<IShowcaseHeaderProps> = () => {
           <div className={classes['badge-wrapper']}>
             <Badge
               icon={<FavoriteIcon width={24} height={24} />}
-              onClick={() => console.log('Favorite cliked')}
-              count={wishlistItemsCount}
+              to={PATHS.wishlist}
+              count={wishlist.length}
               title={'Избранное'}
             />
 
-            <Badge
-              icon={<CartIcon width={24} height={24} />}
-              onClick={() => console.log('Cart cliked')}
-              count={0}
-              title={'Корзина'}
-            />
+            <Badge icon={<CartIcon width={24} height={24} />} to={'/'} count={0} title={'Корзина'} />
           </div>
         </div>
       </div>
