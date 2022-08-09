@@ -3,8 +3,9 @@
   max-width: 1280px;
   box-sizing: border-box;
   display: grid;
-  grid-template-rows: fit-content(230px) minmax(calc(100vh - (68px + 100px + 80px)), 100%) 100px;
-  min-height: 100%;
+  grid-template-rows: fit-content(230px) auto 100px;
+  /* grid-template-rows: fit-content(230px) minmax(calc(100vh - (68px + 100px + 80px)), 100%) 100px; */
+  min-height: 100vh;
   gap: 40px;
   margin: 0 auto;
   padding: 0 20px;

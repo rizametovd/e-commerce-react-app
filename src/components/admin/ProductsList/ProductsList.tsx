@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { NO_FILTERED_RESULTS } from '../../../constants/messages';
+import { LOCKED_PRODUCTS } from '../../../constants/lockedItems';
+import { NO_FILTERED_RESULTS, NO_WAY_TO_CHANGE_THIS_PRODUCT } from '../../../constants/messages';
 import { deleteProduct, selectProduct } from '../../../store/ProductSlice';
 import { AppDispatch } from '../../../store/store';
 import { Brand, Category, Option, Product } from '../../../types/common';
@@ -9,9 +10,11 @@ import Card from '../../UI/Card/Card';
 import Chip from '../../UI/Chip/Chip';
 import IconButton from '../../UI/IconButton/IconButton';
 import EditIcon from '../../UI/icons/EditIcon/EditIcon';
+import LockIcon from '../../UI/icons/LockIcon/LockIcon';
 import TrashIcon from '../../UI/icons/TrashIcon/TrashIcon';
 import Placeholder from '../../UI/Placeholder/Placeholder';
 import Select from '../../UI/Select/Select';
+import Tooltip from '../../UI/Tooltip/Tooltip';
 import classes from './ProductsList.module.css';
 
 interface IProductsListProps {
@@ -250,22 +253,31 @@ const ProductsList: React.FC<IProductsListProps> = ({ products, onOpen, isLoadin
                   </td>
                   <td className={classes['product-name-cell']}>
                     {name}
-                    {discount && <div>
-                      <Chip text={'Скидка  -' + discount + '%'} mode={'highlighted'} />
-                    </div>}
+                    {discount && (
+                      <div>
+                        <Chip text={'Скидка  -' + discount + '%'} mode={'highlighted'} />
+                      </div>
+                    )}
                   </td>
                   <td>{category.name}</td>
                   <td>{brand.name}</td>
                   <td>{price} ₽</td>
                   <td className={classes['action-cell']}>
                     <div className={classes.action}>
-                      <IconButton onClick={() => editProductHandler(id)}>
-                        <EditIcon />
-                      </IconButton>
+                      {LOCKED_PRODUCTS.includes(id) ? (
+                        <Tooltip icon={<LockIcon />} message={NO_WAY_TO_CHANGE_THIS_PRODUCT} />
+                   
+                      ) : (
+                        <>
+                          <IconButton onClick={() => editProductHandler(id)}>
+                            <EditIcon />
+                          </IconButton>
 
-                      <IconButton onClick={() => deleteProductHandler(id)}>
-                        <TrashIcon />
-                      </IconButton>
+                          <IconButton onClick={() => deleteProductHandler(id)}>
+                            <TrashIcon />
+                          </IconButton>
+                        </>
+                      )}
                     </div>
                   </td>
                 </tr>

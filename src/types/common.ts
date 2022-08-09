@@ -44,6 +44,7 @@ export type Product = {
   };
   price: string;
   weight: string;
+  isLocked?: boolean;
 };
 
 export type Error = {
