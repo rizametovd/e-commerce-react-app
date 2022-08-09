@@ -13,8 +13,6 @@ const WishlistPage: React.FC = () => {
   const hasProducts = !isLoading && wishlistProducts.length > 0;
   const noProducts = !isLoading && wishlistProducts.length === 0;
 
-  console.log('isLoading:', isLoading);
-
   return (
     <section className={classes['category-page']}>
       <div className={classes['header-wrapper']}>

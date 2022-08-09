@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store/store';
 import { handleWishlist, setToLocalStorage } from '../../../store/UserSlice';
@@ -11,16 +11,18 @@ interface IProductCardListProps {
   products: Product[];
 }
 
-const PRODUCT_LIST_LIMIT = 20;
+const PRODUCT_LIST_LIMIT = 10;
 
 const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { wishlist } = useSelector((state: RootState) => state.user);
   const [productsToRender, setProductsToRender] = useState<Product[]>([]);
-  const countRef = useRef(PRODUCT_LIST_LIMIT);
+  const [count, setCount] = useState(PRODUCT_LIST_LIMIT);
+  const isLoadMoreVisible = products.length > count;
 
   useEffect(() => {
     setProductsToRender(products.slice(0, PRODUCT_LIST_LIMIT));
+    setCount(PRODUCT_LIST_LIMIT);
   }, [products]);
 
   const wishlistHandler = (id: Product['id']) => {
@@ -29,8 +31,8 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
   };
 
   const showMoreHandler = (count: number) => {
-    countRef.current = count;
-    const list = products.slice(0, countRef.current);
+    setCount(count);
+    const list = products.slice(0, count);
     setProductsToRender(list);
   };
 
@@ -51,7 +53,14 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
           />
         ))}
       </ul>
-      <LoadMore count={countRef.current} itemsListLength={products.length} onClick={showMoreHandler} itemsLimit={PRODUCT_LIST_LIMIT} />
+      {isLoadMoreVisible && (
+        <LoadMore
+          count={count}
+          itemsListLength={products.length}
+          onClick={showMoreHandler}
+          itemsLimit={PRODUCT_LIST_LIMIT}
+        />
+      )}
     </div>
   );
 };
