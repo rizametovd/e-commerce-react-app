@@ -10,7 +10,6 @@ interface ISettingsFormProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   errors: { [key: string]: string | undefined };
   value: { [key: string]: string };
-  title: string;
   labelName: string;
   labelURL: string;
   namePlaceholder: string;
@@ -24,7 +23,6 @@ const SettingsForm: React.FC<ISettingsFormProps> = ({
   onChange,
   errors,
   value,
-  title,
   labelURL,
   namePlaceholder,
   descriptionPlaceholder,

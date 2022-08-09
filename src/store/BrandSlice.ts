@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Brand, Error } from '../types/common';
+import { AlertType, Brand, Error } from '../types/common';
 import { handleObj } from '../utils/helpers';
 import {
   CREATE_BRAND_ERROR_MESSAGE,
@@ -9,6 +8,7 @@ import {
   FETCH_BRANDS_ERROR_MESSAGE,
   UPDATE_BRAND_ERROR_MESSAGE,
 } from '../constants/messages';
+import { showAlert } from './CommonSlice';
 
 export type BrandState = {
   brands: Brand[];
@@ -34,11 +34,12 @@ const initialState: BrandState = {
 
 const BASE_URL = 'https://e-commerce-65446-default-rtdb.firebaseio.com';
 
-export const fetchBrands = createAsyncThunk('brand/fetchbrands', async (_, { rejectWithValue }) => {
+export const fetchBrands = createAsyncThunk('brand/fetchbrands', async (_, { dispatch, rejectWithValue }) => {
   const response = await fetch(`${BASE_URL}/brands.json`);
 
   if (!response.ok) {
-    return rejectWithValue(FETCH_BRANDS_ERROR_MESSAGE as Error['message']);
+    dispatch(showAlert({ type: AlertType.Error, message: FETCH_BRANDS_ERROR_MESSAGE }));
+    return rejectWithValue(FETCH_BRANDS_ERROR_MESSAGE);
   }
 
   const data = await response.json();
@@ -48,7 +49,7 @@ export const fetchBrands = createAsyncThunk('brand/fetchbrands', async (_, { rej
 
 export const createBrand = createAsyncThunk(
   'brand/createBrand',
-  async (brand: Partial<Brand>, { rejectWithValue }) => {
+  async (brand: Partial<Brand>, { dispatch, rejectWithValue }) => {
     const response = await fetch(`${BASE_URL}/brands.json`, {
       method: 'POST',
       headers: {
@@ -58,7 +59,8 @@ export const createBrand = createAsyncThunk(
     });
 
     if (!response.ok) {
-      return rejectWithValue(CREATE_BRAND_ERROR_MESSAGE as Error['message']);
+      dispatch(showAlert({ type: AlertType.Error, message: CREATE_BRAND_ERROR_MESSAGE }));
+      return rejectWithValue(CREATE_BRAND_ERROR_MESSAGE);
     }
 
     const data: { name: string } = await response.json();
@@ -66,45 +68,53 @@ export const createBrand = createAsyncThunk(
   }
 );
 
-export const updateBrand = createAsyncThunk('brand/updateBrand', async (brand: Brand, { rejectWithValue }) => {
-  const response = await fetch(`${BASE_URL}/brands/${brand.id}.json`, {
-    method: 'PATCH',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      name: brand.name,
-      description: brand.description,
-      url: brand.url
-    }),
-  });
+export const updateBrand = createAsyncThunk(
+  'brand/updateBrand',
+  async (brand: Brand, { dispatch, rejectWithValue }) => {
+    const response = await fetch(`${BASE_URL}/brands/${brand.id}.json`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: brand.name,
+        description: brand.description,
+        url: brand.url,
+      }),
+    });
 
-  if (!response.ok) {
-    return rejectWithValue(UPDATE_BRAND_ERROR_MESSAGE as Error['message']);
+    if (!response.ok) {
+      dispatch(showAlert({ type: AlertType.Error, message: UPDATE_BRAND_ERROR_MESSAGE }));
+      return rejectWithValue(UPDATE_BRAND_ERROR_MESSAGE);
+    }
+
+    const data = await response.json();
+    const updatedBrand: Brand = {
+      id: brand.id,
+      ...data,
+    };
+    return updatedBrand;
   }
+);
 
-  const data = await response.json();
-  const updatedBrand: Brand = {
-    id: brand.id,
-    ...data,
-  };
-  return updatedBrand;
-});
+export const deleteBrand = createAsyncThunk(
+  'brand/deleteBrand',
+  async (id: Brand['id'], { dispatch, rejectWithValue }) => {
+    const response = await fetch(`${BASE_URL}/brands/${id}.json`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
 
-export const deleteBrand = createAsyncThunk('brand/deleteBrand', async (id: Brand['id'], { rejectWithValue }) => {
-  const response = await fetch(`${BASE_URL}/brands/${id}.json`, {
-    method: 'DELETE',
-    headers: {
-      'Content-type': 'application/json',
-    },
-  });
+    if (!response.ok) {
+      dispatch(showAlert({ type: AlertType.Error, message: DELETE_BRAND_ERROR_MESSAGE }));
+      return rejectWithValue(DELETE_BRAND_ERROR_MESSAGE);
+    }
 
-  if (!response.ok) {
-    return rejectWithValue(DELETE_BRAND_ERROR_MESSAGE as Error['message']);
+    return id;
   }
-
-  return id;
-});
+);
 
 export const BrandSlice = createSlice({
   name: 'brand',
@@ -122,9 +132,7 @@ export const BrandSlice = createSlice({
       state.selectedBrand = initialState.selectedBrand;
     },
 
-    resetBrandError: (state) => {
-      state.error = initialState.error;
-    },
+    resetBrandError: (state) => {},
   },
 
   extraReducers: (builder) => {
@@ -137,13 +145,11 @@ export const BrandSlice = createSlice({
       state.isLoading = false;
     });
 
-    builder.addCase(fetchBrands.rejected, (state, action) => {
-      if (action.payload) {
-        state.error = {
-          isError: true,
-          message: action.payload as string,
-        };
-      }
+    builder.addCase(fetchBrands.rejected, (state, { payload }) => {
+      state.error = {
+        isError: true,
+        message: payload as Error['message'],
+      };
       state.isLoading = false;
     });
 
@@ -156,13 +162,11 @@ export const BrandSlice = createSlice({
       state.isLoading = false;
     });
 
-    builder.addCase(createBrand.rejected, (state, action) => {
-      if (action.payload) {
-        state.error = {
-          isError: true,
-          message: action.payload as string,
-        };
-      }
+    builder.addCase(createBrand.rejected, (state, { payload }) => {
+      state.error = {
+        isError: true,
+        message: payload as Error['message'],
+      };
       state.isLoading = false;
     });
 
@@ -177,13 +181,11 @@ export const BrandSlice = createSlice({
       state.isLoading = false;
     });
 
-    builder.addCase(updateBrand.rejected, (state, action) => {
-      if (action.payload) {
-        state.error = {
-          isError: true,
-          message: action.payload as string,
-        };
-      }
+    builder.addCase(updateBrand.rejected, (state, { payload }) => {
+      state.error = {
+        isError: true,
+        message: payload as Error['message'],
+      };
       state.isLoading = false;
     });
 
@@ -197,13 +199,11 @@ export const BrandSlice = createSlice({
       state.isLoading = false;
     });
 
-    builder.addCase(deleteBrand.rejected, (state, action) => {
-      if (action.payload) {
-        state.error = {
-          isError: true,
-          message: action.payload as string,
-        };
-      }
+    builder.addCase(deleteBrand.rejected, (state, { payload }) => {
+      state.error = {
+        isError: true,
+        message: payload as Error['message'],
+      };
       state.isLoading = false;
     });
   },

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Category, Error } from '../types/common';
+import { AlertType, Category, Error } from '../types/common';
 import { handleObj } from '../utils/helpers';
 import {
   CREATE_CATEGORY_ERROR_MESSAGE,
@@ -9,6 +9,7 @@ import {
   FETCH_CATEGORIES_ERROR_MESSAGE,
   UPDATE_CATEGORY_ERROR_MESSAGE,
 } from '../constants/messages';
+import { showAlert } from './CommonSlice';
 
 export type CategoryState = {
   categories: Category[];
@@ -23,7 +24,7 @@ const initialState: CategoryState = {
     id: '',
     name: '',
     description: '',
-    url: ''
+    url: '',
   },
   isLoading: false,
   error: {
@@ -34,21 +35,25 @@ const initialState: CategoryState = {
 
 const BASE_URL = 'https://e-commerce-65446-default-rtdb.firebaseio.com';
 
-export const fetchCategories = createAsyncThunk('category/fetchCategories', async (_, { rejectWithValue }) => {
-  const response = await fetch(`${BASE_URL}/categories.json`);
+export const fetchCategories = createAsyncThunk(
+  'category/fetchCategories',
+  async (_, { dispatch, rejectWithValue }) => {
+    const response = await fetch(`${BASE_URL}/categories.json`);
 
-  if (!response.ok) {
-    return rejectWithValue(FETCH_CATEGORIES_ERROR_MESSAGE as Error['message']);
+    if (!response.ok) {
+      dispatch(showAlert({ type: AlertType.Error, message: FETCH_CATEGORIES_ERROR_MESSAGE }));
+      return rejectWithValue(FETCH_CATEGORIES_ERROR_MESSAGE);
+    }
+
+    const data = await response.json();
+    const categories: Category[] = handleObj(data);
+    return categories;
   }
-
-  const data = await response.json();
-  const categories: Category[] = handleObj(data);
-  return categories;
-});
+);
 
 export const createCategory = createAsyncThunk(
   'category/createCategory',
-  async (category: Partial<Category>, { rejectWithValue }) => {
+  async (category: Partial<Category>, { dispatch, rejectWithValue }) => {
     const response = await fetch(`${BASE_URL}/categories.json`, {
       method: 'POST',
       headers: {
@@ -58,7 +63,8 @@ export const createCategory = createAsyncThunk(
     });
 
     if (!response.ok) {
-      return rejectWithValue(CREATE_CATEGORY_ERROR_MESSAGE as Error['message']);
+      dispatch(showAlert({ type: AlertType.Error, message: CREATE_CATEGORY_ERROR_MESSAGE }));
+      return rejectWithValue(CREATE_CATEGORY_ERROR_MESSAGE);
     }
 
     const data: { name: string } = await response.json();
@@ -68,7 +74,7 @@ export const createCategory = createAsyncThunk(
 
 export const updateCategory = createAsyncThunk(
   'category/updateCategory',
-  async (category: Category, { rejectWithValue }) => {
+  async (category: Category, { dispatch, rejectWithValue }) => {
     const response = await fetch(`${BASE_URL}/categories/${category.id}.json`, {
       method: 'PATCH',
       headers: {
@@ -77,12 +83,13 @@ export const updateCategory = createAsyncThunk(
       body: JSON.stringify({
         name: category.name,
         description: category.description,
-        url: category.url
+        url: category.url,
       }),
     });
 
     if (!response.ok) {
-      return rejectWithValue(UPDATE_CATEGORY_ERROR_MESSAGE as Error['message']);
+      dispatch(showAlert({ type: AlertType.Error, message: UPDATE_CATEGORY_ERROR_MESSAGE }));
+      return rejectWithValue(UPDATE_CATEGORY_ERROR_MESSAGE);
     }
 
     const data = await response.json();
@@ -96,7 +103,7 @@ export const updateCategory = createAsyncThunk(
 
 export const deleteCategory = createAsyncThunk(
   'category/deleteCategory',
-  async (id: Category['id'], { rejectWithValue }) => {
+  async (id: Category['id'], { dispatch, rejectWithValue }) => {
     const response = await fetch(`${BASE_URL}/categories/${id}.json`, {
       method: 'DELETE',
       headers: {
@@ -105,7 +112,8 @@ export const deleteCategory = createAsyncThunk(
     });
 
     if (!response.ok) {
-      return rejectWithValue(DELETE_CATEGORY_ERROR_MESSAGE as Error['message']);
+      dispatch(showAlert({ type: AlertType.Error, message: DELETE_CATEGORY_ERROR_MESSAGE }));
+      return rejectWithValue(DELETE_CATEGORY_ERROR_MESSAGE);
     }
 
     return id;
@@ -127,10 +135,6 @@ export const categorySlice = createSlice({
     removeSelectedCategory: (state) => {
       state.selectedCategory = initialState.selectedCategory;
     },
-
-    resetCategoryError: (state) => {
-      state.error = initialState.error;
-    },
   },
 
   extraReducers: (builder) => {
@@ -143,13 +147,11 @@ export const categorySlice = createSlice({
       state.isLoading = false;
     });
 
-    builder.addCase(fetchCategories.rejected, (state, action) => {
-      if (action.payload) {
-        state.error = {
-          isError: true,
-          message: action.payload as string,
-        };
-      }
+    builder.addCase(fetchCategories.rejected, (state, { payload }) => {
+      state.error = {
+        isError: true,
+        message: payload as Error['message'],
+      };
       state.isLoading = false;
     });
 
@@ -162,13 +164,11 @@ export const categorySlice = createSlice({
       state.isLoading = false;
     });
 
-    builder.addCase(createCategory.rejected, (state, action) => {
-      if (action.payload) {
-        state.error = {
-          isError: true,
-          message: action.payload as string,
-        };
-      }
+    builder.addCase(createCategory.rejected, (state, { payload }) => {
+      state.error = {
+        isError: true,
+        message: payload as Error['message'],
+      };
       state.isLoading = false;
     });
 
@@ -183,13 +183,11 @@ export const categorySlice = createSlice({
       state.isLoading = false;
     });
 
-    builder.addCase(updateCategory.rejected, (state, action) => {
-      if (action.payload) {
-        state.error = {
-          isError: true,
-          message: action.payload as string,
-        };
-      }
+    builder.addCase(updateCategory.rejected, (state, { payload }) => {
+      state.error = {
+        isError: true,
+        message: payload as Error['message'],
+      };
       state.isLoading = false;
     });
 
@@ -203,18 +201,16 @@ export const categorySlice = createSlice({
       state.isLoading = false;
     });
 
-    builder.addCase(deleteCategory.rejected, (state, action) => {
-      if (action.payload) {
-        state.error = {
-          isError: true,
-          message: action.payload as string,
-        };
-      }
+    builder.addCase(deleteCategory.rejected, (state, { payload }) => {
+      state.error = {
+        isError: true,
+        message: payload as Error['message'],
+      };
       state.isLoading = false;
     });
   },
 });
 
-export const { selectCategory, removeSelectedCategory, resetCategoryError } = categorySlice.actions;
+export const { selectCategory, removeSelectedCategory } = categorySlice.actions;
 
 export default categorySlice.reducer;

@@ -11,8 +11,7 @@ import Card from '../../UI/Card/Card';
 import { createBrand, deleteBrand, removeSelectedBrand, selectBrand, updateBrand } from '../../../store/BrandSlice';
 import IconButton from '../../UI/IconButton/IconButton';
 import AddIcon from '../../UI/icons/AddIcon/AddIcon';
-import { wait } from '../../../utils/helpers';
-import { hideAlert, showAlert } from '../../../store/CommonSlice';
+import { showAlert } from '../../../store/CommonSlice';
 import { DELETE_BRAND_ALERT_MESSAGE, NO_BRANDS_MESSAGE } from '../../../constants/messages';
 import AreaLoader from '../../UI/AreaLoader/AreaLoader';
 import { updateAllProductsBrands } from '../../../store/ProductSlice';
@@ -21,11 +20,11 @@ import { brandFormValidator } from '../../../utils/validators';
 const INIT_INPUT = {
   name: '',
   description: '',
-  url: ''
+  url: '',
 };
 
 const Brands: React.FC = () => {
-  const { isLoading, brands } = useSelector((state: RootState) => state.brand);
+  const { isLoading, brands, error } = useSelector((state: RootState) => state.brand);
   const { products } = useSelector((state: RootState) => state.product);
   const brandToBeEdited = useSelector((state: RootState) => state.brand.selectedBrand);
   const dispatch = useDispatch<AppDispatch>();
@@ -35,11 +34,13 @@ const Brands: React.FC = () => {
     handleSubmit,
     brandFormValidator
   );
-  const isPlaceholderVisible = !isLoading && !isFormOpen && brands?.length === 0;
+  const isPlaceholderVisible = !isLoading && !error.isError && !isFormOpen && brands?.length === 0;
 
   const modifedBrands = brands.map((brand) => {
     const productCount = products.filter((product) => product.brand.id === brand.id).length;
-    const discountedProductsCount = products.filter((product) => product.brand.id === brand.id && product.discount).length
+    const discountedProductsCount = products.filter(
+      (product) => product.brand.id === brand.id && product.discount
+    ).length;
 
     return {
       ...brand,
@@ -96,9 +97,6 @@ const Brands: React.FC = () => {
     if (hasProducts) {
       dispatch(showAlert({ type: AlertType.Error, message: DELETE_BRAND_ALERT_MESSAGE }));
 
-      await wait(1500);
-      dispatch(hideAlert());
-
       return;
     }
     dispatch(deleteBrand(id));
@@ -115,14 +113,16 @@ const Brands: React.FC = () => {
         <div className={classes.header}>
           <h3 className={classes.title}>Производители</h3>
 
-          <IconButton onClick={openForm} isDisabled={isFormOpen}>
+          <IconButton onClick={openForm} isDisabled={isFormOpen || error.isError}>
             <AddIcon />
           </IconButton>
         </div>
 
         {isLoading && <AreaLoader />}
 
-        {isPlaceholderVisible && <Placeholder text={NO_BRANDS_MESSAGE} size={'32px'} />}
+        {!isLoading && error.isError && !isFormOpen && <Placeholder text={error.message} size={'32px'} />}
+
+        {isPlaceholderVisible && !error.isError && <Placeholder text={NO_BRANDS_MESSAGE} size={'32px'} />}
 
         {isFormOpen && (
           <SettingsForm
@@ -131,7 +131,6 @@ const Brands: React.FC = () => {
             onSubmit={submit}
             errors={errors}
             value={input}
-            title={'Производители'}
             labelName={'Название бренда'}
             labelURL={'SEO URL'}
             namePlaceholder={'Укажите название бренда'}

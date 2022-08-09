@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Error, Product } from '../types/common';
+import { AlertType, Error, Product } from '../types/common';
 import { handleObj } from '../utils/helpers';
 import { RootState } from './store';
 import {
@@ -11,6 +11,7 @@ import {
 } from '../constants/messages';
 import { fetchBrands } from './BrandSlice';
 import { fetchCategories } from './CategorySlice';
+import { showAlert } from './CommonSlice';
 
 export type ProductState = {
   products: Product[];
@@ -48,14 +49,14 @@ const BASE_URL = 'https://e-commerce-65446-default-rtdb.firebaseio.com';
 
 export const fetchProducts = createAsyncThunk<Product[], void, { state: RootState }>(
   'product/fetchProducts',
-  async (_, { getState, rejectWithValue, dispatch }) => {
-    await dispatch(fetchBrands());
-    await dispatch(fetchCategories());
+  async (_, { getState, dispatch, rejectWithValue }) => {
+    await Promise.all([dispatch(fetchBrands()), dispatch(fetchCategories())]);
 
     const response = await fetch(`${BASE_URL}/products.json`);
 
     if (!response.ok) {
-      return rejectWithValue(FETCH_PRODUCTS_ERROR_MESSAGE as Error['message']);
+      dispatch(showAlert({ type: AlertType.Error, message: FETCH_PRODUCTS_ERROR_MESSAGE }));
+      return rejectWithValue(FETCH_PRODUCTS_ERROR_MESSAGE);
     }
 
     const data = await response.json();
@@ -93,7 +94,7 @@ export const fetchProducts = createAsyncThunk<Product[], void, { state: RootStat
 
 export const createProduct = createAsyncThunk(
   'product/createProduct',
-  async (product: Partial<Product>, { rejectWithValue }) => {
+  async (product: Partial<Product>, { dispatch, rejectWithValue }) => {
     const response = await fetch(`${BASE_URL}/products.json`, {
       method: 'POST',
       headers: {
@@ -103,7 +104,8 @@ export const createProduct = createAsyncThunk(
     });
 
     if (!response.ok) {
-      return rejectWithValue(CREATE_PRODUCT_ERROR_MESSAGE as Error['message']);
+      dispatch(showAlert({ type: AlertType.Error, message: CREATE_PRODUCT_ERROR_MESSAGE }));
+      return rejectWithValue(CREATE_PRODUCT_ERROR_MESSAGE);
     }
 
     const data: { name: string } = await response.json();
@@ -114,7 +116,7 @@ export const createProduct = createAsyncThunk(
 
 export const updateProduct = createAsyncThunk(
   'product/updateProduct',
-  async (product: Product, { rejectWithValue }) => {
+  async (product: Product, { dispatch, rejectWithValue }) => {
     const { id, category, description, discount, image, name, brand, price, weight } = product;
     const response = await fetch(`${BASE_URL}/products/${id}.json`, {
       method: 'PATCH',
@@ -134,7 +136,8 @@ export const updateProduct = createAsyncThunk(
     });
 
     if (!response.ok) {
-      return rejectWithValue(UPDATE_PRODUCT_ERROR_MESSAGE as Error['message']);
+      dispatch(showAlert({ type: AlertType.Error, message: UPDATE_PRODUCT_ERROR_MESSAGE }));
+      return rejectWithValue(UPDATE_PRODUCT_ERROR_MESSAGE);
     }
 
     const data = await response.json();
@@ -150,7 +153,7 @@ export const updateProduct = createAsyncThunk(
 
 export const deleteProduct = createAsyncThunk(
   'product/deleteProduct',
-  async (id: Product['id'], { rejectWithValue }) => {
+  async (id: Product['id'], { dispatch, rejectWithValue }) => {
     const response = await fetch(`${BASE_URL}/products/${id}.json`, {
       method: 'DELETE',
       headers: {
@@ -159,7 +162,8 @@ export const deleteProduct = createAsyncThunk(
     });
 
     if (!response.ok) {
-      return rejectWithValue(DELETE_PRODUCT_ERROR_MESSAGE as Error['message']);
+      dispatch(showAlert({ type: AlertType.Error, message: DELETE_PRODUCT_ERROR_MESSAGE }));
+      return rejectWithValue(DELETE_PRODUCT_ERROR_MESSAGE);
     }
 
     return id;
@@ -205,10 +209,6 @@ export const productSlice = createSlice({
         return product;
       });
     },
-
-    resetProductError: (state) => {
-      state.error = initialState.error;
-    },
   },
 
   extraReducers: (builder) => {
@@ -221,17 +221,16 @@ export const productSlice = createSlice({
       state.isLoading = false;
     });
 
-    builder.addCase(fetchProducts.rejected, (state, action) => {
-      if (action.payload) {
-        state.error = {
-          isError: true,
-          message: action.payload as string,
-        };
-      }
+    builder.addCase(fetchProducts.rejected, (state, { payload }) => {
+      state.error = {
+        isError: true,
+        message: payload as Error['message'],
+      };
+
       state.isLoading = false;
     });
 
-    builder.addCase(createProduct.pending, (state, action) => {
+    builder.addCase(createProduct.pending, (state) => {
       state.isLoading = true;
     });
 
@@ -240,13 +239,11 @@ export const productSlice = createSlice({
       state.isLoading = false;
     });
 
-    builder.addCase(createProduct.rejected, (state, action) => {
-      if (action.payload) {
-        state.error = {
-          isError: true,
-          message: action.payload as string,
-        };
-      }
+    builder.addCase(createProduct.rejected, (state, { payload }) => {
+      state.error = {
+        isError: true,
+        message: payload as Error['message'],
+      };
       state.isLoading = false;
     });
 
@@ -261,13 +258,11 @@ export const productSlice = createSlice({
       state.isLoading = false;
     });
 
-    builder.addCase(updateProduct.rejected, (state, action) => {
-      if (action.payload) {
-        state.error = {
-          isError: true,
-          message: action.payload as string,
-        };
-      }
+    builder.addCase(updateProduct.rejected, (state, { payload }) => {
+      state.error = {
+        isError: true,
+        message: payload as Error['message'],
+      };
       state.isLoading = false;
     });
 
@@ -281,24 +276,17 @@ export const productSlice = createSlice({
       state.isLoading = false;
     });
 
-    builder.addCase(deleteProduct.rejected, (state, action) => {
-      if (action.payload) {
-        state.error = {
-          isError: true,
-          message: action.payload as string,
-        };
-      }
+    builder.addCase(deleteProduct.rejected, (state, { payload }) => {
+      state.error = {
+        isError: true,
+        message: payload as Error['message'],
+      };
       state.isLoading = false;
     });
   },
 });
 
-export const {
-  selectProduct,
-  removeSelectedProduct,
-  updateAllProductsCategories,
-  updateAllProductsBrands,
-  resetProductError,
-} = productSlice.actions;
+export const { selectProduct, removeSelectedProduct, updateAllProductsCategories, updateAllProductsBrands } =
+  productSlice.actions;
 
 export default productSlice.reducer;

@@ -7,11 +7,10 @@ import Placeholder from '../../../UI/Placeholder/Placeholder';
 import { NO_PRODUCTS_MESSAGE } from '../../../../constants/messages';
 
 const WishlistPage: React.FC = () => {
-  const { products, isLoading } = useSelector((state: RootState) => state.product);
+  const { products, isLoading, error } = useSelector((state: RootState) => state.product);
   const { wishlist } = useSelector((state: RootState) => state.user);
   const wishlistProducts = products.filter((product) => wishlist.includes(product.id));
-  const hasProducts = !isLoading && wishlistProducts.length > 0;
-  const noProducts = !isLoading && wishlistProducts.length === 0;
+  const hasProducts = wishlistProducts.length > 0;
 
   return (
     <section className={classes['category-page']}>
@@ -22,9 +21,9 @@ const WishlistPage: React.FC = () => {
       <div className={classes['body-wrapper']}>
         {isLoading && <Loader />}
 
-        {hasProducts && <ProductCardList products={wishlistProducts} />}
-
-        {noProducts && <Placeholder text={NO_PRODUCTS_MESSAGE} size={'38px'} />}
+        {!isLoading && error.isError && <Placeholder text={error.message} size={'38px'} />}
+        {!isLoading && !hasProducts && !error.isError && <Placeholder text={NO_PRODUCTS_MESSAGE} size={'38px'} />}
+        {!isLoading && hasProducts && <ProductCardList products={wishlistProducts} />}
       </div>
     </section>
   );

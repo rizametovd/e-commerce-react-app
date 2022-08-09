@@ -46,6 +46,7 @@
 }
 
 .image {
+  object-fit: contain;
   display: block;
   width: 100%;
 }

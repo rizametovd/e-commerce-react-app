@@ -6,6 +6,7 @@ export enum AlertType {
 }
 
 export type Alert = {
+  isAction?: boolean;
   type: AlertType;
   message: string;
 };

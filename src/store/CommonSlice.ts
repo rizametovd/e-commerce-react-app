@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { Alert, AlertType } from '../types/common';
+import { wait } from '../utils/helpers';
 
 export type CommonState = {
   alert: Alert;
@@ -9,16 +10,23 @@ export type CommonState = {
 
 const initialState: CommonState = {
   alert: {
+    isAction: false,
     type: AlertType.Info,
     message: '',
   },
 };
 
+export const showAlert = createAsyncThunk('common/handleAlert', async (alert: Alert, { dispatch }) => {
+  dispatch(setAlert(alert));
+  await wait(2500);
+  dispatch(hideAlert());
+});
+
 export const commonSlice = createSlice({
   name: 'common',
   initialState,
   reducers: {
-    showAlert: (state, action: PayloadAction<Alert>) => {
+    setAlert: (state, action: PayloadAction<Alert>) => {
       state.alert = action.payload;
     },
 
@@ -28,6 +36,6 @@ export const commonSlice = createSlice({
   },
 });
 
-export const { showAlert, hideAlert } = commonSlice.actions;
+export const { setAlert, hideAlert } = commonSlice.actions;
 
 export default commonSlice.reducer;

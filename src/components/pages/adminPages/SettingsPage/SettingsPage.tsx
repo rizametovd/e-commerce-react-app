@@ -4,28 +4,11 @@ import Content from '../../../layouts/adminLayouts/Content/Content';
 import Actions from '../../../layouts/adminLayouts/Actions/Actions';
 import Brands from '../../../admin/Brands/Brands';
 import Toast from '../../../UI/Toast/Toast';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../../../store/store';
-import { hideAlert } from '../../../../store/CommonSlice';
-import { AlertType } from '../../../../types/common';
-import { resetCategoryError } from '../../../../store/CategorySlice';
-import { resetBrandError } from '../../../../store/BrandSlice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../store/store';
 
 const SettingsPage: React.FC = () => {
-  const { common, category, brand } = useSelector((state: RootState) => state);
-  const dispatch = useDispatch<AppDispatch>();
-
-  const handleToast = () => {
-    dispatch(hideAlert());
-  };
-
-  const handleCategoryErrorToast = () => {
-    dispatch(resetCategoryError());
-  };
-
-  const handleBrandErrorToast = () => {
-    dispatch(resetBrandError());
-  };
+  const { alert } = useSelector((state: RootState) => state.common);
 
   return (
     <>
@@ -33,9 +16,7 @@ const SettingsPage: React.FC = () => {
 
       <Content>
         <div className={classes.settings}>
-          <Toast message={common.alert.message} type={common.alert.type} onClose={handleToast} />
-          <Toast message={category.error.message} type={AlertType.Error} onClose={handleCategoryErrorToast} />
-          <Toast message={brand.error.message} type={AlertType.Error} onClose={handleBrandErrorToast} />
+          <Toast message={alert.message} type={alert.type} />
           <Categories />
           <Brands />
         </div>

@@ -1,10 +1,10 @@
 .toast {
   display: flex;
-  gap: 40px;
+  gap: 25px;
   align-items: center;
   justify-content: space-between;
   color: white;
-  padding: 10px 10px 10px 20px;
+  padding: 8px 14px;
   border-radius: 4px;
   position: absolute;
   top: -80px;
@@ -12,6 +12,7 @@
   transform: translateX(-50%);
   width: calc(100% - 20px);
   max-width: 60%;
+  font-size: 14px;
   animation: fade 200ms linear;
 }
 
@@ -22,6 +23,18 @@
   to {
     opacity: 1;
   }
+}
+
+.action {
+  border-left: 1px solid #fff;
+  padding-left: 10px;
+  cursor: pointer;
+  transition: opacity 150ms linear;
+}
+
+.action:hover {
+  opacity: 0.7;
+  transition: opacity 150ms linear;
 }
 
 .info {

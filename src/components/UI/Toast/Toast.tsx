@@ -1,26 +1,23 @@
-import IconButton from '../IconButton/IconButton';
-import CloseIcon from '../icons/CloseIcon/CloseIcon';
 import classes from './Toast.module.css';
 
 interface IToastProps {
   message: string;
-  type: string,
-  onClose: () => void;
+  type: string;
+  onAction?: () => void;
+  actionName?: string;
 }
 
-const Toast: React.FC<IToastProps> = ({ message, onClose, type }) => {
+const Toast: React.FC<IToastProps> = ({ message, onAction = () => {}, type, actionName }) => {
   return (
     <>
       {message && (
         <div className={`${classes.toast} ${classes[type]}`}>
           <span>{message}</span>
-          <div className={classes.button}>
-<IconButton onClick={onClose}>
-            <CloseIcon />
-          </IconButton>
-
-          </div>
-          
+          {actionName && (
+            <span className={classes.action} onClick={onAction}>
+              {actionName}
+            </span>
+          )}
         </div>
       )}
     </>

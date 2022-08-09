@@ -18,8 +18,7 @@ import Card from '../../UI/Card/Card';
 import IconButton from '../../UI/IconButton/IconButton';
 import AddIcon from '../../UI/icons/AddIcon/AddIcon';
 import { DELETE_CATEGORY_ALERT_MESSAGE, NO_CATEGORIES_MESSAGE } from '../../../constants/messages';
-import { wait } from '../../../utils/helpers';
-import { hideAlert, showAlert } from '../../../store/CommonSlice';
+import { showAlert } from '../../../store/CommonSlice';
 import AreaLoader from '../../UI/AreaLoader/AreaLoader';
 import { updateAllProductsCategories } from '../../../store/ProductSlice';
 import { categoryFormValidator } from '../../../utils/validators';
@@ -31,12 +30,12 @@ const INIT_INPUT = {
 };
 
 const Categories: React.FC = () => {
-  const { isLoading, categories } = useSelector((state: RootState) => state.category);
+  const { isLoading, categories, error } = useSelector((state: RootState) => state.category);
   const { products } = useSelector((state: RootState) => state.product);
   const categoryToBeEdited = useSelector((state: RootState) => state.category.selectedCategory);
   const dispatch = useDispatch<AppDispatch>();
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const isPlaceholderVisible = !isLoading && !isFormOpen && categories?.length === 0;
+  const isPlaceholderVisible = !isLoading && !error.isError && !isFormOpen && categories.length === 0;
   const { input, setInput, handleChange, errors, submit, resetForm } = useForm(
     INIT_INPUT,
     handleSubmit,
@@ -105,10 +104,6 @@ const Categories: React.FC = () => {
 
     if (hasProducts) {
       dispatch(showAlert({ type: AlertType.Error, message: DELETE_CATEGORY_ALERT_MESSAGE }));
-
-      await wait(1500);
-      dispatch(hideAlert());
-
       return;
     }
 
@@ -125,12 +120,14 @@ const Categories: React.FC = () => {
       <div className={classes.category}>
         <div className={classes.header}>
           <h3 className={classes.title}>Категории</h3>
-          <IconButton onClick={openForm} isDisabled={isFormOpen}>
+          <IconButton onClick={openForm} isDisabled={isFormOpen || error.isError}>
             <AddIcon />
           </IconButton>
         </div>
 
         {isLoading && <AreaLoader />}
+
+        {!isLoading && error.isError && !isFormOpen && <Placeholder text={error.message} size={'32px'} />}
 
         {isPlaceholderVisible && <Placeholder text={NO_CATEGORIES_MESSAGE} size={'32px'} />}
 
@@ -141,7 +138,6 @@ const Categories: React.FC = () => {
             onSubmit={submit}
             errors={errors}
             value={input}
-            title={'Категории'}
             labelName={'Название категории'}
             labelURL={'SEO URL'}
             namePlaceholder={'Укажите название категории'}

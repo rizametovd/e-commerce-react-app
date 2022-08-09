@@ -6,7 +6,7 @@ import Placeholder from '../../../UI/Placeholder/Placeholder';
 import Actions from '../../../layouts/adminLayouts/Actions/Actions';
 import Content from '../../../layouts/adminLayouts/Content/Content';
 import ProductsList from '../../../admin/ProductsList/ProductsList';
-import { removeSelectedProduct, resetProductError } from '../../../../store/ProductSlice';
+import { removeSelectedProduct } from '../../../../store/ProductSlice';
 import Loader from '../../../UI/Loader/Loader';
 import {
   ADD_BRAND_AND_CATEGORY_MESSAGE,
@@ -15,26 +15,18 @@ import {
   NO_PRODUCTS_MESSAGE,
 } from '../../../../constants/messages';
 import Toast from '../../../UI/Toast/Toast';
-import { AlertType } from '../../../../types/common';
 
 const ProductsPage: React.FC = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const { products, error } = useSelector((state: RootState) => state.product);
   const { brand, category, product } = useSelector((state: RootState) => state);
+  const { alert } = useSelector((state: RootState) => state.common);
   const dispatch = useDispatch<AppDispatch>();
-
-  const hasCategories = category.categories.length > 0;
-  const hasProducts = products.length > 0;
-  const hasBrands = brand.brands.length > 0;
-
-  const productsIsLoading = !hasProducts && product.isLoading;
-  const isProductListVisible = hasCategories && hasProducts && hasBrands && !isFormOpen;
   const isDataLoading = [brand.isLoading, category.isLoading, product.isLoading].some(Boolean);
-  const isAddCategoryPlaceholderVisible = !hasCategories && !isDataLoading;
-  const isAddBrandPlaceholderVisible = !isDataLoading && !hasBrands;
-  const isNoBrandsAndNoCategories = isAddCategoryPlaceholderVisible && isAddBrandPlaceholderVisible;
-  const isNoProductsPlaceholderVisible =
-    !product.isLoading && !hasProducts && !isFormOpen && hasCategories && hasBrands;
+  const hasCategories = category.categories.length > 0;
+  const hasProducts = product.products.length > 0;
+  const hasBrands = brand.brands.length > 0;
+  const isFetchingError = product.error.isError;
+  const isProductListVisible = hasCategories && hasProducts && hasBrands && !isFormOpen && !isFetchingError;
 
   const openForm = () => {
     setIsFormOpen(true);
@@ -43,10 +35,6 @@ const ProductsPage: React.FC = () => {
   const closeForm = () => {
     setIsFormOpen(false);
     dispatch(removeSelectedProduct());
-  };
-
-  const handleProductErrorToast = () => {
-    dispatch(resetProductError());
   };
 
   return (
@@ -61,18 +49,29 @@ const ProductsPage: React.FC = () => {
 
       <Content>
         <>
-          <Toast message={error.message} type={AlertType.Error} onClose={handleProductErrorToast} />
+          <Toast message={alert.message} type={alert.type} />
 
-          {productsIsLoading && <Loader />}
-          {isAddCategoryPlaceholderVisible && <Placeholder text={ADD_CATEGORY_MESSAGE} size={'36px'} />}
+          {isDataLoading && <Loader />}
 
-          {isNoBrandsAndNoCategories && <Placeholder text={ADD_BRAND_AND_CATEGORY_MESSAGE} size={'36px'} />}
-          {isAddBrandPlaceholderVisible && <Placeholder text={ADD_BRAND_MESSAGE} size={'36px'} />}
-          {isNoProductsPlaceholderVisible && <Placeholder text={NO_PRODUCTS_MESSAGE} size={'36px'} />}
+          {!isDataLoading && isFetchingError && <Placeholder text={product.error.message} size={'36px'} />}
+
+          {!isDataLoading && !isFetchingError && !hasCategories && (
+            <Placeholder text={ADD_CATEGORY_MESSAGE} size={'36px'} />
+          )}
+
+          {!isDataLoading && !isFetchingError && !hasBrands && <Placeholder text={ADD_BRAND_MESSAGE} size={'36px'} />}
+
+          {!isDataLoading && !isFetchingError && !hasBrands && !hasCategories && (
+            <Placeholder text={ADD_BRAND_AND_CATEGORY_MESSAGE} size={'36px'} />
+          )}
+
+          {!isDataLoading && !isFetchingError && !hasProducts && !hasBrands && !hasCategories && (
+            <Placeholder text={NO_PRODUCTS_MESSAGE} size={'36px'} />
+          )}
 
           {isProductListVisible && (
             <ProductsList
-              products={products}
+              products={product.products}
               onOpen={openForm}
               isLoading={product.isLoading}
               categories={category.categories}
