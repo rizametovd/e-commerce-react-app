@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { showAlert } from '../../../../store/CommonSlice';
 import { AppDispatch, RootState } from '../../../../store/store';
 import { handleWishlist, setToLocalStorage } from '../../../../store/UserSlice';
