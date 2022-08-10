@@ -61,16 +61,21 @@
   position: absolute;
   top: 9px;
   right: 9px;
-  z-index: 2;
+  z-index: 3;
 }
 
 .title {
+  text-decoration: none;
   align-self: flex-start;
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
   color: #222222;
   margin: 0;
+}
+
+.title:hover {
+  color: #f44336;
 }
 
 .price {
@@ -99,9 +104,7 @@
 
 @media screen and (min-width: 768px) {
   .image {
-    .image {
       min-height: 331px;
-    }
   }
 }
 

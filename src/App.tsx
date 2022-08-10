@@ -15,8 +15,7 @@ import DiscountProductsPage from './components/pages/showcasePages/DiscountProdu
 import ShowcasePage from './components/pages/showcasePages/ShowcasePage/ShowcasePage';
 import { getFromLocalStorage } from './store/UserSlice';
 import WishlistPage from './components/pages/showcasePages/WishlistPage/WishlistPage';
-
-
+import ProductPage from './components/pages/showcasePages/ProductPage/ProductPage';
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -30,8 +29,17 @@ const App = () => {
           element: <DiscountProductsPage />,
         },
         {
-          path: '/:url',
-          element: <CategoryPage />,
+          path: ':url',
+          children: [
+            {
+              index: true,
+              element: <CategoryPage />,
+            },
+            {
+              path: ':id',
+              element: <ProductPage />,
+            },
+          ],
         },
         { path: PATHS.wishlist, element: <WishlistPage /> },
       ],
@@ -40,7 +48,10 @@ const App = () => {
       path: PATHS.admin,
       element: <AdminPage />,
       children: [
-        { path: PATHS.products, element: <ProductsPage /> },
+        { 
+          path: PATHS.products,
+          // index: true,
+           element: <ProductsPage /> },
         {
           path: PATHS.settings,
           element: <SettingsPage />,
@@ -58,7 +69,7 @@ const App = () => {
         //   dispatch(getFromLocalStorage('likes')),
         // ]);
 
-        dispatch(getFromLocalStorage('likes'))
+        dispatch(getFromLocalStorage('likes'));
         dispatch(fetchProducts());
       } catch (error) {
         console.log('Fetch error App.tsx:', error);

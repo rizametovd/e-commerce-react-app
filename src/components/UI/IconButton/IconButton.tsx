@@ -4,12 +4,19 @@ interface IIconButtonProps {
   children: JSX.Element;
   onClick: () => void;
   isDisabled?: boolean;
+  column?: boolean;
   type?: 'button' | 'submit';
 }
 
-const IconButton: React.FC<IIconButtonProps> = ({ children, onClick, isDisabled, type = 'button' }) => {
+const IconButton: React.FC<IIconButtonProps> = ({ children, onClick, isDisabled, type = 'button', column}) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    onClick();
+  };
+
   return (
-    <button onClick={onClick} className={classes.button} disabled={isDisabled} type={type}>
+    <button onClick={handleClick} className={`${classes.button} ${column ? classes.column : ''}`} disabled={isDisabled} type={type}>
+      
       {children}
     </button>
   );

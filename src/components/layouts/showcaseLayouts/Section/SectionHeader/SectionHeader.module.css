@@ -1,0 +1,15 @@
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section-header-title {
+  font-family: 'Nunito';
+  font-size: 38px;
+  margin: 0;
+}
+
+.section-header-description {
+  margin: 0;
+}

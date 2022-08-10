@@ -7,6 +7,7 @@
   cursor: pointer;
   background-color: transparent;
   padding: 0;
+  gap: 5px;
   fill: lightgray;
 }
 
@@ -17,4 +18,8 @@
 
 .button:hover:not(:disabled) {
   fill: #4faa37;
+}
+
+.column {
+  flex-direction: column;
 }

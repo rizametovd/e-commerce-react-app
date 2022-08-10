@@ -6,7 +6,7 @@
   color: white;
   padding: 8px 14px;
   border-radius: 4px;
-  position: absolute;
+  position: fixed;
   top: -80px;
   left: 50%;
   transform: translateX(-50%);

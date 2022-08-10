@@ -1,0 +1,80 @@
+.product-page {
+    display: flex;
+    gap: 60px;
+}
+
+.subtitle {
+    font-family: 'Nunito';
+    font-size: 20px;
+    margin: 0;
+}
+
+.text {
+    margin: 0;
+}
+
+.image-wrapper {
+    flex-shrink: 0;
+    width: 444px;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+}
+
+.title {
+    font-family: 'Nunito';
+    font-size: 36px;
+    line-height: 38px;
+    margin: 0;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.image {
+    width: 100%;
+    display: block;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    align-self: flex-start;
+    color: #222222;
+    font-weight: 700;
+    font-size: 36px;
+  }
+  
+  .old-price {
+    font-size: 20px;
+    color: lightgray;
+    font-weight: 400;
+    text-decoration: line-through;
+  }
+  
+
+  .price-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }

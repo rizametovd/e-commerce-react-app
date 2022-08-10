@@ -4,5 +4,4 @@ export const PATHS = {
     products: 'products',
     admin: '/admin/',
     wishlist: '/wishlist'
-    // orders: '/orders'
 }

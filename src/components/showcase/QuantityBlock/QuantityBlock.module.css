@@ -1,0 +1,21 @@
+.quantity-block {
+  display: flex;
+  min-width: 100%;
+  justify-content: space-between;
+}
+
+.quantity {
+  align-self: center;
+}
+
+.button {
+  padding: 0 14px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.button-text {
+  font-weight: 700;
+  font-size: 20px;
+}

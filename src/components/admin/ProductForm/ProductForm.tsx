@@ -27,6 +27,7 @@ const INIT_INPUT = {
   category: {
     id: '',
     name: '',
+    url: '',
   },
 };
 

@@ -1,17 +1,19 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '../types/common';
+import { CartItem, Product } from '../types/common';
 import { RootState } from './store';
 
 type WishList = Product['id'][];
 
 export type UserState = {
   wishlist: WishList;
+  cart: CartItem[];
 };
 
 const initialState: UserState = {
   wishlist: [],
+  cart: [],
 };
 
 export const setToLocalStorage = createAsyncThunk<void, string, { state: RootState }>(
@@ -48,9 +50,57 @@ export const userSlice = createSlice({
       }
       state.wishlist.push(action.payload);
     },
+
+    setProductToCart: (state, action: PayloadAction<CartItem>) => {
+      const product = { ...action.payload };
+
+      if (product.discountPrice && product.discountPrice) {
+        product.profit = product.price - product.discountPrice;
+        product.totalPrice = product.discountPrice;
+      }
+
+      state.cart.push(product);
+    },
+
+    increment: (state, action: PayloadAction<CartItem['id']>) => {
+      const product = state.cart.find((cartItem) => cartItem.id === action.payload);
+      if (!product) return;
+
+      product.totalWeight += product.weight;
+      product.quantity++;
+
+      if (product.discount && product.discountPrice) {
+        product.totalPrice += product.discountPrice;
+        product.profit = product.quantity * (product.price - product.discountPrice);
+        return;
+      }
+
+      product.totalPrice += product.price;
+    },
+
+    decrement: (state, action: PayloadAction<CartItem['id']>) => {
+      const product = state.cart.find((cartItem) => cartItem.id === action.payload);
+      if (!product) return;
+      product.totalWeight -= product.weight;
+      product.quantity--;
+
+      if (product.discount && product.discountPrice) {
+        product.totalPrice -= product.discountPrice;
+        product.profit = product.quantity * (product.price - product.discountPrice);
+        return;
+      }
+
+      product.totalPrice -= product.price;
+    },
+
+    removeProductFromCart: (state, action: PayloadAction<CartItem['id']>) => {
+      const updatedCart = state.cart.filter((cartItem) => cartItem.id !== action.payload);
+      state.cart = updatedCart;
+    },
   },
 });
 
-export const { handleWishlist, setWishlist } = userSlice.actions;
+export const { handleWishlist, setWishlist, setProductToCart, increment, decrement, removeProductFromCart } =
+  userSlice.actions;
 
 export default userSlice.reducer;

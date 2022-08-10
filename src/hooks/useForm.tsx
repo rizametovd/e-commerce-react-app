@@ -36,7 +36,7 @@ const useForm = <T extends {}>(
   };
 
   const handleChangeSelect = (option: Option) => {
-    const { name, id, field } = option;
+    const { name, id, field, url } = option;
 
     clearValidation(field);
 
@@ -45,6 +45,7 @@ const useForm = <T extends {}>(
       [field]: {
         name,
         id,
+        url
       },
     }));
   };

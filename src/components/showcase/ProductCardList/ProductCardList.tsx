@@ -32,9 +32,9 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
   }, [products]);
 
   const toastHandler = () => {
-    navigate(PATHS.wishlist)
-    dispatch(hideAlert())
-  }
+    navigate(PATHS.wishlist);
+    dispatch(hideAlert());
+  };
 
   const wishlistHandler = (id: Product['id']) => {
     const isProductLiked = wishlist.includes(id);
@@ -70,10 +70,13 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
             price={product.price}
             image={product.image}
             discount={product.discount}
-            brand={product.brand.name}
-            category={product.category.name}
+            brand={product.brand}
+            category={product.category}
             onWishlistClick={() => wishlistHandler(product.id)}
             isAddedToWishlist={wishlist.includes(product.id)}
+            id={product.id}
+            weight={product.weight}
+            description={product.description}
           />
         ))}
       </ul>

@@ -34,6 +34,7 @@ export type Product = {
   category: {
     name: string;
     id: string;
+    url: string;
   };
   description: string;
   discount?: string;
@@ -51,4 +52,16 @@ export type Product = {
 export type Error = {
   isError: boolean;
   message: string;
+};
+
+export type CartItem = {
+  id: Product['id'];
+  price: number;
+  quantity: number;
+  totalPrice: number;
+  weight: number;
+  totalWeight: number;
+  profit?: number;
+  discount?: number;
+  discountPrice?: number;
 };

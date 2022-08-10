@@ -27,6 +27,7 @@ const initialState: ProductState = {
     category: {
       id: '',
       name: '',
+      url: '',
     },
     description: '',
     image: '',

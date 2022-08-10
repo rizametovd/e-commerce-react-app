@@ -48,11 +48,11 @@ const Select: React.FC<ISelectProps> = ({
           <li className={classes.option} onClick={() => onSelect({ field })}>
             {defaultOptionText}
           </li>
-          {options.map(({ id, name }) => (
+          {options.map(({ id, name, url }) => (
             <li
               key={id}
               className={`${classes.option} ${value === name && classes.active}`}
-              onClick={() => onSelect({ name, id, field })}
+              onClick={() => onSelect({ name, id, field, url })}
             >
               {name}
             </li>
