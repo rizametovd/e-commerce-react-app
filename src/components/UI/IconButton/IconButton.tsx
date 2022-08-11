@@ -16,7 +16,6 @@ const IconButton: React.FC<IIconButtonProps> = ({ children, onClick, isDisabled,
 
   return (
     <button onClick={handleClick} className={`${classes.button} ${column ? classes.column : ''}`} disabled={isDisabled} type={type}>
-      
       {children}
     </button>
   );

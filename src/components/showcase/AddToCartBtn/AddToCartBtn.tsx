@@ -31,12 +31,11 @@ const AddToCartBtn: React.FC<IAddToCartBtnProps> = ({ product }) => {
   };
 
   return (
-    <div className={classes['add-to-cart-btn']}>
-      {isCLicked && (
-        <div className={classes['quantity-block-wrapper']}>
-          <QuantityBlock id={product.id} />
-        </div>
-      )}
+    <div
+      className={classes['add-to-cart-btn']}
+      style={{ outline: `1px solid ${isCLicked ? 'lightgray' : 'transparent'}` }}
+    >
+      {isCLicked && <QuantityBlock id={product.id} />}
 
       {!isCLicked && (
         <button className={classes['main-button']} onClick={addToCartHandler}>

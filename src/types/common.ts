@@ -62,6 +62,7 @@ export type CartItem = {
   id: Product['id'];
   name: Product['name'];
   image: Product['image'];
+  categoryUrl: Category['url'];
   price: Product['price'];
   quantity: number;
   totalPrice: number;

@@ -23,7 +23,7 @@ const SettingsList: React.FC<ISettingsListProps> = ({ items, onEdit, onDelete })
               </IconButton>
 
               <IconButton onClick={() => onDelete(id)}>
-                <TrashIcon />
+                <TrashIcon fill={'lightgray'} />
               </IconButton>
             </div>
           </div>

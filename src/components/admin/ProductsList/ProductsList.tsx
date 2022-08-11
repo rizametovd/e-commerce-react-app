@@ -274,7 +274,7 @@ const ProductsList: React.FC<IProductsListProps> = ({ products, onOpen, isLoadin
                           </IconButton>
 
                           <IconButton onClick={() => deleteProductHandler(id)}>
-                            <TrashIcon />
+                            <TrashIcon fill={'lightgray'} />
                           </IconButton>
                         </>
                       )}

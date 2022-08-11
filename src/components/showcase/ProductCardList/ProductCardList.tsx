@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store/store';
-import { handleWishlist, setToLocalStorage } from '../../../store/UserSlice';
-import { AlertType, Product } from '../../../types/common';
-import { showAlert } from '../../../store/CommonSlice';
+import { wishListHandler } from '../../../store/UserSlice';
+import { Product } from '../../../types/common';
 import LoadMore from '../../UI/LoadMore/LoadMore';
 import ProductCard from '../ProductCard/ProductCard';
 import classes from './ProductCardList.module.css';
-import { ADDED_TO_WISHLIST, REMOVED_FROM_WISHLIST } from '../../../constants/messages';
 
 interface IProductCardListProps {
   products: Product[];
@@ -27,16 +25,9 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
     setCount(PRODUCT_LIST_LIMIT);
   }, [products]);
 
-  const wishlistHandler = (id: Product['id']) => {
-    const isProductLiked = wishlist.includes(id);
-    dispatch(handleWishlist(id));
-    dispatch(setToLocalStorage('likes'));
-
-    if (isProductLiked) {
-      dispatch(showAlert({ type: AlertType.Info, message: REMOVED_FROM_WISHLIST }));
-    } else {
-      dispatch(showAlert({ type: AlertType.Success, message: ADDED_TO_WISHLIST, isAction: true }));
-    }
+  const handleWishlist = (id: Product['id']) => {
+    const isWished = wishlist.includes(id);
+    dispatch(wishListHandler({id, isWished}))
   };
 
   const showMoreHandler = (count: number) => {
@@ -57,7 +48,7 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
             discount={product.discount}
             brand={product.brand}
             category={product.category}
-            onWishlistClick={() => wishlistHandler(product.id)}
+            onWishlistClick={() => handleWishlist(product.id)}
             isAddedToWishlist={wishlist.includes(product.id)}
             id={product.id}
           />

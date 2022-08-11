@@ -53,20 +53,18 @@ const ProductsPage: React.FC = () => {
 
           {isDataLoading && <Loader />}
 
-          {!isDataLoading && isFetchingError && <Placeholder text={product.error.message} size={'36px'} />}
+          {!isDataLoading && isFetchingError && <Placeholder text={product.error.message} />}
 
-          {!isDataLoading && !isFetchingError && !hasCategories && (
-            <Placeholder text={ADD_CATEGORY_MESSAGE} size={'36px'} />
-          )}
+          {!isDataLoading && !isFetchingError && !hasCategories && <Placeholder text={ADD_CATEGORY_MESSAGE} />}
 
-          {!isDataLoading && !isFetchingError && !hasBrands && <Placeholder text={ADD_BRAND_MESSAGE} size={'36px'} />}
+          {!isDataLoading && !isFetchingError && !hasBrands && <Placeholder text={ADD_BRAND_MESSAGE} />}
 
           {!isDataLoading && !isFetchingError && !hasBrands && !hasCategories && (
-            <Placeholder text={ADD_BRAND_AND_CATEGORY_MESSAGE} size={'36px'} />
+            <Placeholder text={ADD_BRAND_AND_CATEGORY_MESSAGE} />
           )}
 
           {!isDataLoading && !isFetchingError && !hasProducts && !hasBrands && !hasCategories && (
-            <Placeholder text={NO_PRODUCTS_MESSAGE} size={'36px'} />
+            <Placeholder text={NO_PRODUCTS_MESSAGE} />
           )}
 
           {isProductListVisible && (

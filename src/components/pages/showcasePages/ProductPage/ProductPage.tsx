@@ -1,15 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import {
-  ADDED_TO_WISHLIST,
-  ADD_TO_WISHLIST,
-  REMOVED_FROM_WISHLIST,
-  REMOVE_FROM_WISHLIST,
-} from '../../../../constants/messages';
-import { showAlert } from '../../../../store/CommonSlice';
+import { ADD_TO_WISHLIST, REMOVE_FROM_WISHLIST } from '../../../../constants/messages';
 import { AppDispatch, RootState } from '../../../../store/store';
-import { handleWishlist, setToLocalStorage } from '../../../../store/UserSlice';
-import { AlertType, CartItem, Product } from '../../../../types/common';
+import { wishListHandler } from '../../../../store/UserSlice';
+import { CartItem, Product } from '../../../../types/common';
 import Section from '../../../layouts/showcaseLayouts/Section/Section';
 import SectionBody from '../../../layouts/showcaseLayouts/Section/SectionBody/SectionBody';
 import AddToCartBtn from '../../../showcase/AddToCartBtn/AddToCartBtn';
@@ -26,10 +20,10 @@ const ProductPage: React.FC<IProductPageProps> = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { products } = useSelector((state: RootState) => state.product);
   const { wishlist } = useSelector((state: RootState) => state.user);
-  const { id, name, description, image, brand, price, weight, discount } = products.find(
+  const { id, name, description, image, brand, price, weight, discount, category } = products.find(
     (product) => product.id === productId
   ) as Product;
-  const isAddedToWishlist = wishlist.includes(id);
+  const isWished = wishlist.includes(id);
 
   const cartItem: CartItem = {
     id,
@@ -42,17 +36,7 @@ const ProductPage: React.FC<IProductPageProps> = () => {
     totalWeight: weight,
     discountedPrice: discount?.discountedPrice,
     discount: discount?.percent,
-  };
-
-  const wishlistHandler = (id: Product['id']) => {
-    dispatch(handleWishlist(id));
-    dispatch(setToLocalStorage('likes'));
-
-    if (isAddedToWishlist) {
-      dispatch(showAlert({ type: AlertType.Info, message: REMOVED_FROM_WISHLIST }));
-    } else {
-      dispatch(showAlert({ type: AlertType.Success, message: ADDED_TO_WISHLIST, isAction: true }));
-    }
+    categoryUrl: category.url,
   };
 
   return (
@@ -80,11 +64,11 @@ const ProductPage: React.FC<IProductPageProps> = () => {
                   <span className={classes.price}>{price} ₽</span>
                 )}
 
-                <IconButton onClick={() => wishlistHandler(id)} column>
+                <IconButton onClick={() => dispatch(wishListHandler({ id, isWished }))} column>
                   <>
-                    <FavoriteIcon filled={isAddedToWishlist} />
+                    <FavoriteIcon filled={isWished} />
                     <span className={classes['wishlist-text']}>
-                      {isAddedToWishlist ? REMOVE_FROM_WISHLIST : ADD_TO_WISHLIST}
+                      {isWished ? REMOVE_FROM_WISHLIST : ADD_TO_WISHLIST}
                     </span>
                   </>
                 </IconButton>

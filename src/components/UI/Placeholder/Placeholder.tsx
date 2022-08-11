@@ -2,7 +2,7 @@ import classes from './Placeholder.module.css';
 
 interface IPlaceholderProps {
   text: string;
-  size: string;
+  size?: string;
 }
 
 const Placeholder: React.FC<IPlaceholderProps> = ({ text, size = '36px' }) => {

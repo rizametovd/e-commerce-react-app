@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { CartItem, Product } from '../types/common';
+import { AlertType, CartItem, Product } from '../types/common';
 import { RootState } from './store';
+import { showAlert } from './CommonSlice';
+import { ADDED_TO_WISHLIST, REMOVED_FROM_WISHLIST } from '../constants/messages';
 
 type WishList = Product['id'][];
 
@@ -33,6 +35,20 @@ export const getFromLocalStorage = createAsyncThunk<void, string>('user/setWishl
   dispatch(setWishlist(wishlist));
 });
 
+export const wishListHandler = createAsyncThunk<void, { id: string; isWished: boolean }, { state: RootState }>(
+  'user/wishListHandler',
+  ({ id, isWished }, { dispatch }) => {
+    dispatch(handleWishlist(id));
+    dispatch(setToLocalStorage('likes'));
+
+    if (isWished) {
+      dispatch(showAlert({ type: AlertType.Info, message: REMOVED_FROM_WISHLIST }));
+    } else {
+      dispatch(showAlert({ type: AlertType.Success, message: ADDED_TO_WISHLIST, isAction: true }));
+    }
+  }
+);
+
 export const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -55,7 +71,6 @@ export const userSlice = createSlice({
       const product = { ...action.payload };
 
       if (product.discountedPrice !== undefined) {
-        console.log('working:', product.discountedPrice);
         product.profit = product.price - product.discountedPrice;
         product.totalPrice = product.discountedPrice;
       }

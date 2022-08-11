@@ -6,9 +6,10 @@ import classes from './QuantityBlock.module.css';
 interface IQuantityBlockProps {
   id: string;
   disableDecrement?: boolean;
+  background?: string,
 }
 
-const QuantityBlock: React.FC<IQuantityBlockProps> = ({ id, disableDecrement = false }) => {
+const QuantityBlock: React.FC<IQuantityBlockProps> = ({ id, disableDecrement = false, background = '#fff' }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { cart } = useSelector((state: RootState) => state.user);
   const productInCart = cart.find((cartItem) => cartItem.id === id);
@@ -28,7 +29,7 @@ const QuantityBlock: React.FC<IQuantityBlockProps> = ({ id, disableDecrement = f
   };
 
   return (
-    <div className={classes['quantity-block']}>
+    <div className={classes['quantity-block']} style={{backgroundColor: background}}>
       <button className={classes.button} onClick={decrementHandler} disabled={isDisabled}>
         <span className={classes['button-text']}>-</span>
       </button>

@@ -127,9 +127,9 @@ const Categories: React.FC = () => {
 
         {isLoading && <AreaLoader />}
 
-        {!isLoading && error.isError && !isFormOpen && <Placeholder text={error.message} size={'32px'} />}
+        {!isLoading && error.isError && !isFormOpen && <Placeholder text={error.message} />}
 
-        {isPlaceholderVisible && <Placeholder text={NO_CATEGORIES_MESSAGE} size={'32px'} />}
+        {isPlaceholderVisible && <Placeholder text={NO_CATEGORIES_MESSAGE} />}
 
         {isFormOpen && (
           <SettingsForm

@@ -1,6 +1,8 @@
 .quantity-block {
   display: flex;
   min-width: 100%;
+  min-height: 42px;
+  border-radius: 5px;
   justify-content: space-between;
 }
 
@@ -13,6 +15,16 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  transition: color 150ms linear;
+}
+
+.button:disabled {
+  cursor: default;
+}
+
+.button:hover:not(:disabled) {
+  transition: color 150ms linear;
+  color: #f44336;
 }
 
 .button-text {

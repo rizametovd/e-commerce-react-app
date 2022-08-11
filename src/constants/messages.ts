@@ -7,6 +7,7 @@ export const NO_BRANDS_MESSAGE = 'Нет производителей';
 export const NO_CATEGORIES_MESSAGE = 'Нет категорий';
 export const NO_FILTERED_RESULTS = 'По заданному фильтру нет товаров';
 export const NO_DISCOUNTED_PRODUCTS = 'Нет акционных товаров';
+export const NO_PRODUCTS_IN_CART = 'Сложите в корзину нужные товары';
 
 // Alert messages
 export const DELETE_CATEGORY_ALERT_MESSAGE = 'Сначала удалите все товары из категории';

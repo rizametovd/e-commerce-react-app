@@ -1,13 +1,14 @@
+import { CartItem } from '../../../../types/common';
 import classes from './CartSummary.module.css';
 
 interface ICartSummaryProps {
-    price: number
-    weight: number
-    profit: number
-    quantity: number
+  price: CartItem['totalPrice'];
+  weight: CartItem['weight'];
+  profit: CartItem['profit'];
+  quantity: CartItem['quantity'];
 }
 
-const CartSummary: React.FC<ICartSummaryProps> = ({price, weight, profit, quantity}) => {
+const CartSummary: React.FC<ICartSummaryProps> = ({ price, weight, profit, quantity }) => {
   return (
     <div className={classes['cart-summary']}>
       <div className={`${classes['cart-summary-row']} ${classes.heading}`}>
