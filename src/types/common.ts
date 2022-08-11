@@ -41,7 +41,7 @@ export type Product = {
     percent: number;
     discountedPrice: number;
 
-  };
+  } | null;
   image: string;
   name: string;
   brand: {
