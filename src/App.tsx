@@ -15,6 +15,7 @@ import { getFromLocalStorage } from './store/UserSlice';
 import WishlistPage from './components/pages/showcasePages/WishlistPage/WishlistPage';
 import ProductPage from './components/pages/showcasePages/ProductPage/ProductPage';
 import Loader from './components/UI/Loader/Loader';
+import CartPage from './components/pages/showcasePages/CartPage/CartPage';
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -44,6 +45,10 @@ const App = () => {
           ],
         },
         { path: PATHS.wishlist, element: isDataLoaded ? <WishlistPage /> : <Loader /> },
+        {
+          path: PATHS.cart,
+          element: isDataLoaded ? <CartPage /> : <Loader />,
+        },
       ],
     },
     {

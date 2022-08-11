@@ -51,7 +51,7 @@ const ShowcaseHeader: React.FC<IShowcaseHeaderProps> = () => {
 
             <Badge
               icon={<CartIcon width={24} height={24} />}
-              to={'/'}
+              to={PATHS.cart}
               count={totalProductsQuantityInCart}
               title={'Корзина'}
             />

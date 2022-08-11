@@ -14,8 +14,8 @@ export const DELETE_BRAND_ALERT_MESSAGE = 'Сначала удалите все 
 export const ADDED_TO_WISHLIST = 'Добавлено в избранное';
 export const REMOVED_FROM_WISHLIST = 'Удалено из избранного';
 export const GO_TO_WISHLIST = 'Перейти в избранное';
-export const ADD_TO_WISHLIST = 'Добавить в избранное';
-export const REMOVE_FROM_WISHLIST = 'Удалить из избранного'
+export const ADD_TO_WISHLIST = 'В избранное';
+export const REMOVE_FROM_WISHLIST = 'В избранном'
 
 // Category slice error messages
 export const FETCH_CATEGORIES_ERROR_MESSAGE = 'Не удалось загрузить категории. Попробуйте позже';

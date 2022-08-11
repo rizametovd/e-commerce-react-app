@@ -60,10 +60,12 @@ export type Error = {
 
 export type CartItem = {
   id: Product['id'];
-  price: number;
+  name: Product['name'];
+  image: Product['image'];
+  price: Product['price'];
   quantity: number;
   totalPrice: number;
-  weight: number;
+  weight: Product['weight'];
   totalWeight: number;
   profit?: number;
   discount?: number;

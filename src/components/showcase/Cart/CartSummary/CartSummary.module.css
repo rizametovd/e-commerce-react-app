@@ -1,0 +1,32 @@
+.cart-summary {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #fcf7eb;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  flex-shrink: 0;
+  min-width: 380px;
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 5px;
+  font-size: 14px;
+  /* background-color: palegoldenrod; */
+}
+
+.heading {
+    font-family: 'Nunito';
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.profit-amount {
+    font-weight: 700;
+    color: #f44336;
+}

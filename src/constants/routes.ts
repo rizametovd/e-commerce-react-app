@@ -3,5 +3,6 @@ export const PATHS = {
     settings: 'settings',
     products: 'products',
     admin: '/admin/',
-    wishlist: '/wishlist'
+    wishlist: '/wishlist',
+    cart: '/cart'
 }

@@ -1,0 +1,36 @@
+import classes from './CartSummary.module.css';
+
+interface ICartSummaryProps {
+    price: number
+    weight: number
+    profit: number
+    quantity: number
+}
+
+const CartSummary: React.FC<ICartSummaryProps> = ({price, weight, profit, quantity}) => {
+  return (
+    <div className={classes['cart-summary']}>
+      <div className={`${classes['cart-summary-row']} ${classes.heading}`}>
+        <span>Итого</span>
+        <span>{price} ₽</span>
+      </div>
+
+      <div className={classes['cart-summary-row']}>
+        <span>Выгода</span>
+        <span className={classes['profit-amount']}>{profit} ₽</span>
+      </div>
+
+      <div className={classes['cart-summary-row']}>
+        <span>Всего товаров</span>
+        <span>{quantity} шт</span>
+      </div>
+
+      <div className={classes['cart-summary-row']}>
+        <span>Вес</span>
+        <span>{weight} кг</span>
+      </div>
+    </div>
+  );
+};
+
+export default CartSummary;

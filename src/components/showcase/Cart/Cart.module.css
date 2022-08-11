@@ -1,0 +1,13 @@
+.cart {
+    display: flex;
+    gap: 40px;
+}
+
+.cart-items-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #ecf7ed;
+    border-radius: 10px;
+    width: 100%;
+}
