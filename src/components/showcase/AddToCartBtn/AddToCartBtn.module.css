@@ -7,9 +7,10 @@
   border-radius: 5px;
   outline: 1px solid transparent;
   background-color: #fc0;
-
-  width: 193px;
+  /* width: 193px; */
   height: 42px;
+
+  width: 100%;
 }
 
 .main-button {
@@ -37,24 +38,8 @@
   border-radius: 5px;
 }
 
-/* .quantity-block {
-    display: flex;
-    min-width: 100%;
-    justify-content: space-between;
+@media screen and (min-width: 768px) {
+  .add-to-cart-btn {
+    width: 193px;
+  }
 }
-
-.quantity {
-  align-self: center;
-}
-
-.button {
-  padding: 0 14px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.button-text {
-  font-weight: 700;
-  font-size: 20px;
-} */

@@ -52,14 +52,28 @@ const ProductForm: React.FC<IProductFormProps> = ({ onClose, categories, brands 
     setInput((prevState) => ({
       ...prevState,
       ...productToBeEdited,
+      discount: productToBeEdited.discount?.percent + '',
+      weight: productToBeEdited.weight + '',
+      price: productToBeEdited.price + '',
     }));
   }, [productToBeEdited, setInput]);
 
   function submitHandler() {
+    const price = Math.round(+input.price);
+    const percent = Math.round(+input.discount);
+    const discountedPrice = price - Math.round((price * percent) / 100);
+    const weight = +input.weight;
+
     if (productToBeEdited.id) {
       const updatedProduct = {
         ...productToBeEdited,
         ...input,
+        price,
+        discount: {
+          percent,
+          discountedPrice,
+        },
+        weight,
       };
 
       dispatch(updateProduct(updatedProduct));
@@ -67,11 +81,14 @@ const ProductForm: React.FC<IProductFormProps> = ({ onClose, categories, brands 
       const newProduct = {
         category: input.category,
         description: input.description,
-        discount: input.discount,
+        discount: {
+          percent,
+          discountedPrice,
+        },
         image: input.image,
         name: input.name,
-        price: input.price,
-        weight: input.weight,
+        price,
+        weight,
         brand: input.brand,
       };
 

@@ -37,15 +37,19 @@ export type Product = {
     url: string;
   };
   description: string;
-  discount?: string;
+  discount?: {
+    percent: number;
+    discountedPrice: number;
+
+  };
   image: string;
   name: string;
   brand: {
     name: string;
     id: string;
   };
-  price: string;
-  weight: string;
+  price: number;
+  weight: number;
   isLocked?: boolean;
 };
 
@@ -63,5 +67,5 @@ export type CartItem = {
   totalWeight: number;
   profit?: number;
   discount?: number;
-  discountPrice?: number;
+  discountedPrice?: number;
 };

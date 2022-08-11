@@ -17,3 +17,8 @@
 .highlighted {
   background-color: #ecf7ed;
 }
+
+.plain {
+  border: 1px solid lightgray;
+  background-color: #fff;
+}

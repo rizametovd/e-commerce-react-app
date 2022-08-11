@@ -255,7 +255,7 @@ const ProductsList: React.FC<IProductsListProps> = ({ products, onOpen, isLoadin
                     {name}
                     {discount && (
                       <div>
-                        <Chip text={'Скидка  -' + discount + '%'} mode={'highlighted'} />
+                        <Chip text={'Скидка  -' + discount.percent + '%'} mode={'highlighted'} />
                       </div>
                     )}
                   </td>

@@ -11,9 +11,7 @@ interface IProductCardProps {
   image: Product['image'];
   discount?: Product['discount'];
   brand: Product['brand'];
-  weight: Product['weight'];
   category: Product['category'];
-  description: Product['description'];
   onWishlistClick: () => void;
   isAddedToWishlist: boolean;
   id: Product['id'];
@@ -23,39 +21,16 @@ const ProductCard: React.FC<IProductCardProps> = ({
   name,
   price,
   image,
-  discount = '',
+  discount,
   brand,
   category,
   isAddedToWishlist,
   id,
-  description,
-  weight,
   onWishlistClick,
 }) => {
-  const discountAmount = Math.round(+discount);
-  const basePrice = Math.round(+price);
-  const discountPrice = basePrice - Math.round((basePrice * discountAmount) / 100);
-  const product = {
-    name,
-    price: basePrice,
-    discount: discount ? discountAmount : null,
-    discountPrice: discountAmount ? discountPrice : null,
-    image,
-    brand,
-    category,
-    isAddedToWishlist,
-    weight: +weight,
-    id,
-    description,
-  };
-
   return (
     <li className={classes['product-card']}>
-      <Link
-        to={generatePath('/:url/:id', { url: category.url, id })}
-        className={classes['image-wrapper']}
-        state={product}
-      >
+      <Link to={generatePath('/:url/:id', { url: category.url, id })} className={classes['image-wrapper']}>
         <img src={image} alt={name} className={classes.image} />
 
         <div className={classes['wishlist-btn']}>
@@ -64,20 +39,20 @@ const ProductCard: React.FC<IProductCardProps> = ({
           </IconButton>
         </div>
         <div className={classes['discount-chip']}>
-          {discount && <Chip text={'-' + discountAmount + '%'} mode={'attention'} />}
+          {discount && <Chip text={'-' + discount.percent + '%'} mode={'attention'} />}
         </div>
       </Link>
 
       {discount ? (
         <span className={`${classes.price}`}>
-          <span className={classes.price}>{discountPrice} ₽</span>
+          <span className={classes.price}>{discount.discountedPrice} ₽</span>
           <span className={classes['old-price']}>{price} ₽</span>
         </span>
       ) : (
         <span className={classes.price}>{price} ₽</span>
       )}
 
-      <Link to={id} className={classes.title} state={product}>
+      <Link to={id} className={classes.title}>
         {name}
       </Link>
 

@@ -32,8 +32,8 @@ const initialState: ProductState = {
     description: '',
     image: '',
     name: '',
-    price: '',
-    weight: '',
+    price: 0,
+    weight: 0,
     brand: {
       id: '',
       name: '',

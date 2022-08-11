@@ -2,11 +2,9 @@ import classes from './App.module.css';
 import { PATHS } from './constants/routes';
 import { useRoutes } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from './store/store';
-// import { fetchCategories } from './store/CategorySlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from './store/store';
 import { fetchProducts } from './store/ProductSlice';
-// import { fetchBrands } from './store/BrandSlice';
 import CategoryPage from './components/pages/showcasePages/CategoryPage/CategoryPage';
 import ProductsPage from './components/pages/adminPages/ProductsPage/ProductsPage';
 import SettingsPage from './components/pages/adminPages/SettingsPage/SettingsPage';
@@ -16,9 +14,13 @@ import ShowcasePage from './components/pages/showcasePages/ShowcasePage/Showcase
 import { getFromLocalStorage } from './store/UserSlice';
 import WishlistPage from './components/pages/showcasePages/WishlistPage/WishlistPage';
 import ProductPage from './components/pages/showcasePages/ProductPage/ProductPage';
+import Loader from './components/UI/Loader/Loader';
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const { isLoading, products } = useSelector((state: RootState) => state.product);
+  const isDataLoaded = !isLoading && products.length > 0;
+
   const routes = useRoutes([
     {
       path: PATHS.showcase,
@@ -26,32 +28,32 @@ const App = () => {
       children: [
         {
           path: '/',
-          element: <DiscountProductsPage />,
+          element: isDataLoaded ? <DiscountProductsPage /> : <Loader />,
         },
         {
           path: ':url',
           children: [
             {
               index: true,
-              element: <CategoryPage />,
+              element: isDataLoaded ? <CategoryPage /> : <Loader />,
             },
             {
               path: ':id',
-              element: <ProductPage />,
+              element: isDataLoaded ? <ProductPage /> : <Loader />,
             },
           ],
         },
-        { path: PATHS.wishlist, element: <WishlistPage /> },
+        { path: PATHS.wishlist, element: isDataLoaded ? <WishlistPage /> : <Loader /> },
       ],
     },
     {
       path: PATHS.admin,
       element: <AdminPage />,
       children: [
-        { 
+        {
           path: PATHS.products,
-          // index: true,
-           element: <ProductsPage /> },
+          element: <ProductsPage />,
+        },
         {
           path: PATHS.settings,
           element: <SettingsPage />,
@@ -63,12 +65,6 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // await Promise.all([
-        //   dispatch(fetchBrands()),
-        //   dispatch(fetchCategories()),
-        //   dispatch(getFromLocalStorage('likes')),
-        // ]);
-
         dispatch(getFromLocalStorage('likes'));
         dispatch(fetchProducts());
       } catch (error) {

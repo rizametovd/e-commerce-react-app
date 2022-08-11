@@ -1,0 +1,27 @@
+.info-block {
+  display: none;
+  gap: 20px;
+  width: 100%;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  
+}
+
+.info-block-item {
+  display: flex;
+  flex-direction: column;
+  color: #222222;
+  gap: 5px;
+  align-items: center;
+  font-size: 12px;
+}
+
+@media screen and (min-width: 1024px) {
+  .info-block {
+    display: flex;
+    margin-top: auto;
+  }
+}

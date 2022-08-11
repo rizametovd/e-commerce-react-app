@@ -54,9 +54,9 @@ export const userSlice = createSlice({
     setProductToCart: (state, action: PayloadAction<CartItem>) => {
       const product = { ...action.payload };
 
-      if (product.discountPrice && product.discountPrice) {
-        product.profit = product.price - product.discountPrice;
-        product.totalPrice = product.discountPrice;
+      if (product.discountedPrice && product.discountedPrice) {
+        product.profit = product.price - product.discountedPrice;
+        product.totalPrice = product.discountedPrice;
       }
 
       state.cart.push(product);
@@ -69,9 +69,9 @@ export const userSlice = createSlice({
       product.totalWeight += product.weight;
       product.quantity++;
 
-      if (product.discount && product.discountPrice) {
-        product.totalPrice += product.discountPrice;
-        product.profit = product.quantity * (product.price - product.discountPrice);
+      if (product.discount && product.discountedPrice) {
+        product.totalPrice += product.discountedPrice;
+        product.profit = product.quantity * (product.price - product.discountedPrice);
         return;
       }
 
@@ -84,9 +84,9 @@ export const userSlice = createSlice({
       product.totalWeight -= product.weight;
       product.quantity--;
 
-      if (product.discount && product.discountPrice) {
-        product.totalPrice -= product.discountPrice;
-        product.profit = product.quantity * (product.price - product.discountPrice);
+      if (product.discount && product.discountedPrice) {
+        product.totalPrice -= product.discountedPrice;
+        product.profit = product.quantity * (product.price - product.discountedPrice);
         return;
       }
 
