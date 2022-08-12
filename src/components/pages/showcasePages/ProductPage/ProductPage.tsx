@@ -20,7 +20,7 @@ const ProductPage: React.FC<IProductPageProps> = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { products } = useSelector((state: RootState) => state.product);
   const { wishlist } = useSelector((state: RootState) => state.user);
-  const { id, name, description, image, brand, price, weight, discount, category } = products.find(
+  const { id, name, description, image, brand, price, weight, discount } = products.find(
     (product) => product.id === productId
   ) as Product;
   const isWished = wishlist.includes(id);
