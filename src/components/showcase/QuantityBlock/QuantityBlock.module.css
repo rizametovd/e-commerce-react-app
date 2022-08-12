@@ -1,6 +1,6 @@
 .quantity-block {
   display: flex;
-  min-width: 100%;
+  width: 100%;
   min-height: 42px;
   border-radius: 5px;
   justify-content: space-between;
@@ -15,6 +15,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  color: #222222;
   transition: color 150ms linear;
 }
 

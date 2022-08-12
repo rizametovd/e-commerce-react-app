@@ -1,6 +1,6 @@
 import { generatePath, Link } from 'react-router-dom';
 import { ADD_TO_WISHLIST, REMOVE_FROM_WISHLIST } from '../../../../constants/messages';
-import { CartItem as Item } from '../../../../types/common';
+import { ProductCartItem } from '../../../../types/common';
 import IconButton from '../../../UI/IconButton/IconButton';
 import FavoriteIcon from '../../../UI/icons/FavoriteIcon/FavoriteIcon';
 import TrashIcon from '../../../UI/icons/TrashIcon/TrashIcon';
@@ -8,19 +8,19 @@ import QuantityBlock from '../../QuantityBlock/QuantityBlock';
 import classes from './CartItem.module.css';
 
 interface ICartItemProps {
-  id: string;
-  name: string;
-  image: string;
-  price: number;
-  quantity: number;
-  totalPrice: number;
-  weight: number;
-  totalWeight: number;
-  profit?: number;
-  discount?: number;
-  discountedPrice?: number;
-  categoryUrl: Item['categoryUrl'];
-  isWished: boolean;
+  productId: ProductCartItem['productId'];
+  name: ProductCartItem['name'];
+  image: ProductCartItem['image'];
+  price: ProductCartItem['price'];
+  quantity: ProductCartItem['quantity'];
+  totalPrice: ProductCartItem['totalPrice'];
+  weight: ProductCartItem['weight'];
+  totalWeight: ProductCartItem['totalWeight'];
+  profit?: ProductCartItem['profit'];
+  discount?: ProductCartItem['discount'];
+  discountedPrice?: ProductCartItem['discountedPrice'];
+  categoryUrl: ProductCartItem['categoryUrl'];
+  isWished: ProductCartItem['isWished'];
   onWishlist: () => void;
   onRemove: () => void;
 }
@@ -29,7 +29,7 @@ const CartItem: React.FC<ICartItemProps> = ({
   name,
   image,
   quantity,
-  id,
+  productId,
   totalPrice,
   discount,
   price,
@@ -47,7 +47,10 @@ const CartItem: React.FC<ICartItemProps> = ({
 
       <div className={classes['product-name-wrapper']}>
         <span>
-          <Link to={generatePath('/:categoryUrl/:id', { categoryUrl, id })} className={classes['product-name']}>
+          <Link
+            to={generatePath('/:categoryUrl/:id', { categoryUrl, id: productId })}
+            className={classes['product-name']}
+          >
             {name}
           </Link>
         </span>
@@ -75,7 +78,7 @@ const CartItem: React.FC<ICartItemProps> = ({
           {discount && <span className={classes['price-without-discount']}>{totalPriceWithoutDiscount} ₽</span>}
         </div>
 
-        <QuantityBlock id={id} disableDecrement background={'#f2f2f2'} />
+        <QuantityBlock id={productId} disableDecrement background={'#f2f2f2'} />
       </div>
     </div>
   );

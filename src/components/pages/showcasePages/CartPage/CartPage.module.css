@@ -1,1 +1,10 @@
+.cart-page-body {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
 
+.title {
+    font-family: 'Nunito';
+    font-size: 28px;
+}

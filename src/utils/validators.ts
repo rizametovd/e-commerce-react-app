@@ -89,3 +89,18 @@ export const brandFormValidator = (field: string, inputValue: string | { [key: s
   }
   return null;
 };
+
+export const cartFormValidator = (field: string, inputValue: string | { [key: string]: string }) => {
+  const validateFields = ['name', 'phone', 'address'];
+
+  if (!validateFields.includes(field) || typeof inputValue === 'object') {
+    return null;
+  }
+
+  if (inputValue.trim().length === 0) {
+    return {
+      [field]: 'Поле не может быть пустым',
+    };
+  }
+  return null;
+};

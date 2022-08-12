@@ -8,7 +8,7 @@
   box-sizing: border-box;
   border-radius: 20px;
   flex-shrink: 0;
-  min-width: 380px;
+  width: 100%;
 }
 
 .cart-summary-row {
@@ -20,12 +20,25 @@
 }
 
 .heading {
-    font-family: 'Nunito';
-    font-weight: 700;
-    font-size: 30px;
+  font-family: 'Nunito';
+  font-weight: 700;
+  font-size: 26px;
 }
 
 .profit-amount {
-    font-weight: 700;
-    color: #f44336;
+  font-weight: 700;
+  color: #f44336;
+}
+
+@media screen and (min-width: 768px) {
+  .heading {
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .cart-summary {
+    min-width: 380px;
+    width: auto;
+  }
 }

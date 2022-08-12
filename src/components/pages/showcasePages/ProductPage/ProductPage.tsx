@@ -26,9 +26,7 @@ const ProductPage: React.FC<IProductPageProps> = () => {
   const isWished = wishlist.includes(id);
 
   const cartItem: CartItem = {
-    id,
-    name,
-    image,
+    productId: id,
     quantity: 1,
     price,
     totalPrice: price,
@@ -36,58 +34,59 @@ const ProductPage: React.FC<IProductPageProps> = () => {
     totalWeight: weight,
     discountedPrice: discount?.discountedPrice,
     discount: discount?.percent,
-    categoryUrl: category.url,
   };
 
   return (
     <Section>
       <>
         <SectionBody>
-          <div className={classes['product-page']}>
-            <div className={classes['image-wrapper']}>
-              <img src={image} alt={name} className={classes.image} />
-            </div>
-            <div className={classes['content-wrapper']}>
-              <div className={classes['title-wrapper']}>
-                <h1 className={classes.title}>{name}</h1>
-                <Chip text={brand.name} mode={'plain'} />
+          <>
+            <div className={classes['product-page']}>
+              <div className={classes['image-wrapper']}>
+                <img src={image} alt={name} className={classes.image} />
               </div>
+              <div className={classes['content-wrapper']}>
+                <div className={classes['title-wrapper']}>
+                  <h1 className={classes.title}>{name}</h1>
+                  <Chip text={brand.name} mode={'plain'} />
+                </div>
 
-              <div className={classes['price-wrapper']}>
-                {discount ? (
-                  <span className={`${classes.price}`}>
-                    <span className={classes.price}>{discount.discountedPrice} ₽</span>
-                    <span className={classes['old-price']}>{price} ₽</span>
-                    <Chip text={'-' + discount.percent + '%'} mode={'attention'} />
-                  </span>
-                ) : (
-                  <span className={classes.price}>{price} ₽</span>
+                <div className={classes['price-wrapper']}>
+                  {discount ? (
+                    <span className={`${classes.price}`}>
+                      <span className={classes.price}>{discount.discountedPrice} ₽</span>
+                      <span className={classes['old-price']}>{price} ₽</span>
+                      <Chip text={'-' + discount.percent + '%'} mode={'attention'} />
+                    </span>
+                  ) : (
+                    <span className={classes.price}>{price} ₽</span>
+                  )}
+
+                  <IconButton onClick={() => dispatch(wishListHandler({ id, isWished }))} column>
+                    <>
+                      <FavoriteIcon filled={isWished} />
+                      <span className={classes['wishlist-text']}>
+                        {isWished ? REMOVE_FROM_WISHLIST : ADD_TO_WISHLIST}
+                      </span>
+                    </>
+                  </IconButton>
+                </div>
+
+                <div className={classes.actions}>
+                  <AddToCartBtn product={cartItem} />
+                </div>
+
+                {description && (
+                  <div className={classes.description}>
+                    <p className={classes.subtitle}>О товаре</p>
+                    <p className={classes.text}>{description}</p>
+                  </div>
                 )}
 
-                <IconButton onClick={() => dispatch(wishListHandler({ id, isWished }))} column>
-                  <>
-                    <FavoriteIcon filled={isWished} />
-                    <span className={classes['wishlist-text']}>
-                      {isWished ? REMOVE_FROM_WISHLIST : ADD_TO_WISHLIST}
-                    </span>
-                  </>
-                </IconButton>
+                <InfoBlock />
               </div>
-
-              <div className={classes.actions}>
-                <AddToCartBtn product={cartItem} />
-              </div>
-
-              {description && (
-                <div className={classes.description}>
-                  <p className={classes.subtitle}>О товаре</p>
-                  <p className={classes.text}>{description}</p>
-                </div>
-              )}
-
-              <InfoBlock />
             </div>
-          </div>
+          </>
         </SectionBody>
       </>
     </Section>

@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 import ProductCardList from '../../../showcase/ProductCardList/ProductCardList';
@@ -10,10 +10,11 @@ import SectionHeader from '../../../layouts/showcaseLayouts/Section/SectionHeade
 import SectionBody from '../../../layouts/showcaseLayouts/Section/SectionBody/SectionBody';
 
 const CategoryPage: React.FC = () => {
-  const location = useLocation();
-  const { id, name, description } = location.state as Category;
   const { products } = useSelector((state: RootState) => state.product);
-  const categoryProducts = products.filter((product) => product.category.id === id);
+  const { url } = useParams();
+  const { categories } = useSelector((state: RootState) => state.category);
+  const categoryProducts = products.filter((product) => product.category.url === url);
+  const { name, description } = categories.find((category) => category.url === url) as Category;
   const hasProducts = categoryProducts.length > 0;
 
   return (

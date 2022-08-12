@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, } from 'react-router-dom';
 import { GO_TO_WISHLIST } from '../../../../constants/messages';
 import { PATHS } from '../../../../constants/routes';
 import { hideAlert } from '../../../../store/CommonSlice';

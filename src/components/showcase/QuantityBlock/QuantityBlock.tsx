@@ -12,7 +12,7 @@ interface IQuantityBlockProps {
 const QuantityBlock: React.FC<IQuantityBlockProps> = ({ id, disableDecrement = false, background = '#fff' }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { cart } = useSelector((state: RootState) => state.user);
-  const productInCart = cart.find((cartItem) => cartItem.id === id);
+  const productInCart = cart.find((cartItem) => cartItem.productId === id);
   const isDisabled = disableDecrement && productInCart?.quantity === 1;
 
   const incrementHandler = () => {

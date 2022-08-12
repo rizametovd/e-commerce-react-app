@@ -40,7 +40,6 @@ export type Product = {
   discount?: {
     percent: number;
     discountedPrice: number;
-
   } | null;
   image: string;
   name: string;
@@ -59,10 +58,7 @@ export type Error = {
 };
 
 export type CartItem = {
-  id: Product['id'];
-  name: Product['name'];
-  image: Product['image'];
-  categoryUrl: Category['url'];
+  productId: Product['id'];
   price: Product['price'];
   quantity: number;
   totalPrice: number;
@@ -71,4 +67,11 @@ export type CartItem = {
   profit?: number;
   discount?: number;
   discountedPrice?: number;
+};
+
+export type ProductCartItem = CartItem & {
+  name: Product['name'];
+  categoryUrl: Product['category']['url'];
+  image: Product['image'];
+  isWished: boolean;
 };

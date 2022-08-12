@@ -32,7 +32,7 @@ const Menu: React.FC<IMenuProps> = ({ categories }) => {
           <ul className={classes['menu-list']}>
             {categories.map((category) => (
               <li key={category.id} className={classes['menu-list-item']}>
-                <Link to={category.url} state={category} onClick={closeMenu} className={classes.link}>
+                <Link to={category.url} onClick={closeMenu} className={classes.link}>
                   {category.name}
                 </Link>
               </li>

@@ -19,7 +19,7 @@ const initialState: UserState = {
 };
 
 export const setToLocalStorage = createAsyncThunk<void, string, { state: RootState }>(
-  'user/setWishlistToLS',
+  'user/setToLS',
   async (key, { getState }) => {
     const {
       user: { wishlist },
@@ -78,8 +78,8 @@ export const userSlice = createSlice({
       state.cart.push(product);
     },
 
-    increment: (state, action: PayloadAction<CartItem['id']>) => {
-      const product = state.cart.find((cartItem) => cartItem.id === action.payload);
+    increment: (state, action: PayloadAction<CartItem['productId']>) => {
+      const product = state.cart.find((cartItem) => cartItem.productId === action.payload);
       if (!product) return;
 
       product.totalWeight += product.weight;
@@ -94,8 +94,8 @@ export const userSlice = createSlice({
       product.totalPrice += product.price;
     },
 
-    decrement: (state, action: PayloadAction<CartItem['id']>) => {
-      const product = state.cart.find((cartItem) => cartItem.id === action.payload);
+    decrement: (state, action: PayloadAction<CartItem['productId']>) => {
+      const product = state.cart.find((cartItem) => cartItem.productId === action.payload);
       if (!product) return;
       product.totalWeight -= product.weight;
       product.quantity--;
@@ -109,8 +109,8 @@ export const userSlice = createSlice({
       product.totalPrice -= product.price;
     },
 
-    removeProductFromCart: (state, action: PayloadAction<CartItem['id']>) => {
-      const updatedCart = state.cart.filter((cartItem) => cartItem.id !== action.payload);
+    removeProductFromCart: (state, action: PayloadAction<CartItem['productId']>) => {
+      const updatedCart = state.cart.filter((cartItem) => cartItem.productId !== action.payload);
       state.cart = updatedCart;
     },
   },

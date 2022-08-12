@@ -14,7 +14,7 @@ const AddToCartBtn: React.FC<IAddToCartBtnProps> = ({ product }) => {
   const [isCLicked, setIsClicked] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const { cart } = useSelector((state: RootState) => state.user);
-  const productInCart = cart.find((cartItem) => cartItem.id === product.id);
+  const productInCart = cart.find((cartItem) => cartItem.productId === product.productId);
 
   useEffect(() => {
     if (productInCart?.quantity) {
@@ -35,7 +35,7 @@ const AddToCartBtn: React.FC<IAddToCartBtnProps> = ({ product }) => {
       className={classes['add-to-cart-btn']}
       style={{ outline: `1px solid ${isCLicked ? 'lightgray' : 'transparent'}` }}
     >
-      {isCLicked && <QuantityBlock id={product.id} />}
+      {isCLicked && <QuantityBlock id={product.productId} />}
 
       {!isCLicked && (
         <button className={classes['main-button']} onClick={addToCartHandler}>
