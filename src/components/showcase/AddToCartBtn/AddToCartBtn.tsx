@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store/store';
-import { setProductToCart } from '../../../store/UserSlice';
+import { setProductToCart, setToLocalStorage } from '../../../store/UserSlice';
 import { CartItem } from '../../../types/common';
 import QuantityBlock from '../QuantityBlock/QuantityBlock';
 import classes from './AddToCartBtn.module.css';
@@ -28,6 +28,7 @@ const AddToCartBtn: React.FC<IAddToCartBtnProps> = ({ product }) => {
     setIsClicked(true);
 
     dispatch(setProductToCart(product));
+    dispatch(setToLocalStorage('cart'))
   };
 
   return (

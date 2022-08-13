@@ -31,8 +31,8 @@
   gap: 40px;
   width: 100%;
   background-color: #f2f2f2;
-  padding: 20px;
-  border-radius: 20px;
+  padding: 16px;
+  border-radius: 4px;
   box-sizing: border-box;
 }
 
@@ -56,7 +56,7 @@
 }
 
 .image {
-  border-radius: 20px;
+  border-radius: 4px;
   width: 100%;
   display: block;
 }
@@ -102,7 +102,6 @@
 @media screen and (min-width: 768px) {
   .product-page {
     flex-direction: row;
-    gap: 60px;
   }
 
   .wishlist-text {

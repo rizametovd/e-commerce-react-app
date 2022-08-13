@@ -1,14 +1,14 @@
 .button {
   font-family: 'Open Sans';
-  font-size: 16px;
-  color: white;
+  font-size: 15px;
+  color: #222222;
   cursor: pointer;
-  border: 1px solid transparent;
-  outline: 2px solid transparent;
+  border: none;
   background: transparent;
-  padding: 10px 20px;
-  border-radius: 8px;
-  transition: all 200ms linear;
+  padding: 7px 17px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  position: relative;
 }
 
 .button:hover:not(:disabled) {
@@ -16,23 +16,24 @@
   opacity: 0.5;
 }
 
-.button:focus:active {
-  outline: 2px solid transparent;
-}
-
-.button:focus:not(:disabled) {
+.button:disabled::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
   transition: all 250ms linear;
-  border: 1px solid #ffc43f;
-}
-
-.button:disabled {
-  transition: all 250ms linear;
-  color: #c3c3c3;
   background-color: #f2f2f2;
+  opacity: 0.6;
   cursor: default;
 }
 
 .primary {
+  color: #fff;
   background-color: #5ec343;
 }
 

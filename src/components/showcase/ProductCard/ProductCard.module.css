@@ -46,6 +46,7 @@
 }
 
 .image {
+  border-radius: 4px;
   object-fit: contain;
   display: block;
   width: 100%;

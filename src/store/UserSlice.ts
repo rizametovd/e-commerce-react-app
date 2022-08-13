@@ -22,24 +22,38 @@ export const setToLocalStorage = createAsyncThunk<void, string, { state: RootSta
   'user/setToLS',
   async (key, { getState }) => {
     const {
-      user: { wishlist },
+      user: { wishlist, cart },
     } = getState();
 
-    localStorage.setItem(key, JSON.stringify(wishlist));
+    if (key === 'wishlist') {
+      localStorage.setItem(key, JSON.stringify(wishlist));
+    }
+
+    if (key === 'cart') {
+      localStorage.setItem(key, JSON.stringify(cart));
+    }
   }
 );
 
 export const getFromLocalStorage = createAsyncThunk<void, string>('user/setWishlistToLS', async (key, { dispatch }) => {
-  const wishlist = JSON.parse(localStorage.getItem(key) as any);
-  if (!wishlist) return;
-  dispatch(setWishlist(wishlist));
+  if (key === 'wishlist') {
+    const wishlist = JSON.parse(localStorage.getItem(key) as any);
+    if (!wishlist) return;
+    dispatch(setWishlist(wishlist));
+  }
+
+  if (key === 'cart') {
+    const cart = JSON.parse(localStorage.getItem(key) as any);
+    if (!cart) return;
+    dispatch(setProductsToCart(cart));
+  }
 });
 
 export const wishListHandler = createAsyncThunk<void, { id: string; isWished: boolean }, { state: RootState }>(
   'user/wishListHandler',
   ({ id, isWished }, { dispatch }) => {
     dispatch(handleWishlist(id));
-    dispatch(setToLocalStorage('likes'));
+    dispatch(setToLocalStorage('wishlist'));
 
     if (isWished) {
       dispatch(showAlert({ type: AlertType.Info, message: REMOVED_FROM_WISHLIST }));
@@ -65,6 +79,10 @@ export const userSlice = createSlice({
         return;
       }
       state.wishlist.push(action.payload);
+    },
+
+    setProductsToCart: (state, action: PayloadAction<CartItem[]>) => {
+      state.cart = action.payload;
     },
 
     setProductToCart: (state, action: PayloadAction<CartItem>) => {
@@ -115,12 +133,20 @@ export const userSlice = createSlice({
     },
 
     clearCart: (state) => {
-      state.cart = initialState.cart
-    }
+      state.cart = initialState.cart;
+    },
   },
 });
 
-export const { handleWishlist, setWishlist, setProductToCart, increment, decrement, removeProductFromCart, clearCart } =
-  userSlice.actions;
+export const {
+  handleWishlist,
+  setWishlist,
+  setProductToCart,
+  increment,
+  decrement,
+  removeProductFromCart,
+  clearCart,
+  setProductsToCart,
+} = userSlice.actions;
 
 export default userSlice.reducer;

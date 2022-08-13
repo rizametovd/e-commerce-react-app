@@ -8,9 +8,10 @@ interface ICartFormProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   value: { [key: string]: string };
   errors: { [key: string]: string | undefined };
+  isLoading: boolean;
 }
 
-const CartForm: React.FC<ICartFormProps> = ({ onSubmit, onChange, value, errors }) => {
+const CartForm: React.FC<ICartFormProps> = ({ onSubmit, onChange, value, errors, isLoading }) => {
   return (
     <Form onSubmit={onSubmit}>
       <div className={classes['cart-form']}>
@@ -48,7 +49,7 @@ const CartForm: React.FC<ICartFormProps> = ({ onSubmit, onChange, value, errors 
         />
 
         <div className={classes.action}>
-          <Button mode={'primary'} type={'submit'}>
+          <Button mode={'primary'} type={'submit'} isLoading={isLoading}>
             Оформить заказ
           </Button>
         </div>

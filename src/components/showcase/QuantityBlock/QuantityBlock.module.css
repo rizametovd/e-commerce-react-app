@@ -2,7 +2,7 @@
   display: flex;
   width: 100%;
   min-height: 42px;
-  border-radius: 5px;
+  border-radius: 4px;
   justify-content: space-between;
 }
 
@@ -20,6 +20,7 @@
 }
 
 .button:disabled {
+  color: lightgray;
   cursor: default;
 }
 

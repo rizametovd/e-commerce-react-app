@@ -18,6 +18,7 @@ import Loader from './components/UI/Loader/Loader';
 import CartPage from './components/pages/showcasePages/CartPage/CartPage';
 import OrdersPage from './components/pages/adminPages/OrdersPage/OrdersPage';
 import CheckoutSuccessPage from './components/pages/showcasePages/CheckoutSuccessPage/CheckoutSuccessPage';
+import NotFound from './components/pages/showcasePages/NotFound/NotFound';
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -44,6 +45,10 @@ const App = () => {
               path: ':id',
               element: isDataLoaded ? <ProductPage /> : <Loader />,
             },
+            {
+              path: '*',
+              element: <NotFound />
+            }
           ],
         },
         { path: PATHS.wishlist, element: isDataLoaded ? <WishlistPage /> : <Loader /> },
@@ -80,7 +85,8 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        dispatch(getFromLocalStorage('likes'));
+        dispatch(getFromLocalStorage('wishlist'));
+        dispatch(getFromLocalStorage('cart'));
         dispatch(fetchProducts());
       } catch (error) {
         console.log('Fetch error App.tsx:', error);

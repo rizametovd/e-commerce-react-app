@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store/store';
-import { decrement, increment, removeProductFromCart } from '../../../store/UserSlice';
+import { decrement, increment, removeProductFromCart, setToLocalStorage } from '../../../store/UserSlice';
 import classes from './QuantityBlock.module.css';
 
 interface IQuantityBlockProps {
@@ -17,13 +17,16 @@ const QuantityBlock: React.FC<IQuantityBlockProps> = ({ id, disableDecrement = f
 
   const incrementHandler = () => {
     dispatch(increment(id));
+    dispatch(setToLocalStorage('cart'))
   };
 
   const decrementHandler = () => {
     dispatch(decrement(id));
+    dispatch(setToLocalStorage('cart'))
 
     if (productInCart?.quantity === 1) {
       dispatch(removeProductFromCart(id));
+      dispatch(setToLocalStorage('cart'))
       return;
     }
   };

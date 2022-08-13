@@ -41,13 +41,12 @@
 }
 
 .quantity-wrapper {
-    background-color: pink;
+  background-color: pink;
 }
 
 .price-wrapper {
   display: flex;
   flex-direction: column;
-
   width: 50%;
   flex-shrink: 0;
 }
@@ -80,12 +79,11 @@
 
 .image {
   display: block;
-  border-radius: 5px;
+  border-radius: 4px;
   width: 100px;
   min-height: 145px;
   object-fit: contain;
 }
-
 
 @media screen and (min-width: 768px) {
   .cart-item {
@@ -94,7 +92,7 @@
   }
 
   .image-wrapper {
-    display: block
+    display: block;
   }
 
   .product-name-wrapper {

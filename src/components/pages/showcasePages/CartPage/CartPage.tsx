@@ -5,7 +5,7 @@ import { PATHS } from '../../../../constants/routes';
 import useForm from '../../../../hooks/useForm';
 import { createOrder } from '../../../../store/CommonSlice';
 import { AppDispatch, RootState } from '../../../../store/store';
-import { clearCart, removeProductFromCart, wishListHandler } from '../../../../store/UserSlice';
+import { clearCart, removeProductFromCart, setToLocalStorage, wishListHandler } from '../../../../store/UserSlice';
 import { CartItem, Product, ProductCartItem } from '../../../../types/common';
 import { cartFormValidator } from '../../../../utils/validators';
 import Section from '../../../layouts/showcaseLayouts/Section/Section';
@@ -28,7 +28,7 @@ const CartPage: React.FC = () => {
   const { cart } = useSelector((state: RootState) => state.user);
   const { wishlist } = useSelector((state: RootState) => state.user);
   const { products } = useSelector((state: RootState) => state.product);
-  const { error } = useSelector((state: RootState) => state.common);
+  const { error, isLoading } = useSelector((state: RootState) => state.common);
   const { input, handleChange, errors, submit } = useForm(INIT_INPUT, handleSubmit, cartFormValidator);
 
   const cartProducts: ProductCartItem[] = cart.map((cartItem) => {
@@ -62,6 +62,7 @@ const CartPage: React.FC = () => {
 
   const handleRemoveCartItem = (id: CartItem['productId']) => {
     dispatch(removeProductFromCart(id));
+    dispatch(setToLocalStorage('cart'));
   };
 
   async function handleSubmit() {
@@ -77,9 +78,10 @@ const CartPage: React.FC = () => {
 
     await dispatch(createOrder(order));
 
-    if (!error.isError) {
+    if (!error.isError && !isLoading) {
       navigate(`${PATHS.cart}/${PATHS.success}`);
       dispatch(clearCart());
+      dispatch(setToLocalStorage('cart'));
     }
   }
 
@@ -97,7 +99,13 @@ const CartPage: React.FC = () => {
                 <Cart cart={cartProducts} onRemove={handleRemoveCartItem} onWish={handleWishlist} {...summaryProps} />
 
                 <span className={classes.title}>Ваши данные</span>
-                <CartForm onSubmit={submit} value={input} errors={errors} onChange={handleChange} />
+                <CartForm
+                  onSubmit={submit}
+                  value={input}
+                  errors={errors}
+                  onChange={handleChange}
+                  isLoading={isLoading}
+                />
               </div>
             )}
           </>

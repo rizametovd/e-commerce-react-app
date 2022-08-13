@@ -4,6 +4,7 @@
   padding: 10px;
   gap: 20px;
   box-sizing: border-box;
+  background-color: rgb(231, 235, 240);
 }
 
 @media (min-width: 768px) {
