@@ -36,10 +36,10 @@ const OrderCartItem: React.FC<IOrderCartItemProps> = ({
           <span
             style={{
               fontSize: '12px',
-              color: 'red'
+              color: 'red',
             }}
           >
-            База {price} ₽, скидка -{discount}% 
+            База {price} ₽, скидка -{discount}%
           </span>
         )}
       </td>

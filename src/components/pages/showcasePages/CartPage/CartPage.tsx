@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { NO_PRODUCTS_IN_CART } from '../../../../constants/messages';
+import { PATHS } from '../../../../constants/routes';
 import useForm from '../../../../hooks/useForm';
-import { createOrder} from '../../../../store/CommonSlice';
+import { createOrder } from '../../../../store/CommonSlice';
 import { AppDispatch, RootState } from '../../../../store/store';
-import { removeProductFromCart, wishListHandler } from '../../../../store/UserSlice';
+import { clearCart, removeProductFromCart, wishListHandler } from '../../../../store/UserSlice';
 import { CartItem, Product, ProductCartItem } from '../../../../types/common';
 import { cartFormValidator } from '../../../../utils/validators';
 import Section from '../../../layouts/showcaseLayouts/Section/Section';
@@ -22,9 +24,11 @@ const INIT_INPUT = {
 
 const CartPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const { cart } = useSelector((state: RootState) => state.user);
   const { wishlist } = useSelector((state: RootState) => state.user);
   const { products } = useSelector((state: RootState) => state.product);
+  const { error } = useSelector((state: RootState) => state.common);
   const { input, handleChange, errors, submit } = useForm(INIT_INPUT, handleSubmit, cartFormValidator);
 
   const cartProducts: ProductCartItem[] = cart.map((cartItem) => {
@@ -60,7 +64,7 @@ const CartPage: React.FC = () => {
     dispatch(removeProductFromCart(id));
   };
 
-  function handleSubmit() {
+  async function handleSubmit() {
     const order = {
       user: input,
       cart: cart,
@@ -70,7 +74,13 @@ const CartPage: React.FC = () => {
       totalDiscount: profit,
       totalQuantity: quantity,
     };
-    dispatch(createOrder(order));
+
+    await dispatch(createOrder(order));
+
+    if (!error.isError) {
+      navigate(`${PATHS.cart}/${PATHS.success}`);
+      dispatch(clearCart());
+    }
   }
 
   return (

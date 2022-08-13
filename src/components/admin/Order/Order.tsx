@@ -52,7 +52,6 @@ const Order: React.FC<IOrderProps> = ({ user, timestamp, totalPrice, cart, total
                   </thead>
                   <tbody>
                     {cart.map((cartItem, idx) => (
-                      <>
                         <OrderCartItem
                           key={cartItem.productId}
                           idx={idx + 1}
@@ -63,7 +62,7 @@ const Order: React.FC<IOrderProps> = ({ user, timestamp, totalPrice, cart, total
                           discountedPrice={cartItem.discountedPrice}
                           totalPrice={cartItem.totalPrice}
                         />
-                      </>
+                  
                     ))}
 
                     <tr className={classes['no-pointer-events']}>

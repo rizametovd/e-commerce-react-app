@@ -14,12 +14,10 @@ import {
   ADD_CATEGORY_MESSAGE,
   NO_PRODUCTS_MESSAGE,
 } from '../../../../constants/messages';
-import Toast from '../../../UI/Toast/Toast';
 
 const ProductsPage: React.FC = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const { brand, category, product } = useSelector((state: RootState) => state);
-  const { alert } = useSelector((state: RootState) => state.common);
   const dispatch = useDispatch<AppDispatch>();
   const isDataLoading = [brand.isLoading, category.isLoading, product.isLoading].some(Boolean);
   const hasCategories = category.categories.length > 0;
@@ -49,8 +47,6 @@ const ProductsPage: React.FC = () => {
 
       <Content>
         <>
-          <Toast message={alert.message} type={alert.type} />
-
           {isDataLoading && <Loader />}
 
           {!isDataLoading && isFetchingError && <Placeholder text={product.error.message} />}

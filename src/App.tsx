@@ -17,6 +17,7 @@ import ProductPage from './components/pages/showcasePages/ProductPage/ProductPag
 import Loader from './components/UI/Loader/Loader';
 import CartPage from './components/pages/showcasePages/CartPage/CartPage';
 import OrdersPage from './components/pages/adminPages/OrdersPage/OrdersPage';
+import CheckoutSuccessPage from './components/pages/showcasePages/CheckoutSuccessPage/CheckoutSuccessPage';
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -49,6 +50,10 @@ const App = () => {
         {
           path: PATHS.cart,
           element: isDataLoaded ? <CartPage /> : <Loader />,
+        },
+        {
+          path: `${PATHS.cart}/${PATHS.success}`,
+          element: <CheckoutSuccessPage />,
         },
       ],
     },

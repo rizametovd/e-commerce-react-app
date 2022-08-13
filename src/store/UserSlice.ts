@@ -113,10 +113,14 @@ export const userSlice = createSlice({
       const updatedCart = state.cart.filter((cartItem) => cartItem.productId !== action.payload);
       state.cart = updatedCart;
     },
+
+    clearCart: (state) => {
+      state.cart = initialState.cart
+    }
   },
 });
 
-export const { handleWishlist, setWishlist, setProductToCart, increment, decrement, removeProductFromCart } =
+export const { handleWishlist, setWishlist, setProductToCart, increment, decrement, removeProductFromCart, clearCart } =
   userSlice.actions;
 
 export default userSlice.reducer;

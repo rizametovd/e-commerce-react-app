@@ -6,4 +6,5 @@ export const PATHS = {
   orders: 'orders',
   wishlist: '/wishlist',
   cart: '/cart',
+  success: 'success',
 };

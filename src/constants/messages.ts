@@ -36,6 +36,10 @@ export const CREATE_PRODUCT_ERROR_MESSAGE = 'Не удалось создать 
 export const UPDATE_PRODUCT_ERROR_MESSAGE = 'Не удалось обновить данные. Попробуйте позже';
 export const DELETE_PRODUCT_ERROR_MESSAGE = 'Не удалось удалить товар. Попробуйте позже';
 
+// Common slice error messages
+export const FETCH_ORDERS_ERROR_MESSAGE = 'Не удалось загрузить заказы. Попробуйте позже'
+export const CREATE_ORDER_ERROR_MESSAGE = 'Не удалось оформить заказ. Попробуйте позже'
+
 // Tooltip messages
 export const NO_WAY_TO_CHANGE_THIS_PRODUCT =
   'Этот товар нельзя редактировать или удалить. Чтобы попробовать данный функционал добавьте собственный товар';
