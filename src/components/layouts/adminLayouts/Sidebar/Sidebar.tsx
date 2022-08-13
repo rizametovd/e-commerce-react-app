@@ -7,6 +7,7 @@ import ArrowLeftIcon from '../../../UI/icons/ArrowLeftIcon/ArrowLeftIcon';
 import ProductIcon from '../../../UI/icons/ProductIcon/ProductIcon';
 import CategoryIcon from '../../../UI/icons/CategoryIcon/CategoryIcon';
 import { PATHS } from '../../../../constants/routes';
+import OrderIcon from '../../../UI/icons/OrderIcon/OrderIcon';
 
 const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +24,7 @@ const Sidebar: React.FC = () => {
 
       <nav className={classes.navigation}>
         <ul className={`${isOpen && classes['list-opened']} ${classes.list}`}>
-          {/* <SideBarItem isOpen={isOpen} title={'Заказы'} icon={<OrderIcon />} link={PATHS.orders} /> */}
+          <SideBarItem isOpen={isOpen} title={'Заказы'} icon={<OrderIcon />} link={PATHS.orders} />
           <SideBarItem isOpen={isOpen} title={'Товары'} icon={<ProductIcon />} link={PATHS.products} />
           <SideBarItem isOpen={isOpen} title={'Настройки'} icon={<CategoryIcon />} link={PATHS.settings} />
         </ul>

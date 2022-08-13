@@ -27,6 +27,7 @@ const ProductPage: React.FC<IProductPageProps> = () => {
 
   const cartItem: CartItem = {
     productId: id,
+    name,
     quantity: 1,
     price,
     totalPrice: price,

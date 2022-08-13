@@ -8,10 +8,9 @@
 .cart-items-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
   width: 100%;
 }
-
 
 @media screen and (min-width: 1024px) {
   .cart {

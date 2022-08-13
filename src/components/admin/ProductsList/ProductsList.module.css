@@ -17,7 +17,7 @@ td {
 
 tr {
   transition: all 200ms linear;
-  background-color: #fff;
+  background-color: transparent;
 }
 
 tbody tr:hover {
@@ -109,28 +109,28 @@ tbody tr:hover {
     white-space: nowrap;
   }
 
-  td:nth-of-type(1):before {
+  .cell:nth-of-type(1):before {
     content: 'Фото';
     font-weight: 600;
     width: 100px;
   }
-  td:nth-of-type(2):before {
+  .product-name-cell:nth-of-type(2):before {
     content: 'Название';
     font-weight: 600;
   }
-  td:nth-of-type(3):before {
+  .cell:nth-of-type(3):before {
     content: 'Категория';
     font-weight: 600;
   }
-  td:nth-of-type(4):before {
+  .cell:nth-of-type(4):before {
     content: 'Производитель';
     font-weight: 600;
   }
-  td:nth-of-type(5):before {
+  .cell:nth-of-type(5):before {
     content: 'Цена';
     font-weight: 600;
   }
-  td:nth-of-type(6):before {
+  .action-cell:nth-of-type(6):before {
     content: 'Действия';
     font-weight: 600;
   }

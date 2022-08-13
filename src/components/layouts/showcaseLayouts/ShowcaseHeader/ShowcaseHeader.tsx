@@ -19,7 +19,7 @@ const ShowcaseHeader: React.FC<IShowcaseHeaderProps> = () => {
   return (
     <header className={classes.header}>
       <div className={classes['admin-link-wrapper']}>
-        <Link to={`${PATHS.admin}${PATHS.products}`} className={classes.link}>
+        <Link to={`${PATHS.admin}${PATHS.orders}`} className={classes.link}>
           Перейти в админку
         </Link>
 

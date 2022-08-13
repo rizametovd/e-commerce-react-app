@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { NO_PRODUCTS_IN_CART } from '../../../../constants/messages';
 import useForm from '../../../../hooks/useForm';
+import { createOrder} from '../../../../store/CommonSlice';
 import { AppDispatch, RootState } from '../../../../store/store';
 import { removeProductFromCart, wishListHandler } from '../../../../store/UserSlice';
 import { CartItem, Product, ProductCartItem } from '../../../../types/common';
@@ -60,10 +61,16 @@ const CartPage: React.FC = () => {
   };
 
   function handleSubmit() {
-    console.log('submit:', {
+    const order = {
       user: input,
       cart: cart,
-    });
+      timestamp: Date.now(),
+      totalPrice: price,
+      totalWeight: weight,
+      totalDiscount: profit,
+      totalQuantity: quantity,
+    };
+    dispatch(createOrder(order));
   }
 
   return (

@@ -1,0 +1,97 @@
+.order-content {
+  background-color: #ecf7ed;
+  padding: 20px;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.table {
+  border-collapse: collapse;
+}
+
+.order-content-title {
+  font-family: 'Nunito';
+  padding: 20px 0;
+  font-size: 22px;
+  display: block;
+}
+
+.summary-row {
+  cursor: pointer;
+}
+
+.summary-row:hover {
+  background-color: white;
+  color: red;
+}
+
+.no-pointer-events {
+  pointer-events: none;
+}
+
+.summary {
+  font-family: 'Nunito';
+  text-align: right;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 0;
+  background-color: #fff;
+}
+
+.left-top-radius {
+  border-top-left-radius: 12px;
+}
+
+.right-top-radius {
+  border-top-right-radius: 12px;
+}
+
+.left-bottom-radius {
+  border-bottom-left-radius: 12px;
+}
+
+.right-bottom-radius {
+  border-bottom-right-radius: 12px;
+}
+
+.text {
+  font-size: 16px;
+  background-color: #fff;
+}
+
+@media (max-width: 768px) {
+  .no-pointer-events,
+  .order-content {
+    display: none;
+  }
+
+  .summary-row {
+    pointer-events: none;
+  }
+
+  .sumarry-cell:nth-of-type(1):before {
+    content: 'Дата заказа';
+    font-weight: 600;
+    width: 100px;
+  }
+
+  .sumarry-cell:nth-of-type(2):before {
+    content: 'Покупатель';
+    font-weight: 600;
+  }
+
+  .sumarry-cell:nth-of-type(3):before {
+    content: 'Телефон';
+    font-weight: 600;
+  }
+
+  .sumarry-cell:nth-of-type(4):before {
+    content: 'Адрес';
+    font-weight: 600;
+  }
+
+  .sumarry-cell:nth-of-type(5):before {
+    content: 'Сумма';
+    font-weight: 600;
+  }
+}

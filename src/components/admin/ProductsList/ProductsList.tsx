@@ -248,7 +248,7 @@ const ProductsList: React.FC<IProductsListProps> = ({ products, onOpen, isLoadin
             {productList.map(({ id, image, price, brand, category, name, discount }) => {
               return (
                 <tr key={id}>
-                  <td>
+                  <td className={classes.cell}>
                     <img className={classes.image} src={image} alt={name} />
                   </td>
                   <td className={classes['product-name-cell']}>
@@ -259,9 +259,9 @@ const ProductsList: React.FC<IProductsListProps> = ({ products, onOpen, isLoadin
                       </div>
                     )}
                   </td>
-                  <td>{category.name}</td>
-                  <td>{brand.name}</td>
-                  <td>{price} ₽</td>
+                  <td className={classes.cell}>{category.name}</td>
+                  <td className={classes.cell}>{brand.name}</td>
+                  <td className={classes.cell}>{price} ₽</td>
                   <td className={classes['action-cell']}>
                     <div className={classes.action}>
                       {LOCKED_PRODUCTS.includes(id) ? (

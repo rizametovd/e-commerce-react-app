@@ -14,8 +14,6 @@
 .cart-summary-row {
   display: flex;
   justify-content: space-between;
-  gap: 15px;
-  padding: 5px;
   font-size: 14px;
 }
 
@@ -23,6 +21,7 @@
   font-family: 'Nunito';
   font-weight: 700;
   font-size: 26px;
+  padding: 0;
 }
 
 .profit-amount {

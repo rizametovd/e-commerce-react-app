@@ -16,6 +16,7 @@ import WishlistPage from './components/pages/showcasePages/WishlistPage/Wishlist
 import ProductPage from './components/pages/showcasePages/ProductPage/ProductPage';
 import Loader from './components/UI/Loader/Loader';
 import CartPage from './components/pages/showcasePages/CartPage/CartPage';
+import OrdersPage from './components/pages/adminPages/OrdersPage/OrdersPage';
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -55,6 +56,10 @@ const App = () => {
       path: PATHS.admin,
       element: <AdminPage />,
       children: [
+        {
+          path: PATHS.orders,
+          element: <OrdersPage />,
+        },
         {
           path: PATHS.products,
           element: <ProductsPage />,

@@ -59,6 +59,7 @@ export type Error = {
 
 export type CartItem = {
   productId: Product['id'];
+  name: Product['name'];
   price: Product['price'];
   quantity: number;
   totalPrice: number;
@@ -74,4 +75,20 @@ export type ProductCartItem = CartItem & {
   categoryUrl: Product['category']['url'];
   image: Product['image'];
   isWished: boolean;
+};
+
+export type Order = {
+  id: string;
+  orderNumber: number;
+  timestamp: number;
+  user: {
+    name: string;
+    phone: string;
+    address: string;
+  };
+  cart: CartItem[];
+  totalPrice: number;
+  totalWeight: number;
+  totalDiscount: number;
+  totalQuantity: number;
 };
