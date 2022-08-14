@@ -1,7 +1,7 @@
 .order-content {
   background-color: #ecf7ed;
-  padding: 20px;
-  border-radius: 20px;
+  padding: 16px;
+  border-radius: 4px;
   box-sizing: border-box;
 }
 
@@ -11,7 +11,7 @@
 
 .order-content-title {
   font-family: 'Nunito';
-  padding: 20px 0;
+  padding: 0;
   font-size: 22px;
   display: block;
 }
@@ -39,19 +39,19 @@
 }
 
 .left-top-radius {
-  border-top-left-radius: 12px;
+  border-top-left-radius: 4px;
 }
 
 .right-top-radius {
-  border-top-right-radius: 12px;
+  border-top-right-radius: 4px;
 }
 
 .left-bottom-radius {
-  border-bottom-left-radius: 12px;
+  border-bottom-left-radius: 4px;
 }
 
 .right-bottom-radius {
-  border-bottom-right-radius: 12px;
+  border-bottom-right-radius: 4px;
 }
 
 .text {

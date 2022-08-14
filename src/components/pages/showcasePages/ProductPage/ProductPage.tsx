@@ -10,6 +10,7 @@ import AddToCartBtn from '../../../showcase/AddToCartBtn/AddToCartBtn';
 import Chip from '../../../UI/Chip/Chip';
 import IconButton from '../../../UI/IconButton/IconButton';
 import FavoriteIcon from '../../../UI/icons/FavoriteIcon/FavoriteIcon';
+import NotFound from '../NotFound/NotFound';
 import InfoBlock from './InfoBlock/InfoBlock';
 import classes from './ProductPage.module.css';
 
@@ -20,9 +21,13 @@ const ProductPage: React.FC<IProductPageProps> = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { products } = useSelector((state: RootState) => state.product);
   const { wishlist } = useSelector((state: RootState) => state.user);
-  const { id, name, description, image, brand, price, weight, discount } = products.find(
-    (product) => product.id === productId
-  ) as Product;
+  const product = products.find((product) => product.id === productId) as Product;
+
+  if (!product) {
+    return <NotFound />;
+  }
+
+  const { id, name, description, image, brand, price, weight, discount } = product;
   const isWished = wishlist.includes(id);
 
   const cartItem: CartItem = {

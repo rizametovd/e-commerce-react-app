@@ -45,10 +45,6 @@ const App = () => {
               path: ':id',
               element: isDataLoaded ? <ProductPage /> : <Loader />,
             },
-            {
-              path: '*',
-              element: <NotFound />
-            }
           ],
         },
         { path: PATHS.wishlist, element: isDataLoaded ? <WishlistPage /> : <Loader /> },
@@ -64,9 +60,11 @@ const App = () => {
     },
     {
       path: PATHS.admin,
+
       element: <AdminPage />,
       children: [
         {
+          index: true,
           path: PATHS.orders,
           element: <OrdersPage />,
         },
@@ -79,6 +77,11 @@ const App = () => {
           element: <SettingsPage />,
         },
       ],
+    },
+
+    {
+      path: '*',
+      element: <NotFound />,
     },
   ]);
 

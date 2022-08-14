@@ -6,11 +6,16 @@ import { NO_PRODUCTS_MESSAGE } from '../../../../constants/messages';
 import Section from '../../../layouts/showcaseLayouts/Section/Section';
 import SectionHeader from '../../../layouts/showcaseLayouts/Section/SectionHeader/SectionHeader';
 import SectionBody from '../../../layouts/showcaseLayouts/Section/SectionBody/SectionBody';
+import SectionBodyGrid from '../../../layouts/showcaseLayouts/Section/SectionBody/SectionBodyGrid/SectionBodyGrid';
+import Filter from '../../../showcase/Filter/Filter';
+import useFilter from '../../../../hooks/useFilter';
 
 const WishlistPage: React.FC = () => {
   const { products, error } = useSelector((state: RootState) => state.product);
   const { wishlist } = useSelector((state: RootState) => state.user);
+  const { brands } = useSelector((state: RootState) => state.brand);
   const wishlistProducts = products.filter((product) => wishlist.includes(product.id));
+  const { checkFilterItem, productsTorender, checkboxItems } = useFilter(wishlistProducts, brands);
   const hasProducts = wishlistProducts.length > 0;
 
   return (
@@ -18,11 +23,14 @@ const WishlistPage: React.FC = () => {
       <>
         <SectionHeader title={'Избранные товары'} />
         <SectionBody>
-          <>
-            {error.isError && <Placeholder text={error.message} size={'38px'} />}
-            {!hasProducts && !error.isError && <Placeholder text={NO_PRODUCTS_MESSAGE} size={'38px'} />}
-            {hasProducts && <ProductCardList products={wishlistProducts} />}
-          </>
+          <SectionBodyGrid>
+            <>
+              <Filter checkboxItems={checkboxItems} onCheck={checkFilterItem} />
+              {error.isError && <Placeholder text={error.message} size={'38px'} />}
+              {!hasProducts && !error.isError && <Placeholder text={NO_PRODUCTS_MESSAGE} size={'38px'} />}
+              {hasProducts && <ProductCardList products={productsTorender} />}
+            </>
+          </SectionBodyGrid>
         </SectionBody>
       </>
     </Section>
