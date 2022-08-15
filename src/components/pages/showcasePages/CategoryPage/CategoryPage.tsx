@@ -10,7 +10,7 @@ import SectionHeader from '../../../layouts/showcaseLayouts/Section/SectionHeade
 import SectionBody from '../../../layouts/showcaseLayouts/Section/SectionBody/SectionBody';
 import NotFound from '../NotFound/NotFound';
 import Filter from '../../../showcase/Filter/Filter';
-import useFilter from '../../../../hooks/useFilter';
+import useFilterByBrand from '../../../../hooks/useFilterByBrand';
 import SectionBodyGrid from '../../../layouts/showcaseLayouts/Section/SectionBody/SectionBodyGrid/SectionBodyGrid';
 import CategoriesList from '../../../showcase/CategoriesList/CategoriesList';
 import classes from './CategoryPage.module.css';
@@ -23,7 +23,7 @@ const CategoryPage: React.FC = () => {
   const categoryProducts = products.filter((product) => product.category.url === url);
   const category = categories.find((category) => category.url === url) as Category;
   const hasProducts = categoryProducts.length > 0;
-  const { checkFilterItem, productsTorender, checkboxItems } = useFilter(categoryProducts, brands);
+  const { checkFilterItem, productsTorender, checkboxItems } = useFilterByBrand(categoryProducts, brands);
 
   if (!category) {
     return <NotFound />;

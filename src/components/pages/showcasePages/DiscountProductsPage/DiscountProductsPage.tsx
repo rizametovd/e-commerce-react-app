@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { NO_DISCOUNTED_PRODUCTS } from '../../../../constants/messages';
-import useFilter from '../../../../hooks/useFilter';
+import useFilterByBrand from '../../../../hooks/useFilterByBrand';
 import { RootState } from '../../../../store/store';
 import Section from '../../../layouts/showcaseLayouts/Section/Section';
 import SectionBody from '../../../layouts/showcaseLayouts/Section/SectionBody/SectionBody';
@@ -16,7 +16,7 @@ const DiscountProductsPage: React.FC<IDiscountProductsPageProps> = () => {
   const { products, error } = useSelector((state: RootState) => state.product);
   const { brands } = useSelector((state: RootState) => state.brand);
   const discountedProducts = products.filter((product) => product.discount);
-  const { checkFilterItem, productsTorender, checkboxItems } = useFilter(discountedProducts, brands);
+  const { checkFilterItem, productsTorender, checkboxItems } = useFilterByBrand(discountedProducts, brands);
   const hasProducts = discountedProducts.length > 0;
 
   return (

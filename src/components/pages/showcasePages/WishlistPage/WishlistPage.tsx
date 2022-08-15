@@ -8,14 +8,14 @@ import SectionHeader from '../../../layouts/showcaseLayouts/Section/SectionHeade
 import SectionBody from '../../../layouts/showcaseLayouts/Section/SectionBody/SectionBody';
 import SectionBodyGrid from '../../../layouts/showcaseLayouts/Section/SectionBody/SectionBodyGrid/SectionBodyGrid';
 import Filter from '../../../showcase/Filter/Filter';
-import useFilter from '../../../../hooks/useFilter';
+import useFilterByBrand from '../../../../hooks/useFilterByBrand';
 
 const WishlistPage: React.FC = () => {
   const { products, error } = useSelector((state: RootState) => state.product);
   const { wishlist } = useSelector((state: RootState) => state.user);
   const { brands } = useSelector((state: RootState) => state.brand);
   const wishlistProducts = products.filter((product) => wishlist.includes(product.id));
-  const { checkFilterItem, productsTorender, checkboxItems } = useFilter(wishlistProducts, brands);
+  const { checkFilterItem, productsTorender, checkboxItems } = useFilterByBrand(wishlistProducts, brands);
   const hasProducts = wishlistProducts.length > 0;
 
   return (

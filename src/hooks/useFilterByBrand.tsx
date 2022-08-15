@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Product } from '../types/common';
 
-
-const useFilter = (products: Product[], checkboxBrands: any[]) => {
+const useFilterByBrand = (products: Product[], checkboxBrands: any[]) => {
   const [checkedFilterItems, setCheckedFilterItems] = useState<string[]>([]);
   const { url } = useParams();
 
@@ -32,7 +31,7 @@ const useFilter = (products: Product[], checkboxBrands: any[]) => {
     setCheckedFilterItems((prev) => [...prev, id]);
   };
 
-  const productsTorender = 
+  const productsTorender =
     checkedFilterItems.length > 0
       ? products.filter((product) => checkedFilterItems.includes(product.brand.id))
       : products;
@@ -40,8 +39,8 @@ const useFilter = (products: Product[], checkboxBrands: any[]) => {
   return {
     checkFilterItem,
     productsTorender,
-    checkboxItems
+    checkboxItems,
   };
 };
 
-export default useFilter;
+export default useFilterByBrand;
