@@ -23,9 +23,9 @@ const WishlistPage: React.FC = () => {
       <>
         <SectionHeader title={'Избранные товары'} />
         <SectionBody>
-          <SectionBodyGrid>
+          <SectionBodyGrid displayBlock={!hasProducts}>
             <>
-              <Filter checkboxItems={checkboxItems} onCheck={checkFilterItem} />
+              {hasProducts && <Filter checkboxItems={checkboxItems} onCheck={checkFilterItem} />}
               {error.isError && <Placeholder text={error.message} size={'38px'} />}
               {!hasProducts && !error.isError && <Placeholder text={NO_PRODUCTS_MESSAGE} size={'38px'} />}
               {hasProducts && <ProductCardList products={productsTorender} />}

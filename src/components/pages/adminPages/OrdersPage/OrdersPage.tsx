@@ -5,6 +5,8 @@ import { RootState } from '../../../../store/store';
 import Order from '../../../admin/Order/Order';
 import Card from '../../../UI/Card/Card';
 import Loader from '../../../UI/Loader/Loader';
+import Placeholder from '../../../UI/Placeholder/Placeholder';
+import { NO_ORDERS } from '../../../../constants/messages';
 
 const OrdersPage: React.FC = () => {
   const { orders, isLoading } = useSelector((state: RootState) => state.common);
@@ -30,6 +32,14 @@ const OrdersPage: React.FC = () => {
                     </tr>
                   </thead>
                   <tbody>
+                    {orders.length === 0 && (
+                      <tr>
+                        <td colSpan={6}>
+                          <Placeholder text={NO_ORDERS} />
+                        </td>
+                      </tr>
+                    )}
+
                     {orders.map(({ user, totalPrice, totalWeight, totalDiscount, cart, timestamp, id }) => (
                       <Order
                         user={user}

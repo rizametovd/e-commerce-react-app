@@ -1,7 +1,11 @@
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 20px;
+  justify-content: center;
+}
+
+.block {
+  display: block;
 }
 
 @media screen and (min-width: 768px) {

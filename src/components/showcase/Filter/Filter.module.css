@@ -6,6 +6,8 @@
   padding: 16px;
   box-sizing: border-box;
   border-radius: 4px;
+  align-self: start;
+  align-items: flex-start;
 }
 
 .title {
