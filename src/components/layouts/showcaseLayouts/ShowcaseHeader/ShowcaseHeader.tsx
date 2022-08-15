@@ -23,14 +23,14 @@ const ShowcaseHeader: React.FC<IShowcaseHeaderProps> = () => {
           Перейти в админку
         </Link>
 
-        <a
+        {/* <a
           href={'https://github.com/rizametovd/e-commerce-react-app'}
           className={classes.link}
           target="_blank"
           rel="noreferrer"
         >
           Перейти в репозиторий
-        </a>
+        </a> */}
       </div>
 
       <div className={classes['wrapper']}>
