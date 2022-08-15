@@ -58,7 +58,7 @@ export const wishListHandler = createAsyncThunk<void, { id: string; isWished: bo
     if (isWished) {
       dispatch(showAlert({ type: AlertType.Info, message: REMOVED_FROM_WISHLIST }));
     } else {
-      dispatch(showAlert({ type: AlertType.Success, message: ADDED_TO_WISHLIST, isAction: true }));
+      dispatch(showAlert({ type: AlertType.Success, message: ADDED_TO_WISHLIST, action: 'wishlist' }));
     }
   }
 );

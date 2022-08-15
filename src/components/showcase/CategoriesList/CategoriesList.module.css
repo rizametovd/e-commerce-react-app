@@ -1,0 +1,45 @@
+.nav {
+  background-color: #fcf7eb;
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-family: 'Nunito';
+  font-size: 18px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.link {
+  font-size: 14px;
+  text-decoration: none;
+  color: #222222;
+  transition: color 150ms linear;
+}
+
+.link:hover {
+  transition: color 150ms linear;
+  color: red;
+}
+
+.active {
+  font-weight: 700;
+  color: red;
+}
+
+@media screen and (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+}

@@ -11,9 +11,8 @@ const NotFound: React.FC = () => {
         <Placeholder text={'Такой страницы нет'} />
         <span className={classes.title}>404</span>
 
-        
         <div className={classes['wrapper']}>
-        <span>Перейти</span>
+          <span>Перейти</span>
           <div className={classes['link-wrapper']}>
             <Link to={PATHS.showcase} className={classes.link}>
               На главную

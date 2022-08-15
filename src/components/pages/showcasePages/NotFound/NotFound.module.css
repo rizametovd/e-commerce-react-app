@@ -45,16 +45,14 @@
   padding: 16px;
   box-sizing: border-box;
   border-radius: 4px;
-
-  
 }
 
 @media screen and (min-width: 768px) {
-    .link-wrapper {
-        flex-direction: row;
-      }
+  .link-wrapper {
+    flex-direction: row;
+  }
 
-      .wrapper {
-        align-self: center;
-      }
+  .wrapper {
+    align-self: center;
+  }
 }

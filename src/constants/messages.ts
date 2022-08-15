@@ -14,9 +14,11 @@ export const DELETE_CATEGORY_ALERT_MESSAGE = 'Сначала удалите вс
 export const DELETE_BRAND_ALERT_MESSAGE = 'Сначала удалите все товары бренда';
 export const ADDED_TO_WISHLIST = 'Добавлено в избранное';
 export const REMOVED_FROM_WISHLIST = 'Удалено из избранного';
-export const GO_TO_WISHLIST = 'Перейти в избранное';
+export const GO_TO_WISHLIST = 'В избранное';
+export const GO_TO_CART = 'В корзину';
 export const ADD_TO_WISHLIST = 'В избранное';
-export const REMOVE_FROM_WISHLIST = 'В избранном'
+export const REMOVE_FROM_WISHLIST = 'В избранном';
+export const PRODUCT_ADDED_TO_CART = 'Товар добавлен в корзину';
 
 // Category slice error messages
 export const FETCH_CATEGORIES_ERROR_MESSAGE = 'Не удалось загрузить категории. Попробуйте позже';
@@ -37,8 +39,8 @@ export const UPDATE_PRODUCT_ERROR_MESSAGE = 'Не удалось обновит�
 export const DELETE_PRODUCT_ERROR_MESSAGE = 'Не удалось удалить товар. Попробуйте позже';
 
 // Common slice error messages
-export const FETCH_ORDERS_ERROR_MESSAGE = 'Не удалось загрузить заказы. Попробуйте позже'
-export const CREATE_ORDER_ERROR_MESSAGE = 'Не удалось оформить заказ. Попробуйте позже'
+export const FETCH_ORDERS_ERROR_MESSAGE = 'Не удалось загрузить заказы. Попробуйте позже';
+export const CREATE_ORDER_ERROR_MESSAGE = 'Не удалось оформить заказ. Попробуйте позже';
 
 // Tooltip messages
 export const NO_WAY_TO_CHANGE_THIS_PRODUCT =

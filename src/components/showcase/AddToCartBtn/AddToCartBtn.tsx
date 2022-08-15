@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { PRODUCT_ADDED_TO_CART } from '../../../constants/messages';
+import { showAlert } from '../../../store/CommonSlice';
 import { AppDispatch, RootState } from '../../../store/store';
 import { setProductToCart, setToLocalStorage } from '../../../store/UserSlice';
-import { CartItem } from '../../../types/common';
+import { AlertType, CartItem } from '../../../types/common';
 import QuantityBlock from '../QuantityBlock/QuantityBlock';
 import classes from './AddToCartBtn.module.css';
 
@@ -28,7 +30,8 @@ const AddToCartBtn: React.FC<IAddToCartBtnProps> = ({ product }) => {
     setIsClicked(true);
 
     dispatch(setProductToCart(product));
-    dispatch(setToLocalStorage('cart'))
+    dispatch(setToLocalStorage('cart'));
+    dispatch(showAlert({ type: AlertType.Success, message: PRODUCT_ADDED_TO_CART, action: 'cart' }))
   };
 
   return (

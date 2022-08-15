@@ -12,6 +12,8 @@ import NotFound from '../NotFound/NotFound';
 import Filter from '../../../showcase/Filter/Filter';
 import useFilter from '../../../../hooks/useFilter';
 import SectionBodyGrid from '../../../layouts/showcaseLayouts/Section/SectionBody/SectionBodyGrid/SectionBodyGrid';
+import CategoriesList from '../../../showcase/CategoriesList/CategoriesList';
+import classes from './CategoryPage.module.css';
 
 const CategoryPage: React.FC = () => {
   const { products } = useSelector((state: RootState) => state.product);
@@ -34,7 +36,10 @@ const CategoryPage: React.FC = () => {
         <SectionBody>
           <SectionBodyGrid>
             <>
-              <Filter checkboxItems={checkboxItems} onCheck={checkFilterItem} />
+              <div className={classes.wrapper}>
+                <CategoriesList categories={categories} />
+                <Filter checkboxItems={checkboxItems} onCheck={checkFilterItem} />
+              </div>
 
               {hasProducts && <ProductCardList products={productsTorender} />}
               {!hasProducts && <Placeholder text={NO_PRODUCTS_MESSAGE} size={'38px'} />}

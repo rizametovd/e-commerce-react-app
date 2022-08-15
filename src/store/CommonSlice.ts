@@ -14,7 +14,6 @@ export type CommonState = {
 
 const initialState: CommonState = {
   alert: {
-    isAction: false,
     type: AlertType.Info,
     message: '',
   },
@@ -53,7 +52,6 @@ export const createOrder = createAsyncThunk(
     });
 
     if (!response.ok) {
-      console.log('dddd');
       dispatch(showAlert({ type: AlertType.Error, message: CREATE_ORDER_ERROR_MESSAGE }));
       return rejectWithValue(CREATE_ORDER_ERROR_MESSAGE);
     }

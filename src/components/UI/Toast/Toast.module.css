@@ -7,15 +7,15 @@
   color: white;
   padding: 8px 14px;
   border-radius: 4px;
-  position: absolute;
-  top: -50px;
+  position: fixed;
+  top: 25px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 14px;
   animation: fade 200ms linear;
   z-index: 5;
-  width: 100%;
   box-sizing: border-box;
+  min-width: 280px;
 }
 
 @keyframes fade {
@@ -32,7 +32,6 @@
   border-top: 1px solid #fff;
   padding-top: 5px;
   width: 100%;
-
   cursor: pointer;
   transition: opacity 150ms linear;
 }
@@ -43,7 +42,8 @@
 }
 
 .info {
-  background-color: #0288d1;
+  color: #222222;
+  background-color: #fcf7eb;
   box-shadow: 0px 6px 12px rgba(130, 82, 208, 0.16);
 }
 
