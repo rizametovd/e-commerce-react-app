@@ -55,6 +55,11 @@ tbody tr:hover {
   width: 75px;
 }
 
+.chip-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
 .action {
   width: 60px;
   display: flex;

@@ -1,5 +1,5 @@
 export const productFormValidator = (field: string, inputValue: string | { [key: string]: string }) => {
-  const validateFields = ['name', 'price', 'image', 'weight', 'brand', 'category'];
+  const validateFields = ['name', 'price', 'image', 'weight', 'brand', 'category', 'gender'];
   let value = '';
 
   if (!validateFields.includes(field)) {

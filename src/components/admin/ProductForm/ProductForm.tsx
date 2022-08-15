@@ -12,6 +12,7 @@ import { AppDispatch, RootState } from '../../../store/store';
 import { createProduct, updateProduct } from '../../../store/ProductSlice';
 import ProductFormSelect from './ProductFormSelect/ProductFormSelect';
 import { productFormValidator } from '../../../utils/validators';
+import { GENDER } from '../../../constants/common';
 
 const INIT_INPUT = {
   name: '',
@@ -25,6 +26,11 @@ const INIT_INPUT = {
   },
   discount: '',
   category: {
+    id: '',
+    name: '',
+    url: '',
+  },
+  gender: {
     id: '',
     name: '',
     url: '',
@@ -92,6 +98,7 @@ const ProductForm: React.FC<IProductFormProps> = ({ onClose, categories, brands 
         price,
         weight,
         brand: input.brand,
+        gender: input.gender,
       };
 
       dispatch(createProduct(newProduct));
@@ -148,6 +155,17 @@ const ProductForm: React.FC<IProductFormProps> = ({ onClose, categories, brands 
                 value={input.brand.name || ''}
                 errorText={errors.brand}
                 field={'brand'}
+              />
+
+              <ProductFormSelect
+                options={GENDER}
+                errorText={errors.gender}
+                defaultOptionText={'Выберите пол'}
+                label={'Пол'}
+                required
+                onSelect={handleChangeSelect}
+                value={input.gender.name || ''}
+                field={'gender'}
               />
             </div>
 

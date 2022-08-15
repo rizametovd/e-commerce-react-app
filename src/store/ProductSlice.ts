@@ -38,6 +38,11 @@ const initialState: ProductState = {
       id: '',
       name: '',
     },
+    gender: {
+      name: '',
+      id: '',
+      url: ''
+    }
   },
   isLoading: false,
   error: {
@@ -118,7 +123,7 @@ export const createProduct = createAsyncThunk(
 export const updateProduct = createAsyncThunk(
   'product/updateProduct',
   async (product: Product, { dispatch, rejectWithValue }) => {
-    const { id, category, description, discount, image, name, brand, price, weight } = product;
+    const { id, category, description, discount, image, name, brand, price, weight, gender } = product;
     const response = await fetch(`${BASE_URL}/products/${id}.json`, {
       method: 'PATCH',
       headers: {
@@ -133,6 +138,7 @@ export const updateProduct = createAsyncThunk(
         brand,
         price,
         weight,
+        gender,
       }),
     });
 

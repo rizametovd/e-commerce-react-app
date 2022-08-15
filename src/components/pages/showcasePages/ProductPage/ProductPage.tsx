@@ -27,7 +27,9 @@ const ProductPage: React.FC<IProductPageProps> = () => {
     return <NotFound />;
   }
 
-  const { id, name, description, image, brand, price, weight, discount } = product;
+  const { id, name, description, image, brand, price, weight, discount, gender } = product;
+  const chipText =
+    gender.url === 'male' ? 'Мужская коллекция' : gender.url === 'female' ? 'Женская коллекция' : 'Унисекс';
   const isWished = wishlist.includes(id);
 
   const cartItem: CartItem = {
@@ -54,7 +56,10 @@ const ProductPage: React.FC<IProductPageProps> = () => {
               <div className={classes['content-wrapper']}>
                 <div className={classes['title-wrapper']}>
                   <h1 className={classes.title}>{name}</h1>
-                  <Chip text={brand.name} mode={'plain'} />
+                  <div className={classes['chip-wrapper']}>
+                    <Chip text={brand.name} mode={'plain'} />
+                    <Chip text={chipText} mode={'plain'} />
+                  </div>
                 </div>
 
                 <div className={classes['price-wrapper']}>

@@ -25,6 +25,11 @@
   gap: 20px;
 }
 
+.chip-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
 .content-wrapper {
   display: flex;
   flex-direction: column;

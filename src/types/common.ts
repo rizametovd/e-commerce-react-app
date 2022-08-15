@@ -50,6 +50,11 @@ export type Product = {
   price: number;
   weight: number;
   isLocked?: boolean;
+  gender: {
+    id: string;
+    name: string;
+    url: string;
+  };
 };
 
 export type Error = {

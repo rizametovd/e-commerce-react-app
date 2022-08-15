@@ -245,7 +245,7 @@ const ProductsList: React.FC<IProductsListProps> = ({ products, onOpen, isLoadin
                 </td>
               </tr>
             )}
-            {productList.map(({ id, image, price, brand, category, name, discount }) => {
+            {productList.map(({ id, image, price, brand, category, name, discount, gender }) => {
               return (
                 <tr key={id}>
                   <td className={classes.cell}>
@@ -253,11 +253,11 @@ const ProductsList: React.FC<IProductsListProps> = ({ products, onOpen, isLoadin
                   </td>
                   <td className={classes['product-name-cell']}>
                     {name}
-                    {discount && (
-                      <div>
-                        <Chip text={'Скидка  -' + discount.percent + '%'} mode={'highlighted'} />
-                      </div>
-                    )}
+
+                    <div className={classes['chip-wrapper']}>
+                      {discount && <Chip text={'Скидка  -' + discount.percent + '%'} mode={'highlighted'} />}
+                      {gender && <Chip text={'Пол: ' + gender.name.toLocaleLowerCase()} mode={'info'} />}
+                    </div>
                   </td>
                   <td className={classes.cell}>{category.name}</td>
                   <td className={classes.cell}>{brand.name}</td>
@@ -266,7 +266,6 @@ const ProductsList: React.FC<IProductsListProps> = ({ products, onOpen, isLoadin
                     <div className={classes.action}>
                       {LOCKED_PRODUCTS.includes(id) ? (
                         <Tooltip icon={<LockIcon />} message={NO_WAY_TO_CHANGE_THIS_PRODUCT} />
-                   
                       ) : (
                         <>
                           <IconButton onClick={() => editProductHandler(id)}>
