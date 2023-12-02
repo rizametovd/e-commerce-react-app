@@ -1,0 +1,349 @@
+{
+  "-NkfneuEMlxTczkJSXzD": {
+    "brand": {
+      "id": "-Nkfj5SQsQ_2rLftLjs1",
+      "name": "Lee Cooper"
+    },
+    "category": {
+      "id": "-NkfipU4uWpp7PhaMZyV",
+      "name": "Джинсы",
+      "url": "jeans"
+    },
+    "description": "Размер на модели: 30/32 JEANS. Параметры модели: рост 177 см см, грудь 85 см, талия 65 см, бедра 93 см.",
+    "discount": {
+      "discountedPrice": 7500,
+      "percent": 25
+    },
+    "gender": {
+      "id": "2",
+      "name": "Женский",
+      "url": "female"
+    },
+    "image": "https://a.lmcdn.ru/img600x866/R/T/RTLACL222901_19305248_2_v2_2x.jpg",
+    "name": "Джинсы MOM STRAIGHT",
+    "price": 10000,
+    "weight": 1.4
+  },
+  "-Nkfo05JsJNfzHDwub4s": {
+    "brand": {
+      "id": "-Nkfj5SQsQ_2rLftLjs1",
+      "name": "Lee Cooper"
+    },
+    "category": {
+      "id": "-NkfipU4uWpp7PhaMZyV",
+      "name": "Джинсы",
+      "url": "jeans"
+    },
+    "description": "Размер на модели: 27/32 JEANS. Параметры модели: рост 173 см см, грудь 87 см, талия 63 см, бедра 92 см.",
+    "gender": {
+      "id": "2",
+      "name": "Женский",
+      "url": "female"
+    },
+    "image": "https://a.lmcdn.ru/img600x866/R/T/RTLACL222501_19305244_2_v1_2x.jpg",
+    "name": "Джинсы MOM FIT",
+    "price": 9800,
+    "weight": 0.2
+  },
+  "-NkfoJsFedOT3J2S07K0": {
+    "brand": {
+      "id": "-Nkfj5SQsQ_2rLftLjs1",
+      "name": "Lee Cooper"
+    },
+    "category": {
+      "id": "-NkfipU4uWpp7PhaMZyV",
+      "name": "Джинсы",
+      "url": "jeans"
+    },
+    "description": "Размер на модели: 27 JEANS. Параметры модели: рост 178 см см, грудь 90 см, талия 64 см, бедра 94 см.",
+    "gender": {
+      "id": "2",
+      "name": "Женский",
+      "url": "female"
+    },
+    "image": "https://a.lmcdn.ru/img600x866/M/P/MP002XW0FFGI_17566088_2_v1_2x.jpg",
+    "name": "Джинсы Lee Cooper",
+    "price": 5000,
+    "weight": 1.3
+  },
+  "-Nkfp4QHgH8r5KljW43p": {
+    "brand": {
+      "id": "-Nkfj5SQsQ_2rLftLjs1",
+      "name": "Lee Cooper"
+    },
+    "category": {
+      "id": "-NkfiwscdixHLuW87vr3",
+      "name": "Футболки",
+      "url": "tees"
+    },
+    "description": "Размер на модели: S INT. Параметры модели: рост 178 см см, грудь 84 см, талия 60 см, бедра 92 см.",
+    "discount": {
+      "discountedPrice": 2250,
+      "percent": 10
+    },
+    "gender": {
+      "id": "2",
+      "name": "Женский",
+      "url": "female"
+    },
+    "image": "https://a.lmcdn.ru/img600x866/M/P/MP002XW15YP8_17416798_1_v1_2x.jpg",
+    "name": "Футболка Lee Cooper",
+    "price": 2500,
+    "weight": 0.3
+  },
+  "-NkfpbVgBRNQyBn2kjSd": {
+    "brand": {
+      "id": "-Nkfj5SQsQ_2rLftLjs1",
+      "name": "Lee Cooper"
+    },
+    "category": {
+      "id": "-NkfiwscdixHLuW87vr3",
+      "name": "Футболки",
+      "url": "tees"
+    },
+    "description": "Размер на модели: S INT. Параметры модели: рост 174 см см, грудь 78 см, талия 63 см, бедра 89 см.",
+    "discount": {
+      "discountedPrice": 1125,
+      "percent": 25
+    },
+    "gender": {
+      "id": "2",
+      "name": "Женский",
+      "url": "female"
+    },
+    "image": "https://a.lmcdn.ru/img600x866/R/T/RTLACR364801_20150918_1_v1_2x.jpg",
+    "name": "Футболка Lee Cooper",
+    "price": 1500,
+    "weight": 0.3
+  },
+  "-Nkfpu6JXgZYU5WpJXfD": {
+    "brand": {
+      "id": "-NkfjDXFfFEkRgs_b01F",
+      "name": "Levi's®"
+    },
+    "category": {
+      "id": "-NkfiwscdixHLuW87vr3",
+      "name": "Футболки",
+      "url": "tees"
+    },
+    "description": "Размер на модели: XS INT. Параметры модели: рост 177 см см, грудь 85 см, талия 62 см, бедра 89 см.",
+    "discount": {
+      "discountedPrice": 2375,
+      "percent": 5
+    },
+    "gender": {
+      "id": "2",
+      "name": "Женский",
+      "url": "female"
+    },
+    "image": "https://a.lmcdn.ru/img600x866/R/T/RTLACT543201_20727299_1_v1_2x.jpg",
+    "name": "Футболка Levi's",
+    "price": 2500,
+    "weight": 1.2
+  },
+  "-NkfqB7h3zHrVEJSP3Nk": {
+    "brand": {
+      "id": "-NkfjDXFfFEkRgs_b01F",
+      "name": "Levi's®"
+    },
+    "category": {
+      "id": "-NkfiwscdixHLuW87vr3",
+      "name": "Футболки",
+      "url": "tees"
+    },
+    "description": "Размер на модели: M INT. Параметры модели: рост 187 см см, грудь 100 см, талия 76 см, бедра 95 см.",
+    "discount": {
+      "discountedPrice": 1875,
+      "percent": 25
+    },
+    "gender": {
+      "id": "3",
+      "name": "Мужской",
+      "url": "male"
+    },
+    "image": "https://a.lmcdn.ru/img600x866/R/T/RTLACU341801_20683479_1_v2_2x.jpg",
+    "name": "Футболка Levi's",
+    "price": 2500,
+    "weight": 0.4
+  },
+  "-NkfqTb3c5gtSAA34UhB": {
+    "brand": {
+      "id": "-NkfjDXFfFEkRgs_b01F",
+      "name": "Levi's®"
+    },
+    "category": {
+      "id": "-NkfiwscdixHLuW87vr3",
+      "name": "Футболки",
+      "url": "tees"
+    },
+    "description": "Размер на модели: S INT. Параметры модели: рост 172 см см, грудь 85 см, талия 60 см, бедра 89 см.",
+    "gender": {
+      "id": "2",
+      "name": "Женский",
+      "url": "female"
+    },
+    "image": "https://a.lmcdn.ru/img600x866/R/T/RTLADB903401_21709020_1_v1_2x.jpg",
+    "name": "Футболка Levi's",
+    "price": 7000,
+    "weight": 0.5
+  },
+  "-NkfqmBwLrKu0kbhKi31": {
+    "brand": {
+      "id": "-NkfjDXFfFEkRgs_b01F",
+      "name": "Levi's®"
+    },
+    "category": {
+      "id": "-NkfiwscdixHLuW87vr3",
+      "name": "Футболки",
+      "url": "tees"
+    },
+    "description": "Размер на модели: M INT. Параметры модели: рост 190 см см, грудь 97 см, талия 78 см, бедра 100 см.",
+    "discount": {
+      "discountedPrice": 1750,
+      "percent": 50
+    },
+    "gender": {
+      "id": "3",
+      "name": "Мужской",
+      "url": "male"
+    },
+    "image": "https://a.lmcdn.ru/img600x866/R/T/RTLACZ474201_21405120_1_v1_2x.jpg",
+    "name": "Футболка Levi's",
+    "price": 3500,
+    "weight": 0.2
+  },
+  "-Nkfr3V5RGb6V0AsmMLq": {
+    "brand": {
+      "id": "-NkfjDXFfFEkRgs_b01F",
+      "name": "Levi's®"
+    },
+    "category": {
+      "id": "-NkfiwscdixHLuW87vr3",
+      "name": "Футболки",
+      "url": "tees"
+    },
+    "description": "Размер на модели: M INT. Параметры модели: рост 186 см см, грудь 95 см, талия 78 см, бедра 95 см.",
+    "gender": {
+      "id": "3",
+      "name": "Мужской",
+      "url": "male"
+    },
+    "image": "https://a.lmcdn.ru/img600x866/R/T/RTLADB458401_21674394_1_v1_2x.jpg",
+    "name": "Футболка Levi's",
+    "price": 2835,
+    "weight": 0.6
+  },
+  "-NkfrNalzpvdrblr9kNN": {
+    "brand": {
+      "id": "-NkfjDXFfFEkRgs_b01F",
+      "name": "Levi's®"
+    },
+    "category": {
+      "id": "-NkfipU4uWpp7PhaMZyV",
+      "name": "Джинсы",
+      "url": "jeans"
+    },
+    "description": "Размер на модели: 32/32 JEANS. Параметры модели: рост 190 см см, грудь 97 см, талия 78 см, бедра 100 см.",
+    "gender": {
+      "id": "3",
+      "name": "Мужской",
+      "url": "male"
+    },
+    "image": "https://a.lmcdn.ru/img600x866/R/T/RTLACZ473001_21405082_2_v1_2x.jpg",
+    "name": "Джинсы Levi's",
+    "price": 15499,
+    "weight": 0.8
+  },
+  "-NkfrnefFlCJ0u2R2Vv5": {
+    "brand": {
+      "id": "-NkfjDXFfFEkRgs_b01F",
+      "name": "Levi's®"
+    },
+    "category": {
+      "id": "-NkfipU4uWpp7PhaMZyV",
+      "name": "Джинсы",
+      "url": "jeans"
+    },
+    "description": "Размер на модели: 32/32 JEANS. Параметры модели: рост 190 см см, грудь 97 см, талия 78 см, бедра 100 см.",
+    "discount": {
+      "discountedPrice": 7093,
+      "percent": 59
+    },
+    "gender": {
+      "id": "3",
+      "name": "Мужской",
+      "url": "male"
+    },
+    "image": "https://a.lmcdn.ru/img600x866/R/T/RTLACZ472001_21405052_2_v1_2x.jpg",
+    "name": "Джинсы 501® LEVIS®ORIGINAL",
+    "price": 17299,
+    "weight": 0.6
+  },
+  "-NkfsIIFdxpbRmELqM06": {
+    "brand": {
+      "id": "-NkfjDXFfFEkRgs_b01F",
+      "name": "Levi's®"
+    },
+    "category": {
+      "id": "-NkfipU4uWpp7PhaMZyV",
+      "name": "Джинсы",
+      "url": "jeans"
+    },
+    "description": "Размер на модели: 27/29 JEANS. Параметры модели: рост 180 см см, грудь 83 см, талия 61 см, бедра 90 см.",
+    "discount": {
+      "discountedPrice": 14293,
+      "percent": 35
+    },
+    "gender": {
+      "id": "2",
+      "name": "Женский",
+      "url": "female"
+    },
+    "image": "https://a.lmcdn.ru/img600x866/R/T/RTLACU342801_20642479_2_v1_2x.jpg",
+    "name": "Джинсы RIBCAGE STRAIGHT ANKLE",
+    "price": 21990,
+    "weight": 0.2
+  },
+  "-NkfsZqx8Yx8EvjmEuv6": {
+    "brand": {
+      "id": "-NkfjDXFfFEkRgs_b01F",
+      "name": "Levi's®"
+    },
+    "category": {
+      "id": "-NkfipU4uWpp7PhaMZyV",
+      "name": "Джинсы",
+      "url": "jeans"
+    },
+    "description": "Размер на модели: 27/32 JEANS. Параметры модели: рост 178 см см, грудь 84 см, талия 60 см, бедра 92 см.",
+    "gender": {
+      "id": "2",
+      "name": "Женский",
+      "url": "female"
+    },
+    "image": "https://a.lmcdn.ru/img600x866/L/E/LE306EWFTE25_2624109_2_v2.jpg",
+    "name": "Джинсы 711 SKINNY",
+    "price": 8900,
+    "weight": 0.2
+  },
+  "-Nkfsxa_bz_EUYq94Hpm": {
+    "brand": {
+      "id": "-Nkfj5SQsQ_2rLftLjs1",
+      "name": "Lee Cooper"
+    },
+    "category": {
+      "id": "-NkfipU4uWpp7PhaMZyV",
+      "name": "Джинсы",
+      "url": "jeans"
+    },
+    "description": "Размер на модели: 32/32 JEANS. Параметры модели: рост 190 см см, грудь 101 см, талия 76 см, бедра 94 см.",
+    "gender": {
+      "id": "3",
+      "name": "Мужской",
+      "url": "male"
+    },
+    "image": "https://a.lmcdn.ru/img600x866/R/T/RTLACR371801_20155929_2_v2_2x.jpg",
+    "name": "Джинсы Lee Cooper",
+    "price": 9200,
+    "weight": 0.5
+  }
+}

@@ -10,6 +10,7 @@ import {
   UPDATE_CATEGORY_ERROR_MESSAGE,
 } from '../constants/messages';
 import { showAlert } from './CommonSlice';
+import MOCKED_CATEGORIES from '../mocks/categories.json';
 
 export type CategoryState = {
   categories: Category[];
@@ -47,6 +48,11 @@ export const fetchCategories = createAsyncThunk(
 
     const data = await response.json();
     const categories: Category[] = handleObj(data);
+
+    if (categories.length < 2) {
+      const mockedCategories: Category[] = handleObj(MOCKED_CATEGORIES);
+      return mockedCategories;
+    }
     return categories;
   }
 );

@@ -9,6 +9,7 @@ import {
   UPDATE_BRAND_ERROR_MESSAGE,
 } from '../constants/messages';
 import { showAlert } from './CommonSlice';
+import MOCK_BRANDS from '../mocks/brands.json';
 
 export type BrandState = {
   brands: Brand[];
@@ -44,6 +45,11 @@ export const fetchBrands = createAsyncThunk('brand/fetchbrands', async (_, { dis
 
   const data = await response.json();
   const brands: Brand[] = handleObj(data);
+
+  if (brands.length < 2) {
+    const mockedBrands: Brand[] = handleObj(MOCK_BRANDS);
+    return mockedBrands;
+  }
   return brands;
 });
 

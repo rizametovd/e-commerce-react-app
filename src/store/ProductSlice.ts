@@ -12,6 +12,7 @@ import {
 import { fetchBrands } from './BrandSlice';
 import { fetchCategories } from './CategorySlice';
 import { showAlert } from './CommonSlice';
+import MOCKED_PRODUCTS from '../mocks/products.json';
 
 export type ProductState = {
   products: Product[];
@@ -41,8 +42,8 @@ const initialState: ProductState = {
     gender: {
       name: '',
       id: '',
-      url: ''
-    }
+      url: '',
+    },
   },
   isLoading: false,
   error: {
@@ -65,8 +66,12 @@ export const fetchProducts = createAsyncThunk<Product[], void, { state: RootStat
       return rejectWithValue(FETCH_PRODUCTS_ERROR_MESSAGE);
     }
 
+    let products: Product[] = [];
     const data = await response.json();
-    const products: Product[] = handleObj(data);
+    products = handleObj(data);
+    if (!products || products?.length === 0) {
+      products = handleObj(MOCKED_PRODUCTS);
+    }
 
     const {
       brand: { brands },
